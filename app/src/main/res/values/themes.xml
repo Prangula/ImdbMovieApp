@@ -10,7 +10,7 @@
     <style name="Theme.ImdbMovieApp.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="android:navigationBarColor">@color/neutralBlack</item>
-        <item name="android:statusBarColor">@color/neutralBlack</item>
+        <item name="android:navigationBarColor">@color/neutral01Black</item>
+        <item name="android:statusBarColor">@color/neutral01Black</item>
     </style>
 </resources>

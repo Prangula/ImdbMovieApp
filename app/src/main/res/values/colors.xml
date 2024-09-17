@@ -3,12 +3,12 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="yellowPrimary">#F5C518</color>
-    <color name="neutralBlack">#080808</color>
-    <color name="neutralDarkestGrey">#1C1C1C</color>
-    <color name="neutralDarkGrey">#5D5D5D</color>
-    <color name="neutralGrey">#808080</color>
-    <color name="neutralLightGrey">#A5A5A5</color>
-    <color name="neutralLighterGrey">#CACACA</color>
-    <color name="neutralLightestGrey">#DEDEDE</color>
-    <color name="neutralWhisper">#EAEAEA</color>
+    <color name="neutral01Black">#080808</color>
+    <color name="neutral02DarkestGrey">#1C1C1C</color>
+    <color name="neutral03DarkGrey">#5D5D5D</color>
+    <color name="neutral04Grey">#808080</color>
+    <color name="neutral05LightGrey">#A5A5A5</color>
+    <color name="neutral06LighterGrey">#CACACA</color>
+    <color name="neutral07LightestGrey">#DEDEDE</color>
+    <color name="neutral08Whisper">#EAEAEA</color>
 </resources>
