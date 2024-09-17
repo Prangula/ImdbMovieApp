@@ -1,13 +1,13 @@
-package com.imdbmovieapp.domain.usecase.insertUseCase
+package com.imdbmovieapp.domain.usecase.deleteMovieUseCase
 
 import com.imdbmovieapp.domain.base.BaseUseCase
 import com.imdbmovieapp.domain.model.MovieDomain
 import com.imdbmovieapp.domain.repository.MovieRepository
 
-class InsertUseCase(
+class DeleteMovieUseCase(
     private val movieRepository: MovieRepository
 ) : BaseUseCase<MovieDomain, Unit> {
     override suspend fun invoke(data: MovieDomain?) {
-        movieRepository.insert(data!!)
+        movieRepository.delete(data!!)
     }
 }

@@ -1,13 +1,13 @@
-package com.imdbmovieapp.domain.usecase.moviesUseCase
+package com.imdbmovieapp.domain.usecase.getMoviesUseCase
 
-import androidx.lifecycle.LiveData
 import com.imdbmovieapp.domain.model.MovieDomain
 import com.imdbmovieapp.domain.repository.MovieRepository
+import kotlinx.coroutines.flow.Flow
 
-class MoviesUseCaseImpl(
+class GetMoviesUseCaseImpl(
     private val movieRepository: MovieRepository
-) : MoviesUseCase {
-    override suspend fun invoke(): LiveData<List<MovieDomain>> {
+) : GetMoviesUseCase {
+    override suspend fun invoke(): Flow<List<MovieDomain>> {
         return movieRepository.getAllMovies()
     }
 }

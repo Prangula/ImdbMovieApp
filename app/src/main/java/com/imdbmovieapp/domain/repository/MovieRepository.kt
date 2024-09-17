@@ -1,7 +1,7 @@
 package com.imdbmovieapp.domain.repository
 
-import androidx.lifecycle.LiveData
 import com.imdbmovieapp.domain.model.MovieDomain
+import kotlinx.coroutines.flow.Flow
 
 interface MovieRepository {
 
@@ -9,5 +9,5 @@ interface MovieRepository {
 
     suspend fun delete(movieDomain: MovieDomain)
 
-    fun getAllMovies(): LiveData<List<MovieDomain>>
+    fun getAllMovies(): Flow<List<MovieDomain>>
 }
