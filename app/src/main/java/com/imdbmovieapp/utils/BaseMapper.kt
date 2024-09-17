@@ -1,6 +1,6 @@
 package com.imdbmovieapp.utils
 
-interface ModelMapper<in MODEL_A, out MODEL_B> {
+interface BaseMapper<in MODEL_A, out MODEL_B> {
 
     fun mapModel(model: MODEL_A): MODEL_B
 

@@ -1,13 +1,13 @@
 package com.imdbmovieapp.data.local.mapper
 
-import com.imdbmovieapp.data.local.entity.MovieEntity
-import com.imdbmovieapp.domain.model.MovieDomain
-import com.imdbmovieapp.utils.ModelMapper
+import com.imdbmovieapp.data.local.entity.FavoriteMovieEntity
+import com.imdbmovieapp.domain.model.FavoriteMovieDomain
+import com.imdbmovieapp.utils.BaseMapper
 
-class MovieEntityToMovieDomainMapper : ModelMapper<MovieEntity, MovieDomain> {
-    override fun mapModel(model: MovieEntity): MovieDomain {
+class MovieEntityToMovieDomainMapper : BaseMapper<FavoriteMovieEntity, FavoriteMovieDomain> {
+    override fun mapModel(model: FavoriteMovieEntity): FavoriteMovieDomain {
         return with(model) {
-            MovieDomain(
+            FavoriteMovieDomain(
                 id = id,
                 title = title,
                 year = year,
