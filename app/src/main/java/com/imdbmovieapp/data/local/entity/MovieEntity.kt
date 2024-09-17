@@ -5,11 +5,11 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "movieTable")
 data class MovieEntity(
-    val title: String = "",
-    val year: String = "",
-    val genre: String = "",
-    val image: String = "",
-    val isFavorite: Int = 0,
     @PrimaryKey
     val id: Int? = null,
+    val title: String? = null,
+    val year: String? = null,
+    val genre: String? = null,
+    val image: String? = null,
+    val isFavorite: Int? = null,
 )

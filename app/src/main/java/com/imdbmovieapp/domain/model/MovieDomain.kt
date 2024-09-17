@@ -1,10 +1,10 @@
 package com.imdbmovieapp.domain.model
 
 data class MovieDomain(
-    val title: String = "",
-    val year: String = "",
-    val genre: String = "",
-    val image: String = "",
-    val isFavorite: Int = 0,
-    val id: Int? = null
+    val id: Int? = null,
+    val title: String? = null,
+    val year: String? = null,
+    val genre: String? = null,
+    val image: String? = null,
+    val isFavorite: Int? = null,
 )
