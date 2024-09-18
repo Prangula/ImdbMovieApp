@@ -1,4 +1,4 @@
-package com.imdbmovieapp.data.remote.dto.detailMovieDto
+package com.imdbmovieapp.data.remote.dto.genreMovieDto
 
 data class Genre(
     val id: Int,
