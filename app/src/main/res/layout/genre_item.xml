@@ -1,25 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.widget.Button xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/genreItemButton"
     android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:background="@color/neutral_01_black">
-
-    <android.widget.Button
-        android:id="@+id/genreItemButton"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/dimen_26dp"
-        android:layout_margin="@dimen/dimen_10dp"
-        android:background="@drawable/button_rectangle_white_stroke_background"
-        android:fontFamily="@font/montserrat"
-        android:paddingHorizontal="@dimen/dimen_10dp"
-        android:textColor="@color/neutral_08_whisper"
-        android:textSize="@dimen/dimen_12sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Comedy" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    android:layout_height="@dimen/dimen_26dp"
+    android:layout_margin="@dimen/dimen_10dp"
+    android:background="@drawable/button_rectangle_white_stroke_background"
+    android:fontFamily="@font/montserrat"
+    android:paddingHorizontal="@dimen/dimen_10dp"
+    android:textColor="@color/neutral_08_whisper"
+    android:textSize="@dimen/dimen_12sp"
+    android:textStyle="bold"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    tools:text="Comedy">
+</android.widget.Button>
