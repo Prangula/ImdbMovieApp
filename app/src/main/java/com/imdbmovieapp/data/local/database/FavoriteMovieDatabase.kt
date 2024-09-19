@@ -10,5 +10,5 @@ import com.imdbmovieapp.data.local.entity.FavoriteMovieEntity
     version = 1
 )
 abstract class FavoriteMovieDatabase : RoomDatabase() {
-    abstract fun movieDao(): FavoriteMovieDao
+    abstract fun favoriteMovieDao(): FavoriteMovieDao
 }
