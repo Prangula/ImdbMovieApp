@@ -14,13 +14,15 @@ class FavoriteMovieRepositoryImpl(
     private val movieDomainToMovieEntityMapper: MovieDomainToMovieEntityMapper
 ) : FavoriteMovieRepository {
     override suspend fun insert(favoriteMovieDomain: FavoriteMovieDomain) {
-        return favoriteMovieDatabase.movieDao()
-            .insertMovie(movieDomainToMovieEntityMapper.mapModel(favoriteMovieDomain))
+        favoriteMovieDatabase.movieDao().insertMovie(
+            movieDomainToMovieEntityMapper.mapModel(favoriteMovieDomain)
+        )
     }
 
     override suspend fun delete(favoriteMovieDomain: FavoriteMovieDomain) {
-        return favoriteMovieDatabase.movieDao()
-            .deleteMovie(movieDomainToMovieEntityMapper.mapModel(favoriteMovieDomain))
+        favoriteMovieDatabase.movieDao().deleteMovie(
+            movieDomainToMovieEntityMapper.mapModel(favoriteMovieDomain)
+        )
     }
 
     override fun getAllMovies(): Flow<List<FavoriteMovieDomain>> {
