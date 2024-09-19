@@ -1,12 +1,12 @@
-package com.imdbmovieapp.domain.usecase.insertMovieUseCase
+package com.imdbmovieapp.domain.usecase.local
 
-import com.imdbmovieapp.domain.base.BaseUseCase
+import com.imdbmovieapp.domain.base.FavoriteBaseUseCase
 import com.imdbmovieapp.domain.model.FavoriteMovieDomain
 import com.imdbmovieapp.domain.repository.FavoriteMovieRepository
 
-class InsertFavoriteMovieUseCase(
+class InsertFavoriteMovieUseCaseFavorite(
     private val favoriteMovieRepository: FavoriteMovieRepository
-) : BaseUseCase<FavoriteMovieDomain, Unit> {
+) : FavoriteBaseUseCase<FavoriteMovieDomain, Unit> {
     override suspend fun invoke(data: FavoriteMovieDomain?) {
         favoriteMovieRepository.insert(data!!)
     }

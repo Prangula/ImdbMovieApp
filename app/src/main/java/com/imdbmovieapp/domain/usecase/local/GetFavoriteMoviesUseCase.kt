@@ -1,4 +1,4 @@
-package com.imdbmovieapp.domain.usecase.getMoviesUseCase
+package com.imdbmovieapp.domain.usecase.local
 
 import com.imdbmovieapp.domain.model.FavoriteMovieDomain
 import kotlinx.coroutines.flow.Flow
