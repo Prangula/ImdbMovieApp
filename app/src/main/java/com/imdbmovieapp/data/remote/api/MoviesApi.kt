@@ -25,5 +25,5 @@ interface MoviesApi {
     suspend fun getSearchMovies(@Query("query") query: String): Response<List<SearchMoviesDto>>
 
     @GET("/3/genre/movie/list")
-    suspend fun getGenres(): Response<List<MovieGenreDto>>
+    suspend fun getMovieGenres(): Response<List<MovieGenreDto>>
 }
