@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/neutral_01_black">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/detailToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:titleTextColor="@color/neutral_08_whisper"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/detailDetailTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/dimen_20dp"
+                android:fontFamily="@font/montserrat"
+                android:text="Details"
+                android:textColor="@color/neutral_08_whisper"
+                android:textSize="@dimen/dimen_20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <FrameLayout
+            android:id="@+id/detailFrameLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detailToolbar">
+
+            <ImageView
+                android:id="@+id/detailImageView"
+                android:layout_width="375dp"
+                android:layout_height="409dp"
+                android:layout_marginVertical="@dimen/dimen_20dp"
+                tools:src="@color/neutral_04_grey" />
+
+            <android.widget.Button
+                android:id="@+id/detailTrailerButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_marginEnd="@dimen/dimen_20dp"
+                android:layout_marginBottom="@dimen/dimen_50dp"
+                android:background="@drawable/button_rectangle_yellow_solid_background"
+                android:drawableRight="@drawable/ic_play"
+                android:drawablePadding="@dimen/dimen_8dp"
+                android:fontFamily="@font/montserrat"
+                android:paddingHorizontal="@dimen/dimen_26dp"
+                android:textColor="@color/neutral_01_black"
+                android:textSize="@dimen/dimen_12sp"
+                android:textStyle="bold"
+                tools:text="Trailer" />
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/detailTitleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_10dp"
+            android:fontFamily="@font/montserrat"
+            android:text="@string/the_baby_boss"
+            android:textColor="@color/neutral_08_whisper"
+            android:textSize="@dimen/dimen_24sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detailFrameLayout" />
+
+
+        <ImageView
+            android:id="@+id/detailUncoloredHeart"
+            android:layout_width="@dimen/dimen_30dp"
+            android:layout_height="@dimen/dimen_30dp"
+            android:layout_marginEnd="@dimen/dimen_20dp"
+            android:src="@drawable/ic_uncolored_heart"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detailFrameLayout" />
+
+        <TextView
+            android:id="@+id/detailScoreTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_10dp"
+            android:background="@drawable/button_rectangle_grey_solid_background"
+            android:drawableStart="@drawable/ic_star"
+            android:drawablePadding="@dimen/dimen_5dp"
+            android:fontFamily="@font/montserrat"
+            android:paddingHorizontal="@dimen/dimen_20dp"
+            android:paddingVertical="@dimen/dimen_2dp"
+            android:textColor="@color/neutral_06_lighter_grey"
+            android:textSize="@dimen/dimen_12sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detailTitleTextView"
+            tools:text="7.9" />
+
+        <TextView
+            android:id="@+id/detailGenreTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_10dp"
+            android:background="@drawable/button_rectangle_grey_solid_background"
+            android:fontFamily="@font/montserrat"
+            android:paddingHorizontal="@dimen/dimen_20dp"
+            android:paddingVertical="@dimen/dimen_2dp"
+            android:textColor="@color/neutral_06_lighter_grey"
+            android:textSize="@dimen/dimen_12sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/detailScoreTextView"
+            app:layout_constraintTop_toBottomOf="@id/detailTitleTextView"
+            tools:text="Romance" />
+
+        <TextView
+            android:id="@+id/detailYearTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_10dp"
+            android:background="@drawable/button_rectangle_grey_solid_background"
+            android:fontFamily="@font/montserrat"
+            android:paddingHorizontal="@dimen/dimen_20dp"
+            android:paddingVertical="@dimen/dimen_2dp"
+            android:textColor="@color/neutral_06_lighter_grey"
+            android:textSize="@dimen/dimen_12sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/detailGenreTextView"
+            app:layout_constraintTop_toBottomOf="@id/detailTitleTextView"
+            tools:text="2007" />
+
+        <TextView
+            android:id="@+id/detailAboutTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_10dp"
+            android:layout_marginTop="@dimen/dimen_20dp"
+            android:fontFamily="@font/montserrat"
+            android:text="@string/about_movie"
+            android:textColor="@color/neutral_08_whisper"
+            android:textSize="@dimen/dimen_20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detailScoreTextView" />
+
+        <TextView
+            android:id="@+id/detailDescriptionTextview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dimen_10dp"
+            android:layout_marginTop="@dimen/dimen_10dp"
+            android:fontFamily="@font/montserrat"
+            android:textColor="@color/neutral_06_lighter_grey"
+            android:textSize="@dimen/dimen_14dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detailAboutTextView"
+            tools:ignore="SpUsage"
+            tools:text="Thirteen-year-old fledgling writer Briony Tallis irrevocably changes the course of several lives when she accuses her older sister's lover of a crime he did not commit." />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
