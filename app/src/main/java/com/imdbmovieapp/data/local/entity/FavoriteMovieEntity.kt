@@ -3,7 +3,7 @@ package com.imdbmovieapp.data.local.entity
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "movieTable")
+@Entity(tableName = "movie_table")
 data class FavoriteMovieEntity(
     @PrimaryKey
     val id: Int,
