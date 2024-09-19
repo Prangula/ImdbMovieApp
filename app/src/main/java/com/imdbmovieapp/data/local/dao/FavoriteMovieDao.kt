@@ -16,6 +16,6 @@ interface FavoriteMovieDao {
     @Delete
     suspend fun deleteMovie(favoriteMovieEntity: FavoriteMovieEntity)
 
-    @Query("SELECT * FROM 'movieTable'")
+    @Query("SELECT * FROM movieTable")
     fun getAllMovies(): Flow<List<FavoriteMovieEntity>>
 }
