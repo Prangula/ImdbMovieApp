@@ -1,5 +1,7 @@
 package com.imdbmovieapp.data.remote.dto.popularMoviesDto
 
+import com.google.gson.annotations.SerializedName
+
 data class MoviesResultDto(
     val id: Int,
     @SerializedName("genre_ids")

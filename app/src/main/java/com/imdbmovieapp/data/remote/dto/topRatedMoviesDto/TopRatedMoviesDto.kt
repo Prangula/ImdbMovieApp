@@ -1,5 +1,6 @@
 package com.imdbmovieapp.data.remote.dto.topRatedMoviesDto
 
+import com.google.gson.annotations.SerializedName
 import com.imdbmovieapp.data.remote.dto.popularMoviesDto.MoviesResultDto
 
 data class TopRatedMoviesDto(

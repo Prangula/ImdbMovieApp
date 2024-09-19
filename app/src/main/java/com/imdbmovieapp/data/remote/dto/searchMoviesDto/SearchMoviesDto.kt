@@ -1,5 +1,7 @@
 package com.imdbmovieapp.data.remote.dto.searchMoviesDto
 
+import com.google.gson.annotations.SerializedName
+
 data class SearchMoviesDto(
     val page: Int,
     val results: List<Any>,

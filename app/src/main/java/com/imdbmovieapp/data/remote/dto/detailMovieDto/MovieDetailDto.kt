@@ -1,5 +1,6 @@
 package com.imdbmovieapp.data.remote.dto.detailMovieDto
 
+import com.google.gson.annotations.SerializedName
 import com.imdbmovieapp.data.remote.dto.genreMovieDto.GenreDto
 
 data class MovieDetailDto(
