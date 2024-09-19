@@ -3,4 +3,6 @@
     <string name="search">Search</string>
     <string name="cancel">cancel</string>
     <string name="movies">Movies</string>
+    <string name="favorite_movies">Favorite movies</string>
+    <string name="no_movies_added_yet">No movies added yet</string>
 </resources>
