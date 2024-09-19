@@ -14,7 +14,6 @@
             android:id="@+id/detailToolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:titleTextColor="@color/neutral_08_whisper"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="UnusedAttribute">
 
@@ -32,65 +31,61 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
         </androidx.appcompat.widget.Toolbar>
 
-        <FrameLayout
-            android:id="@+id/detailFrameLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageButton
+            android:id="@+id/detailImageView"
+            android:layout_width="@dimen/dimen_375dp"
+            android:layout_height="@dimen/dimen_409dp"
+            android:layout_marginVertical="@dimen/dimen_20dp"
+            android:scaleType="fitXY"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/detailToolbar">
+            app:layout_constraintTop_toBottomOf="@id/detailToolbar"
+            tools:ignore="ContentDescription,ImageContrastCheck"
+            tools:src="@color/neutral_04_grey" />
 
-            <ImageView
-                android:id="@+id/detailImageView"
-                android:layout_width="375dp"
-                android:layout_height="409dp"
-                android:layout_marginVertical="@dimen/dimen_20dp"
-                tools:ignore="ContentDescription,ImageContrastCheck"
-                tools:src="@color/neutral_04_grey" />
-
-            <android.widget.Button
-                android:id="@+id/detailTrailerButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|end"
-                android:layout_marginEnd="@dimen/dimen_20dp"
-                android:layout_marginBottom="@dimen/dimen_50dp"
-                android:background="@drawable/button_rectangle_yellow_solid_background"
-                android:drawableEnd="@drawable/ic_play"
-                android:drawablePadding="@dimen/dimen_8dp"
-                android:fontFamily="@font/montserrat"
-                android:paddingHorizontal="@dimen/dimen_26dp"
-                android:textColor="@color/neutral_01_black"
-                android:textSize="@dimen/dimen_12sp"
-                android:textStyle="bold"
-                tools:text="Trailer" />
-
-        </FrameLayout>
+        <android.widget.Button
+            android:id="@+id/detailTrailerButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dimen_20dp"
+            android:layout_marginBottom="@dimen/dimen_40dp"
+            android:background="@drawable/button_rectangle_yellow_solid_background"
+            android:drawableEnd="@drawable/ic_play"
+            android:drawablePadding="@dimen/dimen_8dp"
+            android:fontFamily="@font/montserrat"
+            android:paddingHorizontal="@dimen/dimen_26dp"
+            android:textColor="@color/neutral_01_black"
+            android:textSize="@dimen/dimen_12sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/detailTitleTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="Trailer" />
 
         <TextView
             android:id="@+id/detailTitleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dimen_10dp"
+            android:layout_marginTop="@dimen/dimen_20dp"
             android:fontFamily="@font/montserrat"
-            android:text="@string/the_baby_boss"
             android:textColor="@color/neutral_08_whisper"
             android:textSize="@dimen/dimen_24sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/detailFrameLayout" />
+            app:layout_constraintTop_toBottomOf="@id/detailImageView"
+            tools:text="The Baby Boss" />
 
         <ImageView
             android:id="@+id/detailHeart"
             android:layout_width="@dimen/dimen_30dp"
             android:layout_height="@dimen/dimen_30dp"
+            android:layout_marginTop="@dimen/dimen_20dp"
             android:layout_marginEnd="@dimen/dimen_20dp"
             android:src="@drawable/ic_uncolored_heart"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/detailFrameLayout"
+            app:layout_constraintTop_toBottomOf="@id/detailImageView"
             tools:ignore="ContentDescription" />
 
         <TextView
