@@ -6,4 +6,11 @@
     </style>
 
     <style name="Theme.ImdbMovieApp" parent="Base.Theme.ImdbMovieApp" />
+
+    <style name="Theme.ImdbMovieApp.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:navigationBarColor">@color/neutral_01_black</item>
+        <item name="android:statusBarColor">@color/neutral_01_black</item>
+    </style>
 </resources>
