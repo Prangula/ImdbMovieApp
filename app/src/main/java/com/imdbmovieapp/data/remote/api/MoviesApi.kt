@@ -1,7 +1,7 @@
 package com.imdbmovieapp.data.remote.api
 
-import com.imdbmovieapp.data.remote.dto.detailMovieDto.MovieDetailDto
-import com.imdbmovieapp.data.remote.dto.genreMovieDto.MovieGenreDto
+import com.imdbmovieapp.data.remote.dto.detailMovieDto.DetailMovieDto
+import com.imdbmovieapp.data.remote.dto.genreMovieDto.GenreMovieDto
 import com.imdbmovieapp.data.remote.dto.popularMoviesDto.PopularMoviesDto
 import com.imdbmovieapp.data.remote.dto.searchMoviesDto.SearchMoviesDto
 import com.imdbmovieapp.data.remote.dto.topRatedMoviesDto.TopRatedMoviesDto
@@ -19,11 +19,11 @@ interface MoviesApi {
     suspend fun getTopRatedMovies(): Response<List<TopRatedMoviesDto>>
 
     @GET("/3/movie/{movie_id}")
-    suspend fun getDetailMovie(@Path("movie_id") movieId: Int): Response<MovieDetailDto>
+    suspend fun getDetailMovie(@Path("movie_id") movieId: String): Response<DetailMovieDto>
 
     @GET("/3/search/movie")
     suspend fun getSearchMovies(@Query("query") query: String): Response<List<SearchMoviesDto>>
 
     @GET("/3/genre/movie/list")
-    suspend fun getMovieGenres(): Response<List<MovieGenreDto>>
+    suspend fun getMovieGenres(): Response<List<GenreMovieDto>>
 }

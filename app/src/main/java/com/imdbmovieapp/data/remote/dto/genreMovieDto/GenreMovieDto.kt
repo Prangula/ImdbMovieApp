@@ -1,5 +1,5 @@
 package com.imdbmovieapp.data.remote.dto.genreMovieDto
 
-data class MovieGenreDto(
+data class GenreMovieDto(
     val genres: List<GenreDto>
 )
