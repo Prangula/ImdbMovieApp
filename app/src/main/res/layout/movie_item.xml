@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/neutral_01_black">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/movieItemCardView"
+        android:layout_width="@dimen/dimen_160dp"
+        android:layout_height="@dimen/dimen_250dp"
+        android:layout_marginHorizontal="@dimen/dimen_30dp"
+        android:layout_marginTop="@dimen/dimen_20dp"
+        app:cardCornerRadius="@dimen/dimen_20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/movieItemImageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_default" />
+
+        <TextView
+            android:id="@+id/movieItemGenre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="@dimen/dimen_10dp"
+            android:layout_marginEnd="@dimen/dimen_10dp"
+            android:background="@drawable/button_rectangle_yellow_solid_background"
+            android:fontFamily="@font/montserrat"
+            android:paddingHorizontal="@dimen/dimen_10dp"
+            android:paddingVertical="@dimen/dimen_3p"
+            android:textColor="@color/neutral_01_black"
+            android:textSize="@dimen/dimen_8sp"
+            android:textStyle="bold"
+            tools:text="Comedy" />
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/movieItemTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_30dp"
+        android:fontFamily="@font/montserrat"
+        android:textColor="@color/neutral_08_whisper"
+        android:textSize="@dimen/dimen_12sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/movieItemCardView"
+        tools:text="The Baby Boss" />
+
+    <TextView
+        android:id="@+id/movieItemYear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_30dp"
+        android:layout_marginBottom="@dimen/dimen_20dp"
+        android:fontFamily="@font/montserrat"
+        android:textColor="@color/neutral_04_grey"
+        android:textSize="@dimen/dimen_12sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/movieItemTitle"
+        tools:text="2017" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_50dp"
+        android:layout_marginTop="@dimen/dimen_2dp"
+        android:src="@drawable/ic_uncolored_heart"
+        app:layout_constraintStart_toEndOf="@id/movieItemTitle"
+        app:layout_constraintTop_toBottomOf="@id/movieItemCardView" />
+</androidx.constraintlayout.widget.ConstraintLayout>
