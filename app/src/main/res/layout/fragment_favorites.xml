@@ -1,35 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/neutral_01_black">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/homeToolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        app:layout_constraintTop_toTopOf="parent"
-        app:title=" ">
-
-        <TextView
-            android:id="@+id/favoritesMoviesTextview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/dimen_20dp"
-            android:fontFamily="@font/montserrat"
-            android:text="@string/favorite_movies"
-            android:textColor="@color/neutral_08_whisper"
-            android:textSize="@dimen/dimen_20dp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="SpUsage" />
-
-    </androidx.appcompat.widget.Toolbar>
+    <TextView
+        android:id="@+id/favoritesMoviesTextview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_20dp"
+        android:fontFamily="@font/montserrat"
+        android:text="Favorite movies"
+        android:textColor="@color/neutral_08_whisper"
+        android:textSize="@dimen/dimen_20dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/favoritesMoviesRecyclerView"
@@ -40,7 +28,7 @@
         android:layout_marginBottom="?attr/actionBarSize"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/homeToolbar" />
+        app:layout_constraintTop_toBottomOf="@id/favoritesMoviesTextview" />
 
     <ImageView
         android:id="@+id/favoritesNoImageView"
@@ -54,17 +42,15 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/favoritesNoMoviesTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimen_20dp"
         android:fontFamily="@font/montserrat"
-        android:text="@string/no_movies_added_yet"
+        android:text="No movies added yet"
         android:textColor="@color/neutral_03_dark_grey"
         android:textSize="@dimen/dimen_14dp"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/favoritesNoImageView"
-        tools:ignore="SpUsage" />
+        app:layout_constraintTop_toBottomOf="@id/favoritesNoImageView" />
 </androidx.constraintlayout.widget.ConstraintLayout>
