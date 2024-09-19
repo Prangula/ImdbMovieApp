@@ -15,7 +15,8 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:titleTextColor="@color/neutral_08_whisper"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="UnusedAttribute">
 
             <TextView
                 android:id="@+id/detailDetailTextView"
@@ -24,7 +25,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/dimen_20dp"
                 android:fontFamily="@font/montserrat"
-                android:text="Details"
+                android:text="@string/details"
                 android:textColor="@color/neutral_08_whisper"
                 android:textSize="@dimen/dimen_20sp"
                 android:textStyle="bold"
@@ -47,6 +48,7 @@
                 android:layout_width="375dp"
                 android:layout_height="409dp"
                 android:layout_marginVertical="@dimen/dimen_20dp"
+                tools:ignore="ContentDescription,ImageContrastCheck"
                 tools:src="@color/neutral_04_grey" />
 
             <android.widget.Button
@@ -57,7 +59,7 @@
                 android:layout_marginEnd="@dimen/dimen_20dp"
                 android:layout_marginBottom="@dimen/dimen_50dp"
                 android:background="@drawable/button_rectangle_yellow_solid_background"
-                android:drawableRight="@drawable/ic_play"
+                android:drawableEnd="@drawable/ic_play"
                 android:drawablePadding="@dimen/dimen_8dp"
                 android:fontFamily="@font/montserrat"
                 android:paddingHorizontal="@dimen/dimen_26dp"
@@ -88,7 +90,8 @@
             android:layout_marginEnd="@dimen/dimen_20dp"
             android:src="@drawable/ic_uncolored_heart"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/detailFrameLayout" />
+            app:layout_constraintTop_toBottomOf="@id/detailFrameLayout"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/detailScoreTextView"
@@ -96,7 +99,6 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dimen_10dp"
             android:background="@drawable/button_rectangle_grey_solid_background"
-            android:drawableStart="@drawable/ic_star"
             android:drawablePadding="@dimen/dimen_5dp"
             android:fontFamily="@font/montserrat"
             android:paddingHorizontal="@dimen/dimen_20dp"
@@ -104,6 +106,7 @@
             android:textColor="@color/neutral_06_lighter_grey"
             android:textSize="@dimen/dimen_12sp"
             android:textStyle="bold"
+            app:drawableStartCompat="@drawable/ic_star"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/detailTitleTextView"
             tools:text="7.9" />
@@ -162,12 +165,12 @@
             android:layout_marginTop="@dimen/dimen_10dp"
             android:fontFamily="@font/montserrat"
             android:textColor="@color/neutral_06_lighter_grey"
-            android:textSize="@dimen/dimen_14dp"
+            android:textSize="@dimen/dimen_14sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/detailAboutTextView"
-            tools:ignore="SpUsage"
+            tools:ignore="TextSizeCheck"
             tools:text="Thirteen-year-old fledgling writer Briony Tallis irrevocably changes the course of several lives when she accuses her older sister's lover of a crime he did not commit." />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

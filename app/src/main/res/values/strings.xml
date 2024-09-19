@@ -1,10 +1,11 @@
 <resources>
     <string name="app_name">ImdbMovieApp</string>
     <string name="search">Search</string>
-    <string name="cancel">cancel</string>
+    <string name="cancel">Cancel</string>
     <string name="movies">Movies</string>
     <string name="the_baby_boss">The Baby Boss</string>
     <string name="about_movie">About Movie</string>
     <string name="favorite_movies">Favorite movies</string>
     <string name="no_movies_added_yet">No movies added yet</string>
+    <string name="details">Details</string>
 </resources>
