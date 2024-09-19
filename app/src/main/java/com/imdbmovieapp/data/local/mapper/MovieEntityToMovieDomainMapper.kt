@@ -13,7 +13,7 @@ class MovieEntityToMovieDomainMapper : BaseMapper<FavoriteMovieEntity, FavoriteM
                 year = year,
                 genre = genre,
                 image = image,
-                isFavorite = isFavorite
+                favoriteMovie = favoriteMovie
             )
         }
     }

@@ -6,5 +6,5 @@ data class FavoriteMovieDomain(
     val year: String,
     val genre: String,
     val image: String,
-    val isFavorite: Int,
+    val favoriteMovie: Int,
 )
