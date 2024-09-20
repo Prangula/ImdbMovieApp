@@ -1,7 +1,6 @@
-package com.imdbmovieapp.domain.usecase.api
+package com.imdbmovieapp.domain.usecase
 
-import com.imdbmovieapp.domain.base.ApiBaseUseCase
-import com.imdbmovieapp.domain.model.TopRatedMoviesDomain
+import com.imdbmovieapp.domain.model.DetailMovieDomain
 import com.imdbmovieapp.domain.repository.ApiMovieRepository
 import com.imdbmovieapp.utils.Resource
 import kotlinx.coroutines.flow.Flow
@@ -9,15 +8,15 @@ import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
 import java.io.IOException
 
-class TopRatedMoviesUseCase(
+class DetailMovieUseCaseImpl(
     private val apiMovieRepository: ApiMovieRepository
-) : ApiBaseUseCase<Unit, TopRatedMoviesDomain> {
-    override suspend fun invoke(data: Unit): Flow<Resource<List<TopRatedMoviesDomain>>> {
+) : DetailMovieUseCase {
+    override suspend fun invoke(movieId: String): Flow<Resource<DetailMovieDomain>> {
         return flow {
             try {
                 emit(Resource.Loading())
-                val topRatedMovies = apiMovieRepository.getTopRatedMovies()
-                emit(Resource.Success(topRatedMovies))
+                val detailMovie = apiMovieRepository.getDetailMovie(movieId)
+                emit(Resource.Success(detailMovie))
             } catch (e: HttpException) {
                 emit(Resource.Error(e.message ?: "Http Error"))
             } catch (e: IOException) {

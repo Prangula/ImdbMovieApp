@@ -1,4 +1,4 @@
-package com.imdbmovieapp.domain.usecase.api
+package com.imdbmovieapp.domain.usecase
 
 import com.imdbmovieapp.domain.model.DetailMovieDomain
 import com.imdbmovieapp.utils.Resource

@@ -1,6 +1,6 @@
-package com.imdbmovieapp.domain.usecase.api
+package com.imdbmovieapp.domain.usecase
 
-import com.imdbmovieapp.domain.base.ApiBaseUseCase
+import com.imdbmovieapp.domain.base.BaseUseCase
 import com.imdbmovieapp.domain.model.GenreMoviesDomain
 import com.imdbmovieapp.domain.repository.ApiMovieRepository
 import com.imdbmovieapp.utils.Resource
@@ -11,7 +11,7 @@ import java.io.IOException
 
 class GenreMoviesUseCase(
     private val apiMovieRepository: ApiMovieRepository
-) : ApiBaseUseCase<Unit, GenreMoviesDomain> {
+) : BaseUseCase<Unit, GenreMoviesDomain> {
     override suspend fun invoke(data: Unit): Flow<Resource<List<GenreMoviesDomain>>> {
         return flow {
             try {

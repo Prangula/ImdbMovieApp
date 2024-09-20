@@ -1,4 +1,4 @@
-package com.imdbmovieapp.data.repository
+package com.imdbmovieapp.domain.usecase
 
 import com.imdbmovieapp.data.remote.api.MoviesApi
 import com.imdbmovieapp.data.remote.mapper.dtoToDomain.DetailDtoToDetailDomainMapper
