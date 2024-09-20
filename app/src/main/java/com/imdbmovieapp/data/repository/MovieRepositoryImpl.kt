@@ -13,7 +13,7 @@ import com.imdbmovieapp.domain.model.SearchMoviesDomain
 import com.imdbmovieapp.domain.model.TopRatedMoviesDomain
 import com.imdbmovieapp.domain.repository.ApiMovieRepository
 
-class ApiMovieRepositoryImpl(
+class MovieRepositoryImpl(
     private val moviesApi: MoviesApi,
     private val popularDtoToPopularDomainMapper: PopularDtoToPopularDomainMapper,
     private val topRatedDtoToTopRatedDomainMapper: TopRatedDtoToTopRatedDomainMapper,
@@ -22,54 +22,47 @@ class ApiMovieRepositoryImpl(
     private val genreDtoToDomainDto: GenreDtoToGenreDomainMapper
 ) : ApiMovieRepository {
     override suspend fun getPopularMovies(): List<PopularMoviesDomain> {
-        moviesApi.getPopularMovies().let { response ->
-            return if (response.isSuccessful) {
-                response.body()?.let {
-                    popularDtoToPopularDomainMapper.mapToList(it)
-                }!!
-            } else {
-                emptyList()
-            }
+        val response = moviesApi.getPopularMovies()
+        return if (response.isSuccessful) {
+            popularDtoToPopularDomainMapper.mapToList(response.body()!!)
+        } else {
+            emptyList()
         }
     }
 
     override suspend fun getTopRatedMovies(): List<TopRatedMoviesDomain> {
-        moviesApi.getTopRatedMovies().let { response ->
-            return if (response.isSuccessful) {
-                response.body()?.let { topRatedDtoToTopRatedDomainMapper.mapToList(it) }!!
-            } else {
-                emptyList()
-            }
+        val response = moviesApi.getTopRatedMovies()
+        return if (response.isSuccessful) {
+            topRatedDtoToTopRatedDomainMapper.mapToList(response.body()!!)
+        } else {
+            emptyList()
         }
     }
 
     override suspend fun getDetailMovie(movieId: String): DetailMovieDomain {
-        moviesApi.getDetailMovie(movieId).let { response ->
-            return if (response.isSuccessful) {
-                response.body()?.let { detailDtoToDetailDomainMapper.mapModel(it) }!!
-            } else {
-                throw Exception("Can not fetch details")
-            }
+        val response = moviesApi.getMovieDetails(movieId)
+        return if (response.isSuccessful) {
+            detailDtoToDetailDomainMapper.mapModel(response.body()!!)
+        } else {
+            throw Exception("Can not fetch details")
         }
     }
 
     override suspend fun getSearchMovies(query: String): List<SearchMoviesDomain> {
-        moviesApi.getSearchMovies(query).let { response ->
-            return if (response.isSuccessful) {
-                response.body()?.let { searchDtoToSearchDomainMapper.mapToList(it) }!!
-            } else {
-                emptyList()
-            }
+        val response = moviesApi.getSearchMovies(query)
+        return if (response.isSuccessful) {
+            searchDtoToSearchDomainMapper.mapToList(response.body()!!)
+        } else {
+            emptyList()
         }
     }
 
     override suspend fun getGenres(): List<GenreMoviesDomain> {
-        moviesApi.getMovieGenres().let { response ->
-            return if (response.isSuccessful) {
-                response.body()?.let { genreDtoToDomainDto.mapToList(it) }!!
-            } else {
-                emptyList()
-            }
+        val response = moviesApi.getMovieGenres()
+        return if (response.isSuccessful) {
+            genreDtoToDomainDto.mapToList(response.body()!!)
+        } else {
+            emptyList()
         }
     }
 }
