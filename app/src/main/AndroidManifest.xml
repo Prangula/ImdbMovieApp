@@ -15,7 +15,7 @@
         android:theme="@style/Theme.ImdbMovieApp"
         tools:targetApi="31">
         <activity
-            android:name=".MoviesActivity"
+            android:name=".presentation.screen.activityScreen.MoviesActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.ImdbMovieApp.NoActionBar">
