@@ -6,7 +6,7 @@
     android:layout_width="wrap_content"
     android:layout_height="@dimen/dimen_26dp"
     android:layout_margin="@dimen/dimen_10dp"
-    android:background="@drawable/button_rectangle_white_stroke_background"
+    android:background="@drawable/bkg_button_rectangle_white_stroke"
     android:fontFamily="@font/montserrat"
     android:paddingHorizontal="@dimen/dimen_10dp"
     android:textColor="@color/neutral_08_whisper"

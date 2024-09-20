@@ -32,7 +32,7 @@
             android:layout_gravity="end"
             android:layout_marginTop="@dimen/dimen_10dp"
             android:layout_marginEnd="@dimen/dimen_10dp"
-            android:background="@drawable/button_rectangle_yellow_solid_background"
+            android:background="@drawable/bkg_button_rectangle_yellow_solid"
             android:fontFamily="@font/montserrat"
             android:paddingHorizontal="@dimen/dimen_10dp"
             android:paddingVertical="@dimen/dimen_3p"
