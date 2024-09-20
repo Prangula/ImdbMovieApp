@@ -1,11 +1,11 @@
 package com.imdbmovieapp.data.remote.mapper.dtoToDomain
 
-import com.imdbmovieapp.data.remote.dto.detailMovieDto.DetailMovieDto
+import com.imdbmovieapp.data.remote.dto.detailMovieDto.MovieDetailsDto
 import com.imdbmovieapp.domain.model.DetailMovieDomain
 import com.imdbmovieapp.utils.BaseMapper
 
-class DetailDtoToDetailDomainMapper : BaseMapper<DetailMovieDto, DetailMovieDomain> {
-    override fun mapModel(model: DetailMovieDto): DetailMovieDomain {
+class DetailDtoToDetailDomainMapper : BaseMapper<MovieDetailsDto, DetailMovieDomain> {
+    override fun mapModel(model: MovieDetailsDto): DetailMovieDomain {
         return with(model) {
             DetailMovieDomain(
                 id = id,
