@@ -38,10 +38,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/favoritesNoMoviesTextview"
+        style="@style/Theme.ImdbMovieApp.BaseTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimen_20dp"
-        android:fontFamily="@font/montserrat"
         android:text="@string/no_movies_added_yet"
         android:textColor="@color/neutral_03_dark_grey"
         android:textSize="@dimen/dimen_14sp"
