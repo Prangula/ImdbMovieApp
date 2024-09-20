@@ -79,17 +79,10 @@
 
         <TextView
             android:id="@+id/detailScoreTextView"
+            style="@style/Theme.ImdbMovieApp.DetailInfoTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dimen_10dp"
-            android:background="@drawable/bkg_button_rectangle_grey_solid"
             android:drawablePadding="@dimen/dimen_5dp"
-            android:fontFamily="@font/montserrat"
-            android:paddingHorizontal="@dimen/dimen_20dp"
-            android:paddingVertical="@dimen/dimen_2dp"
-            android:textColor="@color/neutral_06_lighter_grey"
-            android:textSize="@dimen/dimen_12sp"
-            android:textStyle="bold"
             app:drawableStartCompat="@drawable/ic_star"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/detailTitleTextView"
@@ -97,32 +90,18 @@
 
         <TextView
             android:id="@+id/detailGenreTextView"
+            style="@style/Theme.ImdbMovieApp.DetailInfoTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dimen_10dp"
-            android:background="@drawable/bkg_button_rectangle_grey_solid"
-            android:fontFamily="@font/montserrat"
-            android:paddingHorizontal="@dimen/dimen_20dp"
-            android:paddingVertical="@dimen/dimen_2dp"
-            android:textColor="@color/neutral_06_lighter_grey"
-            android:textSize="@dimen/dimen_12sp"
-            android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@id/detailScoreTextView"
             app:layout_constraintTop_toBottomOf="@id/detailTitleTextView"
             tools:text="Romance" />
 
         <TextView
             android:id="@+id/detailYearTextView"
+            style="@style/Theme.ImdbMovieApp.DetailInfoTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dimen_10dp"
-            android:background="@drawable/bkg_button_rectangle_grey_solid"
-            android:fontFamily="@font/montserrat"
-            android:paddingHorizontal="@dimen/dimen_20dp"
-            android:paddingVertical="@dimen/dimen_2dp"
-            android:textColor="@color/neutral_06_lighter_grey"
-            android:textSize="@dimen/dimen_12sp"
-            android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@id/detailGenreTextView"
             app:layout_constraintTop_toBottomOf="@id/detailTitleTextView"
             tools:text="2007" />

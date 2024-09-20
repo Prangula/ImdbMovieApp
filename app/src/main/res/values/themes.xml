@@ -31,4 +31,13 @@
         <item name="android:textColor">@color/neutral_08_whisper</item>
     </style>
 
+    <style name="Theme.ImdbMovieApp.DetailInfoTextView" parent="Theme.ImdbMovieApp.BaseTextView">
+        <item name="android:layout_margin">@dimen/dimen_10dp</item>
+        <item name="android:background">@drawable/bkg_button_rectangle_grey_solid</item>
+        <item name="android:paddingHorizontal">@dimen/dimen_20dp</item>
+        <item name="android:paddingVertical">@dimen/dimen_2dp</item>
+        <item name="android:textColor">@color/neutral_06_lighter_grey</item>
+        <item name="android:textSize">@dimen/dimen_12sp</item>
+    </style>
+
 </resources>
