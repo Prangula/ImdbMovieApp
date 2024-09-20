@@ -1,9 +1,9 @@
 package com.imdbmovieapp.data.remote.dto.detailMovieDto
 
 import com.google.gson.annotations.SerializedName
-import com.imdbmovieapp.data.remote.dto.genreMovieDto.GenreDto
+import com.imdbmovieapp.data.remote.dto.movieGenreDto.GenreDto
 
-data class DetailMovieDto(
+data class MovieDetailsDto(
     val id: Int,
     val genreDtos: List<GenreDto>,
     val overview: String,
