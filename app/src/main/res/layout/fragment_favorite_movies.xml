@@ -7,14 +7,10 @@
 
     <TextView
         android:id="@+id/favoritesMoviesTextview"
+        style="@style/Theme.ImdbMovieApp.ToolbarTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_20dp"
-        android:fontFamily="@font/montserrat"
         android:text="@string/favorite_movies"
-        android:textColor="@color/neutral_08_whisper"
-        android:textSize="@dimen/dimen_20sp"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
