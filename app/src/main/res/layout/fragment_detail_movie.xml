@@ -82,34 +82,37 @@
             app:layout_constraintTop_toBottomOf="@id/detailImageView"
             tools:ignore="ContentDescription" />
 
-        <TextView
-            android:id="@+id/detailScoreTextView"
-            style="@style/Theme.ImdbMovieApp.DetailInfoTextView"
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/detailChipGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawablePadding="@dimen/dimen_5dp"
-            app:drawableStartCompat="@drawable/ic_star"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/detailTitleTextView"
-            tools:text="7.9" />
+            app:layout_constraintTop_toBottomOf="@id/detailTitleTextView">
 
-        <TextView
-            android:id="@+id/detailGenreTextView"
-            style="@style/Theme.ImdbMovieApp.DetailInfoTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toEndOf="@id/detailScoreTextView"
-            app:layout_constraintTop_toBottomOf="@id/detailTitleTextView"
-            tools:text="Romance" />
+            <com.google.android.material.chip.Chip
+                style="@style/Theme.ImdbMovieApp.DetailChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:chipIcon="@drawable/ic_star"
+                app:chipIconSize="@dimen/dimen_14dp"
+                app:iconStartPadding="@dimen/dimen_5dp"
+                tools:text="7.9" />
 
-        <TextView
-            android:id="@+id/detailYearTextView"
-            style="@style/Theme.ImdbMovieApp.DetailInfoTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toEndOf="@id/detailGenreTextView"
-            app:layout_constraintTop_toBottomOf="@id/detailTitleTextView"
-            tools:text="2007" />
+            <com.google.android.material.chip.Chip
+                style="@style/Theme.ImdbMovieApp.DetailChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/dimen_5dp"
+                tools:text="Romance" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/Theme.ImdbMovieApp.DetailChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/dimen_5dp"
+                tools:text="2007" />
+
+        </com.google.android.material.chip.ChipGroup>
 
         <TextView
             android:id="@+id/detailAboutTextView"
@@ -119,7 +122,7 @@
             android:text="@string/about_movie"
             android:textSize="@dimen/dimen_20sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/detailScoreTextView" />
+            app:layout_constraintTop_toBottomOf="@id/detailChipGroup" />
 
         <TextView
             android:id="@+id/detailDescriptionTextview"

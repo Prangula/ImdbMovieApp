@@ -19,6 +19,7 @@
     </style>
 
     <style name="Theme.ImdbMovieApp.DetailTitleAboutTextView" parent="Theme.ImdbMovieApp.BaseTextView">
+        <item name="android:layout_marginStart">@dimen/dimen_10dp</item>
         <item name="android:layout_marginTop">@dimen/dimen_20dp</item>
         <item name="android:textSize">@dimen/dimen_20sp</item>
         <item name="android:textColor">@color/neutral_08_whisper</item>
@@ -35,12 +36,12 @@
         <item name="chipStrokeWidth">@dimen/dimen_1dp</item>
     </style>
 
-    <style name="Theme.ImdbMovieApp.DetailInfoTextView" parent="Theme.ImdbMovieApp.BaseTextView">
-        <item name="android:layout_margin">@dimen/dimen_10dp</item>
-        <item name="android:background">@drawable/bkg_button_rectangle_grey_solid</item>
-        <item name="android:paddingHorizontal">@dimen/dimen_20dp</item>
-        <item name="android:paddingVertical">@dimen/dimen_2dp</item>
+    <style name="Theme.ImdbMovieApp.DetailChip"  parent="@style/Widget.MaterialComponents.Chip.Action">
+        <item name="android:layout_marginStart">@dimen/dimen_10dp</item>
+        <item name="chipBackgroundColor">@color/neutral_02_darkest_grey</item>
+        <item name="android:paddingHorizontal">@dimen/dimen_10dp</item>
+        <item name="android:paddingVertical">@dimen/dimen_5dp</item>
         <item name="android:textColor">@color/neutral_06_lighter_grey</item>
-        <item name="android:textSize">@dimen/dimen_12sp</item>
+        <item name="android:textSize">@dimen/dimen_14sp</item>
     </style>
 </resources>
