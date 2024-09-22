@@ -1,9 +1,14 @@
 package com.imdbmovieapp.domain.usecase
 
+import com.imdbmovieapp.domain.base.BaseUseCase
 import com.imdbmovieapp.domain.model.DetailMovieDomain
+import com.imdbmovieapp.domain.repository.ApiMovieRepository
 import com.imdbmovieapp.utils.Resource
-import kotlinx.coroutines.flow.Flow
 
-interface DetailMovieUseCase {
-    suspend operator fun invoke(movieId: String): Flow<Resource<DetailMovieDomain>>
+class DetailMovieUseCase(
+    private val apiMovieRepository: ApiMovieRepository
+) : BaseUseCase<String, DetailMovieDomain> {
+    override suspend fun invoke(data: String): Resource<DetailMovieDomain> {
+        return apiMovieRepository.getDetailMovie(data)
+    }
 }
