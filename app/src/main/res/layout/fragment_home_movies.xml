@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/neutral_01_black">
@@ -9,10 +10,9 @@
         android:id="@+id/customSearchBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/homeMoviesTextview"
@@ -25,18 +25,35 @@
         android:textColor="@color/yellow_primary"
         android:textSize="@dimen/dimen_20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/homeGenresRecyclerView" />
+        app:layout_constraintTop_toBottomOf="@id/homeGenresChipGroup" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/homeGenresRecyclerView"
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/homeGenresChipGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="@dimen/dimen_10dp"
         android:layout_marginStart="@dimen/dimen_20dp"
         android:orientation="horizontal"
-        android:visibility="gone"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintTop_toBottomOf="@id/customSearchBar" />
+        app:layout_constraintTop_toBottomOf="@id/customSearchBar"
+        app:singleSelection="true">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/genrePopularChip"
+            style="@style/Theme.ImdbMovieApp.GenreChip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            tools:text="Popular" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/genreFavoritesChip"
+            style="@style/Theme.ImdbMovieApp.GenreChip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            tools:text="Favorites" />
+
+    </com.google.android.material.chip.ChipGroup>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/homeMoviesRecyclerView"
