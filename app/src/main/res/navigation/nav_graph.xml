@@ -37,12 +37,4 @@
             android:id="@+id/action_detailMovieFragment_to_favoriteMoviesFragment"
             app:destination="@id/favoriteMoviesFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/splashScreenMoviesFragment"
-        android:name="com.imdbmovieapp.presentation.screen.splashScreenMoviesFragment.SplashScreenMoviesFragment"
-        android:label="SplashScreenMoviesFragment" >
-        <action
-            android:id="@+id/action_splashScreenMoviesFragment_to_popularMoviesFragment"
-            app:destination="@id/popularMoviesFragment" />
-    </fragment>
 </navigation>

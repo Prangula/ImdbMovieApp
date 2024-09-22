@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.ImdbMovieApp.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-        <item name="android:navigationBarColor">@color/neutral_01_black</item>
-        <item name="android:statusBarColor">@color/neutral_01_black</item>
+
+    <style name="Theme.ImdbMovieApp.SplashScreen" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/neutral_01_black</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/bkg_splash</item>
+        <item name="postSplashScreenTheme">@style/Theme.ImdbMovieApp</item>
     </style>
 
     <style name="Theme.ImdbMovieApp.BaseTextView">
@@ -36,7 +36,7 @@
         <item name="chipStrokeWidth">@dimen/dimen_1dp</item>
     </style>
 
-    <style name="Theme.ImdbMovieApp.DetailChip"  parent="@style/Widget.MaterialComponents.Chip.Action">
+    <style name="Theme.ImdbMovieApp.DetailChip" parent="@style/Widget.MaterialComponents.Chip.Action">
         <item name="android:layout_marginStart">@dimen/dimen_10dp</item>
         <item name="chipBackgroundColor">@color/neutral_02_darkest_grey</item>
         <item name="android:paddingHorizontal">@dimen/dimen_10dp</item>
