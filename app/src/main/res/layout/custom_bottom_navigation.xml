@@ -6,9 +6,9 @@
     android:layout_height="match_parent"
     android:background="@color/neutral_01_black">
 
-    <RadioGroup
-        android:id="@+id/radio_group"
-        android:layout_width="match_parent"
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/bottomChipGroup"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/dimen_20dp"
         android:orientation="horizontal"
@@ -16,33 +16,35 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:singleSelection="true"
         tools:ignore="MissingConstraints">
 
-        <RadioButton
+        <com.google.android.material.chip.Chip
             android:id="@+id/homeFragment"
-            style="@style/Theme.ImdbMovieApp.BaseTextView"
-            android:layout_width="@dimen/dimen_150dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/dimen_20dp"
-            android:layout_weight="1"
-            android:background="@drawable/bkg_selector"
-            android:button="@null"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dimen_55dp"
             android:checked="true"
-            android:gravity="center"
+            android:fontFamily="@font/montserrat"
             android:text="@string/home"
-            android:textColor="@drawable/bkg_color_selector" />
+            android:textColor="@color/bkg_chip_color_selector"
+            android:textStyle="bold"
+            app:chipBackgroundColor="@color/bkg_chip_selector"
+            app:chipEndPadding="@dimen/dimen_50dp"
+            app:chipStartPadding="@dimen/dimen_50dp" />
 
-        <RadioButton
+        <com.google.android.material.chip.Chip
             android:id="@+id/favoritesFragment"
-            style="@style/Theme.ImdbMovieApp.BaseTextView"
-            android:layout_width="@dimen/dimen_150dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/bkg_selector"
-            android:button="@null"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dimen_55dp"
             android:checked="false"
-            android:gravity="center"
+            android:fontFamily="@font/montserrat"
             android:text="@string/favorites"
-            android:textColor="@drawable/bkg_color_selector" />
-    </RadioGroup>
+            android:textColor="@color/bkg_chip_color_selector"
+            android:textStyle="bold"
+            app:chipBackgroundColor="@color/bkg_chip_selector"
+            app:chipEndPadding="@dimen/dimen_50dp"
+            app:chipStartPadding="@dimen/dimen_50dp" />
+    </com.google.android.material.chip.ChipGroup>
 </androidx.constraintlayout.widget.ConstraintLayout>

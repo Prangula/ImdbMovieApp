@@ -17,11 +17,16 @@ class CustomBottomNavigationView @JvmOverloads constructor(
         CustomBottomNavigationBinding.inflate(LayoutInflater.from(context), this, true)
 
     operator fun invoke(navController: NavController) {
-
-        binding.radioGroup.setOnCheckedChangeListener { _, checkedId ->
+        binding.bottomChipGroup.setOnCheckedChangeListener { group, checkedId ->
             when (checkedId) {
-                binding.homeFragment.id -> navController.navigate(R.id.popularMoviesFragment)
-                binding.favoritesFragment.id -> navController.navigate(R.id.favoriteMoviesFragment)
+                R.id.homeFragment -> {
+                    navController.navigate(R.id.popularMoviesFragment)
+                }
+
+                R.id.favoritesFragment -> {
+                    // Navigate to favorite movies
+                    navController.navigate(R.id.favoriteMoviesFragment)
+                }
             }
         }
     }
