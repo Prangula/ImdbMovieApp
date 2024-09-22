@@ -10,21 +10,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/detailToolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="UnusedAttribute">
+        <ImageView
+            android:id="@+id/detailArrowBackImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_20dp"
+            android:layout_marginTop="@dimen/dimen_22dp"
+            android:src="@drawable/ic_arrow_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/detailDetailTextView"
-                style="@style/Theme.ImdbMovieApp.ToolbarTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/details" />
-        </androidx.appcompat.widget.Toolbar>
+        <TextView
+            android:id="@+id/detailDetailTextView"
+            style="@style/Theme.ImdbMovieApp.ToolbarTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_gravity="center"
+            android:text="@string/details"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
             android:id="@+id/detailImageView"
@@ -34,7 +39,7 @@
             android:scaleType="fitXY"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/detailToolbar"
+            app:layout_constraintTop_toBottomOf="@id/detailDetailTextView"
             tools:ignore="ContentDescription,ImageContrastCheck"
             tools:src="@color/neutral_04_grey" />
 
