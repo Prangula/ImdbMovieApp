@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/neutral_01_black">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/detailArrowBackImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_20dp"
+            android:layout_marginTop="@dimen/dimen_22dp"
+            android:src="@drawable/ic_arrow_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/detailDetailTextView"
+            style="@style/Theme.ImdbMovieApp.ToolbarTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_gravity="center"
+            android:text="@string/details"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/detailImageView"
+            android:layout_width="@dimen/dimen_375dp"
+            android:layout_height="@dimen/dimen_409dp"
+            android:layout_marginVertical="@dimen/dimen_20dp"
+            android:scaleType="fitXY"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detailDetailTextView"
+            tools:ignore="ContentDescription,ImageContrastCheck"
+            tools:src="@color/neutral_04_grey" />
+
+        <android.widget.Button
+            android:id="@+id/detailTrailerButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dimen_20dp"
+            android:layout_marginBottom="@dimen/dimen_40dp"
+            android:background="@drawable/bkg_button_rectangle_yellow_solid"
+            android:drawableEnd="@drawable/ic_play"
+            android:drawablePadding="@dimen/dimen_8dp"
+            android:fontFamily="@font/montserrat"
+            android:paddingHorizontal="@dimen/dimen_26dp"
+            android:textColor="@color/neutral_01_black"
+            android:textSize="@dimen/dimen_12sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/detailTitleTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="Trailer" />
+
+        <TextView
+            android:id="@+id/detailTitleTextView"
+            style="@style/Theme.ImdbMovieApp.DetailTitleAboutTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/dimen_24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detailImageView"
+            tools:text="The Baby Boss" />
+
+        <ImageView
+            android:id="@+id/detailHeart"
+            android:layout_width="@dimen/dimen_30dp"
+            android:layout_height="@dimen/dimen_30dp"
+            android:layout_marginTop="@dimen/dimen_20dp"
+            android:layout_marginEnd="@dimen/dimen_20dp"
+            android:src="@drawable/ic_uncolored_heart"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detailImageView"
+            tools:ignore="ContentDescription" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/detailChipGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detailTitleTextView">
+
+            <com.google.android.material.chip.Chip
+                style="@style/Theme.ImdbMovieApp.DetailChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:chipIcon="@drawable/ic_star"
+                app:chipIconSize="@dimen/dimen_14dp"
+                app:iconStartPadding="@dimen/dimen_5dp"
+                tools:text="7.9" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/Theme.ImdbMovieApp.DetailChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/dimen_5dp"
+                tools:text="Romance" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/Theme.ImdbMovieApp.DetailChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/dimen_5dp"
+                tools:text="2007" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <TextView
+            android:id="@+id/detailAboutTextView"
+            style="@style/Theme.ImdbMovieApp.DetailTitleAboutTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/about_movie"
+            android:textSize="@dimen/dimen_20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detailChipGroup" />
+
+        <TextView
+            android:id="@+id/detailDescriptionTextview"
+            style="@style/Theme.ImdbMovieApp.BaseTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dimen_10dp"
+            android:layout_marginTop="@dimen/dimen_10dp"
+            android:textColor="@color/neutral_06_lighter_grey"
+            android:textSize="@dimen/dimen_14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detailAboutTextView"
+            tools:ignore="TextSizeCheck"
+            tools:text="Thirteen-year-old fledgling writer Briony Tallis irrevocably changes the course of several lives when she accuses her older sister's lover of a crime he did not commit." />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
