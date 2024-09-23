@@ -1,4 +1,4 @@
-package com.imdbmovieapp.data.remote.dto.searchMoviesDto
+package com.imdbmovieapp.data.remote.dto
 
 import com.google.gson.annotations.SerializedName
 

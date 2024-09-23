@@ -1,10 +1,10 @@
 package com.imdbmovieapp.data.remote.api
 
-import com.imdbmovieapp.data.remote.dto.detailMovieDto.MovieDetailsDto
-import com.imdbmovieapp.data.remote.dto.movieGenreDto.MovieGenreDto
-import com.imdbmovieapp.data.remote.dto.popularMoviesDto.PopularMoviesDto
-import com.imdbmovieapp.data.remote.dto.searchMoviesDto.SearchMoviesDto
-import com.imdbmovieapp.data.remote.dto.topRatedMoviesDto.TopRatedMoviesDto
+import com.imdbmovieapp.data.remote.dto.MovieDetailsDto
+import com.imdbmovieapp.data.remote.dto.MovieGenreDto
+import com.imdbmovieapp.data.remote.dto.PopularMoviesDto
+import com.imdbmovieapp.data.remote.dto.SearchMoviesDto
+import com.imdbmovieapp.data.remote.dto.TopRatedMoviesDto
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query

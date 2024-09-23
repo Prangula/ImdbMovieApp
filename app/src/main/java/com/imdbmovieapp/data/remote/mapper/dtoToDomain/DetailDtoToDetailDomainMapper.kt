@@ -1,6 +1,6 @@
 package com.imdbmovieapp.data.remote.mapper.dtoToDomain
 
-import com.imdbmovieapp.data.remote.dto.detailMovieDto.MovieDetailsDto
+import com.imdbmovieapp.data.remote.dto.MovieDetailsDto
 import com.imdbmovieapp.domain.model.DetailMovieDomain
 import com.imdbmovieapp.utils.BaseMapper
 

@@ -1,6 +1,6 @@
 package com.imdbmovieapp.domain.model
 
-import com.imdbmovieapp.data.remote.dto.popularMoviesDto.MoviesResultDto
+import com.imdbmovieapp.data.remote.dto.MoviesResultDto
 
 data class PopularMoviesDomain(
     val moviesResultDtos: List<MoviesResultDto>,

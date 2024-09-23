@@ -1,6 +1,6 @@
 package com.imdbmovieapp.data.remote.mapper.dtoToDomain
 
-import com.imdbmovieapp.data.remote.dto.popularMoviesDto.PopularMoviesDto
+import com.imdbmovieapp.data.remote.dto.PopularMoviesDto
 import com.imdbmovieapp.domain.model.PopularMoviesDomain
 import com.imdbmovieapp.utils.BaseMapper
 
