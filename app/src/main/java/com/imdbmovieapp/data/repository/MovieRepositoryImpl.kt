@@ -13,8 +13,7 @@ import com.imdbmovieapp.domain.model.SearchMoviesDomain
 import com.imdbmovieapp.domain.model.TopRatedMoviesDomain
 import com.imdbmovieapp.domain.repository.ApiMovieRepository
 import com.imdbmovieapp.utils.Resource
-import retrofit2.HttpException
-import java.io.IOException
+import com.imdbmovieapp.utils.RetrofitHandler
 
 class MovieRepositoryImpl(
     private val moviesApi: MoviesApi,
@@ -25,77 +24,37 @@ class MovieRepositoryImpl(
     private val searchDtoToSearchDomainMapper: SearchDtoToSearchDomainMapper,
 ) : ApiMovieRepository {
     override suspend fun getPopularMovies(): Resource<List<PopularMoviesDomain>> {
-        val response = moviesApi.getPopularMovies()
-        return try {
-            if (response.isSuccessful) {
-                Resource.Success(popularDtoToPopularDomainMapper.mapToList(response.body()!!))
-            } else {
-                Resource.Error("")
-            }
-        } catch (e: HttpException) {
-            (Resource.Error(e.message ?: "Http Error"))
-        } catch (e: IOException) {
-            (Resource.Error(e.message ?: "No Internet Connection"))
-        }
+        return RetrofitHandler().apiDataFetcher(
+            { moviesApi.getPopularMovies() },
+            { popularDtoToPopularDomainMapper.mapToList(it) }
+        )
     }
 
     override suspend fun getTopRatedMovies(): Resource<List<TopRatedMoviesDomain>> {
-        val response = moviesApi.getTopRatedMovies()
-        return try {
-            if (response.isSuccessful) {
-                Resource.Success(topRatedDtoToTopRatedDomainMapper.mapToList(response.body()!!))
-            } else {
-                Resource.Error("")
-            }
-        } catch (e: HttpException) {
-            (Resource.Error(e.message ?: "Http Error"))
-        } catch (e: IOException) {
-            (Resource.Error(e.message ?: "No Internet Connection"))
-        }
+        return RetrofitHandler().apiDataFetcher(
+            { moviesApi.getTopRatedMovies() },
+            { topRatedDtoToTopRatedDomainMapper.mapToList(it) }
+        )
     }
 
     override suspend fun getDetailMovie(movieId: String): Resource<DetailMovieDomain> {
-        val response = moviesApi.getMovieDetails(movieId)
-        return try {
-            if (response.isSuccessful) {
-                Resource.Success(detailDtoToDetailDomainMapper.mapModel(response.body()!!))
-            } else {
-                Resource.Error("")
-            }
-        } catch (e: HttpException) {
-            (Resource.Error(e.message ?: "Http Error"))
-        } catch (e: IOException) {
-            (Resource.Error(e.message ?: "No Internet Connection"))
-        }
+        return RetrofitHandler().apiDataFetcher(
+            { moviesApi.getMovieDetails(movieId) },
+            { detailDtoToDetailDomainMapper.mapModel(it) }
+        )
     }
 
     override suspend fun getSearchMovies(query: String): Resource<List<SearchMoviesDomain>> {
-        val response = moviesApi.getSearchMovies(query)
-        return try {
-            if (response.isSuccessful) {
-                Resource.Success(searchDtoToSearchDomainMapper.mapToList(response.body()!!))
-            } else {
-                Resource.Error("")
-            }
-        } catch (e: HttpException) {
-            (Resource.Error(e.message ?: "Http Error"))
-        } catch (e: IOException) {
-            (Resource.Error(e.message ?: "No Internet Connection"))
-        }
+        return RetrofitHandler().apiDataFetcher(
+            { moviesApi.getSearchMovies(query) },
+            { searchDtoToSearchDomainMapper.mapToList(it) }
+        )
     }
 
     override suspend fun getGenres(): Resource<List<GenreMoviesDomain>> {
-        val response = moviesApi.getMovieGenres()
-        return try {
-            if (response.isSuccessful) {
-                Resource.Success(genreDtoToGenreDomainMapper.mapToList(response.body()!!))
-            } else {
-                Resource.Error("")
-            }
-        } catch (e: HttpException) {
-            (Resource.Error(e.message ?: "Http Error"))
-        } catch (e: IOException) {
-            (Resource.Error(e.message ?: "No Internet Connection"))
-        }
+        return RetrofitHandler().apiDataFetcher(
+            { moviesApi.getMovieGenres() },
+            { genreDtoToGenreDomainMapper.mapToList(it) }
+        )
     }
 }
