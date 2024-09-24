@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 val retrofitModule = module {
     single {
         Retrofit.Builder()
-            .baseUrl("https://api.themoviedb.org")
+            .baseUrl("https://api.themoviedb.org/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(MoviesApi::class.java)

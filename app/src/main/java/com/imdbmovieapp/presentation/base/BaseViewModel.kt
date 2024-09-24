@@ -27,26 +27,17 @@ abstract class BaseViewModel : ViewModel() {
     }
 
     protected fun <T, R> getMovies(
-        useCase: suspend (Unit) -> Resource<List<T>>,
+        useCaseCall: suspend () -> Resource<T>,
         mapper: (T) -> R,
-        stateFlow: MutableStateFlow<Resource<List<R>>>
+        stateFlow: MutableStateFlow<Resource<R>>
     ) {
-        viewModelScope {
-            val result = useCase(Unit)
-            stateFlow.value =
-                when (result) {
-                    is Resource.Success -> {
-                        Resource.Success(result.data!!.map { mapper(it) })
-                    }
-
-                    is Resource.Error -> {
-                        Resource.Error(result.message!!)
-                    }
-
-                    is Resource.Loading -> {
-                        Resource.Loading()
-                    }
-                }
+        viewModelScope{
+            val result = useCaseCall()
+            stateFlow.value = when (result) {
+                is Resource.Success -> Resource.Success(mapper(result.data!!))
+                is Resource.Error -> Resource.Error(result.message!!)
+                is Resource.Loading -> Resource.Loading()
+            }
         }
     }
 }

@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
+import com.google.android.material.chip.ChipGroup
 import com.imdbmovieapp.R
 import com.imdbmovieapp.databinding.CustomSearchBarBinding
 
@@ -21,7 +22,7 @@ class CustomSearchBar @JvmOverloads constructor(
     )
     private var isDefault = true
 
-    fun showGenreTags() {
+    fun showGenreTags(chipGroup:ChipGroup) {
         with(binding) {
             customImageView.setOnClickListener {
                 if (!isDefault) {
@@ -30,12 +31,14 @@ class CustomSearchBar @JvmOverloads constructor(
                         R.drawable.ic_show_tags,
                         R.drawable.bkg_circle_yellow_stroke
                     )
+                    chipGroup.visibility = View.GONE
                 } else {
                     imageBackgroundHelper(
                         customImageView,
                         R.drawable.ic_hide_tags,
                         R.drawable.bkg_button_circle_yellow_solid
                     )
+                    chipGroup.visibility = View.VISIBLE
                 }
                 isDefault = !isDefault
             }

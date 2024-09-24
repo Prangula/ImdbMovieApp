@@ -24,7 +24,6 @@ class CustomBottomNavigationView @JvmOverloads constructor(
                 }
 
                 R.id.favoritesFragment -> {
-                    // Navigate to favorite movies
                     navController.navigate(R.id.favoriteMoviesFragment)
                 }
             }

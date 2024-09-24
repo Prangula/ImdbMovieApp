@@ -7,7 +7,7 @@ import com.imdbmovieapp.data.local.entity.FavoriteMovieEntity
 
 @Database(
     entities = [FavoriteMovieEntity::class],
-    version = 1
+    version = 2
 )
 abstract class FavoriteMovieDatabase : RoomDatabase() {
     abstract fun favoriteMovieDao(): FavoriteMovieDao

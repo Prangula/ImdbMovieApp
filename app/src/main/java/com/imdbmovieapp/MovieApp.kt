@@ -6,6 +6,7 @@ import com.imdbmovieapp.di.mapperModule
 import com.imdbmovieapp.di.repositoryModule
 import com.imdbmovieapp.di.retrofitModule
 import com.imdbmovieapp.di.useCaseModule
+import com.imdbmovieapp.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -14,7 +15,12 @@ class MovieApp : Application() {
         super.onCreate()
         startKoin {
             androidContext(this@MovieApp)
-            modules(databaseModule, mapperModule, repositoryModule, useCaseModule, retrofitModule)
+            modules(
+                listOf(
+                    databaseModule, mapperModule, repositoryModule, useCaseModule, retrofitModule,
+                    viewModelModule
+                )
+            )
         }
     }
 }

@@ -8,7 +8,7 @@ class PopularMoviesUIToDomainMapper : BaseMapper<PopularMoviesUI, PopularMoviesD
     override fun mapModel(model: PopularMoviesUI): PopularMoviesDomain {
         return with(model) {
             PopularMoviesDomain(
-                moviesResultDtos = moviesResultDtos,
+                results = results,
                 page = page,
                 totalPages = totalPages,
                 totalResults = totalResults

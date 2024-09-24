@@ -13,7 +13,10 @@ import retrofit2.Response
 interface MoviesApi {
 
     @GET("/3/movie/popular")
-    suspend fun getPopularMovies(): Response<List<PopularMoviesDto>>
+    suspend fun getPopularMovies(
+        @Query("api_key") apiKey: String = "8ebb26e68ca175bcc8629b4077769f82",
+        @Query("language") language: String = "en-US"
+    ): Response<PopularMoviesDto>
 
     @GET("/3/movie/top_rated")
     suspend fun getTopRatedMovies(): Response<List<TopRatedMoviesDto>>

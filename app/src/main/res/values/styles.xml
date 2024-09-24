@@ -31,6 +31,7 @@
         <item name="android:textColor">@color/bkg_chip_color_selector</item>
         <item name="android:textSize">@dimen/dimen_12sp</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:checkable">true</item>
         <item name="chipBackgroundColor">@color/bkg_chip_selector</item>
         <item name="chipStrokeColor">@color/bkg_chip_stroke</item>
         <item name="chipStrokeWidth">@dimen/dimen_1dp</item>
