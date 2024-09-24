@@ -33,8 +33,8 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="@dimen/dimen_10dp"
         android:layout_marginStart="@dimen/dimen_20dp"
-        app:checkedChip="@+id/genrePopularChip"
         android:orientation="horizontal"
+        android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@id/customSearchBar"
         app:singleSelection="true">
 
@@ -42,12 +42,10 @@
             android:id="@+id/genrePopularChip"
             style="@style/Theme.ImdbMovieApp.GenreChip"
             android:layout_width="@dimen/dimen_80dp"
-            android:checkable="true"
-
-            android:checked="true"
             android:layout_height="wrap_content"
-            app:chipStartPadding="@dimen/dimen_10dp"
-            android:text="@string/popular" />
+            android:checked="true"
+            android:text="@string/popular"
+            app:chipStartPadding="@dimen/dimen_10dp" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/genreTopRatedChip"

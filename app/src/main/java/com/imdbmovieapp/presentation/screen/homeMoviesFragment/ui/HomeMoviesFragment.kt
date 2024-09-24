@@ -22,7 +22,6 @@ class HomeMoviesFragment : BaseFragment<FragmentHomeMoviesBinding, HomeViewModel
         adapter = PopularMoviesAdapter()
         popularMoviesRecyclerView()
         binding.customSearchBar.showGenreTags(binding.homeGenresChipGroup)
-        popularMoviesObserver()
         check()
     }
 
@@ -34,19 +33,23 @@ class HomeMoviesFragment : BaseFragment<FragmentHomeMoviesBinding, HomeViewModel
     }
 
     private fun check() {
-        binding.genrePopularChip.isChecked = true
-        binding.homeGenresChipGroup.setOnCheckedStateChangeListener { group, checkedIds ->
-            when (checkedIds.first()) {
+        if (binding.genrePopularChip.isChecked) {
+            popularMoviesObserver()
+            viewModel.getPopularMovies(API_KEY)
+        }
+        binding.homeGenresChipGroup.setOnCheckedChangeListener { group, checkedId ->
+            when (checkedId) {
                 R.id.genrePopularChip -> {
+                    popularMoviesObserver()
                     viewModel.getPopularMovies(API_KEY)
                 }
 
                 R.id.genreTopRatedChip -> {
-                    // TODO
+                    Toast.makeText(requireContext(), "hello", Toast.LENGTH_SHORT).show()
+                    adapter.submitList(emptyList())
                 }
             }
         }
-
     }
 
     private fun popularMoviesObserver() {
