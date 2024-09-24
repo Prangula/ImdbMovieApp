@@ -8,7 +8,7 @@ import com.imdbmovieapp.domain.model.TopRatedMoviesDomain
 import com.imdbmovieapp.utils.Resource
 
 interface ApiMovieRepository {
-    suspend fun getPopularMovies(apiKey: String): Resource<List<MoviesResultsDomain>>
+    suspend fun getPopularMovies(): Resource<List<MoviesResultsDomain>>
     suspend fun getTopRatedMovies(): Resource<List<TopRatedMoviesDomain>>
     suspend fun getDetailMovie(movieId: String): Resource<DetailMovieDomain>
     suspend fun getSearchMovies(query: String): Resource<List<SearchMoviesDomain>>

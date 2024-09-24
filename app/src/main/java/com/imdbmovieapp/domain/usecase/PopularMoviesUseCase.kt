@@ -7,8 +7,8 @@ import com.imdbmovieapp.utils.Resource
 
 class PopularMoviesUseCase(
     private val apiMovieRepository: ApiMovieRepository
-) : BaseUseCase<String, List<MoviesResultsDomain>> {
-    override suspend fun invoke(apiKey: String): Resource<List<MoviesResultsDomain>> {
-        return apiMovieRepository.getPopularMovies(apiKey)
+) : BaseUseCase<Unit, List<MoviesResultsDomain>> {
+    override suspend fun invoke(data: Unit): Resource<List<MoviesResultsDomain>> {
+        return apiMovieRepository.getPopularMovies()
     }
 }

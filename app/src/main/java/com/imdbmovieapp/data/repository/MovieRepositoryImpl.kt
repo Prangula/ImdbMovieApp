@@ -23,7 +23,7 @@ class MovieRepositoryImpl(
     private val topRatedDtoToTopRatedDomainMapper: TopRatedDtoToTopRatedDomainMapper,
     private val searchDtoToSearchDomainMapper: SearchDtoToSearchDomainMapper,
 ) : ApiMovieRepository {
-    override suspend fun getPopularMovies(apiKey: String): Resource<List<MoviesResultsDomain>> {
+    override suspend fun getPopularMovies(): Resource<List<MoviesResultsDomain>> {
         return RetrofitHandler().apiDataFetcher(
             { moviesApi.getPopularMovies() },
             { movieResultsDtoToDomainMapper.mapToList(it.results) }

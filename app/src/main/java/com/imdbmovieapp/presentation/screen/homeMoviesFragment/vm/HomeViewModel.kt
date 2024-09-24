@@ -31,13 +31,9 @@ class HomeViewModel(
         //getTopRatedMovies()
     }
 
-    companion object {
-        const val API_KEY = "8ebb26e68ca175bcc8629b4077769f82"
-    }
-
-     fun getPopularMovies(apiKey: String) {
+    fun getPopularMovies() {
         getMovies(
-            useCaseCall = { popularMoviesUseCase(apiKey) },
+            useCaseCall = { popularMoviesUseCase(Unit) },
             mapper = { movieResultsDomainToUIMapper.mapToList(it) },
             stateFlow = _popularMovies
         )

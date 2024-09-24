@@ -7,7 +7,6 @@ import com.imdbmovieapp.databinding.FragmentHomeMoviesBinding
 import com.imdbmovieapp.presentation.base.BaseFragment
 import com.imdbmovieapp.presentation.screen.homeMoviesFragment.adapter.PopularMoviesAdapter
 import com.imdbmovieapp.presentation.screen.homeMoviesFragment.vm.HomeViewModel
-import com.imdbmovieapp.presentation.screen.homeMoviesFragment.vm.HomeViewModel.Companion.API_KEY
 import com.imdbmovieapp.utils.Resource
 import com.imdbmovieapp.utils.lifeCycleScopeExtensions.observe
 import kotlin.reflect.KClass
@@ -20,6 +19,7 @@ class HomeMoviesFragment : BaseFragment<FragmentHomeMoviesBinding, HomeViewModel
 
     override fun onBind() {
         adapter = PopularMoviesAdapter()
+        popularMoviesObserver()
         popularMoviesRecyclerView()
         binding.customSearchBar.showGenreTags(binding.homeGenresChipGroup)
         check()
@@ -33,15 +33,13 @@ class HomeMoviesFragment : BaseFragment<FragmentHomeMoviesBinding, HomeViewModel
     }
 
     private fun check() {
-        if (binding.genrePopularChip.isChecked) {
-            popularMoviesObserver()
-            viewModel.getPopularMovies(API_KEY)
-        }
+
+
+        viewModel.getPopularMovies()
         binding.homeGenresChipGroup.setOnCheckedChangeListener { group, checkedId ->
             when (checkedId) {
                 R.id.genrePopularChip -> {
-                    popularMoviesObserver()
-                    viewModel.getPopularMovies(API_KEY)
+                    viewModel.getPopularMovies()
                 }
 
                 R.id.genreTopRatedChip -> {
