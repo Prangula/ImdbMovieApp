@@ -7,9 +7,10 @@
 
     <TextView
         android:id="@+id/favoritesMoviesTextview"
-        style="@style/Theme.ImdbMovieApp.ToolbarTextView"
+        style="@style/BigTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_20dp"
         android:text="@string/favorite_movies"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,13 +40,11 @@
 
     <TextView
         android:id="@+id/favoritesNoMoviesTextview"
-        style="@style/Theme.ImdbMovieApp.BaseTextView"
+        style="@style/smallTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_20dp"
         android:text="@string/no_movies_added_yet"
         android:textColor="@color/neutral_03_dark_grey"
-        android:textSize="@dimen/dimen_14sp"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

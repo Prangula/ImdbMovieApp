@@ -1,31 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.ImdbMovieApp.SplashScreen" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenBackground">@color/neutral_01_black</item>
-        <item name="windowSplashScreenAnimatedIcon">@drawable/bkg_splash</item>
-        <item name="postSplashScreenTheme">@style/Theme.ImdbMovieApp</item>
-    </style>
-
-    <style name="Theme.ImdbMovieApp.BaseTextView">
+    <style name="BaseTextView">
         <item name="android:fontFamily">@font/montserrat</item>
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="Theme.ImdbMovieApp.ToolbarTextView" parent="Theme.ImdbMovieApp.BaseTextView">
-        <item name="android:layout_marginTop">@dimen/dimen_20dp</item>
+    <style name="BigTextView" parent="BaseTextView">
         <item name="android:textSize">@dimen/dimen_20sp</item>
         <item name="android:textColor">@color/neutral_08_whisper</item>
     </style>
 
-    <style name="Theme.ImdbMovieApp.DetailTitleAboutTextView" parent="Theme.ImdbMovieApp.BaseTextView">
-        <item name="android:layout_marginStart">@dimen/dimen_10dp</item>
-        <item name="android:layout_marginTop">@dimen/dimen_20dp</item>
-        <item name="android:textSize">@dimen/dimen_20sp</item>
-        <item name="android:textColor">@color/neutral_08_whisper</item>
+    <style name="smallTextView" parent="BaseTextView">
+        <item name="android:textSize">@dimen/dimen_14sp</item>
+        <item name="android:layout_marginTop">@dimen/dimen_10dp</item>
     </style>
 
-    <style name="Theme.ImdbMovieApp.GenreChip" parent="@style/Widget.MaterialComponents.Chip.Choice">
+    <style name="HomeChip" parent="@style/Widget.MaterialComponents.Chip.Choice">
         <item name="android:fontFamily">"@font/montserrat"</item>
         <item name="android:paddingHorizontal">@dimen/dimen_10dp</item>
         <item name="android:textColor">@color/bkg_chip_color_selector</item>
@@ -37,11 +28,13 @@
         <item name="chipStrokeWidth">@dimen/dimen_1dp</item>
     </style>
 
-    <style name="Theme.ImdbMovieApp.DetailChip" parent="@style/Widget.MaterialComponents.Chip.Action">
+    <style name="DetailChip" parent="@style/Widget.MaterialComponents.Chip.Action">
+        <item name="android:fontFamily">"@font/montserrat"</item>
         <item name="android:layout_marginStart">@dimen/dimen_10dp</item>
         <item name="chipBackgroundColor">@color/neutral_02_darkest_grey</item>
         <item name="android:paddingHorizontal">@dimen/dimen_10dp</item>
         <item name="android:paddingVertical">@dimen/dimen_5dp</item>
+        <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/neutral_06_lighter_grey</item>
         <item name="android:textSize">@dimen/dimen_14sp</item>
     </style>

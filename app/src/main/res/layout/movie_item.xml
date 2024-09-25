@@ -29,7 +29,7 @@
 
         <TextView
             android:id="@+id/movieItemGenre"
-            style="@style/Theme.ImdbMovieApp.BaseTextView"
+            style="@style/.BaseTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
@@ -46,7 +46,7 @@
 
     <TextView
         android:id="@+id/movieItemTitle"
-        style="@style/Theme.ImdbMovieApp.BaseTextView"
+        style="@style/BaseTextView"
         android:layout_width="@dimen/dimen_100dp"
         android:layout_height="wrap_content"
         android:ellipsize="end"
@@ -62,7 +62,7 @@
 
     <TextView
         android:id="@+id/movieItemYear"
-        style="@style/Theme.ImdbMovieApp.BaseTextView"
+        style="@style/BaseTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/dimen_140dp"
