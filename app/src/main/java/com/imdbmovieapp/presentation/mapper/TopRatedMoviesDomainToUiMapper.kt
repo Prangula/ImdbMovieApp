@@ -3,7 +3,7 @@ package com.imdbmovieapp.presentation.mapper
 import com.imdbmovieapp.domain.model.TopRatedMoviesDomain
 import com.imdbmovieapp.presentation.model.MoviesResultsUI
 import com.imdbmovieapp.presentation.model.TopRatedMoviesUI
-import com.imdbmovieapp.utils.BaseMapper
+import com.imdbmovieapp.utils.base.BaseMapper
 
 class TopRatedMoviesDomainToUIMapper : BaseMapper<TopRatedMoviesDomain, TopRatedMoviesUI> {
     override fun mapModel(model: TopRatedMoviesDomain): TopRatedMoviesUI {

@@ -1,6 +1,6 @@
 package com.imdbmovieapp.di
 
-import com.imdbmovieapp.presentation.screen.homeMoviesFragment.vm.HomeViewModel
+import com.imdbmovieapp.presentation.screen.home_movies_fragment.vm.HomeViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 

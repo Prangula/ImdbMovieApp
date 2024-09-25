@@ -29,6 +29,10 @@
             android:text="@string/home"
             android:textColor="@color/bkg_chip_color_selector"
             android:textStyle="bold"
+            app:chipIconTint="@color/bkg_chip_color_selector"
+            app:chipIcon="@drawable/ic_home"
+            app:chipIconSize="@dimen/dimen_20dp"
+            app:chipIconEnabled="true"
             app:chipBackgroundColor="@color/bkg_chip_selector"
             app:chipEndPadding="@dimen/dimen_50dp"
             app:chipStartPadding="@dimen/dimen_50dp" />
@@ -43,6 +47,10 @@
             android:text="@string/favorites"
             android:textColor="@color/bkg_chip_color_selector"
             android:textStyle="bold"
+            app:chipIconTint="@color/bkg_chip_color_selector"
+            app:chipIcon="@drawable/ic_uncolored_heart"
+            app:chipIconSize="@dimen/dimen_20dp"
+            app:chipIconEnabled="true"
             app:chipBackgroundColor="@color/bkg_chip_selector"
             app:chipEndPadding="@dimen/dimen_50dp"
             app:chipStartPadding="@dimen/dimen_50dp" />

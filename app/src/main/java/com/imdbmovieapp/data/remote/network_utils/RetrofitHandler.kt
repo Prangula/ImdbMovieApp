@@ -1,21 +1,20 @@
 package com.imdbmovieapp.data.remote.network_utils
 
-import com.imdbmovieapp.utils.Resource
+import com.imdbmovieapp.utils.resource.Resource
 import retrofit2.HttpException
 import retrofit2.Response
 import java.io.IOException
 
 class RetrofitHandler {
-    inline fun <T, R> apiDataFetcher(
-        apiResponse: () -> Response<T>,
-        mapper: (T) -> R
-    ): Resource<R> {
+    inline fun <T> apiDataFetcher(
+        apiResponse: () -> Response<T>
+    ): Resource<T> {
         return try {
             val response = apiResponse.invoke()
             if (response.isSuccessful) {
-                Resource.Success(mapper(response.body()!!))
+                Resource.Success(response.body()!!)
             } else {
-                Resource.Error(response.errorBody()!!.string())
+                Resource.Error(response.message())
             }
         } catch (e: HttpException) {
             Resource.Error(e.message ?: "Http Error")

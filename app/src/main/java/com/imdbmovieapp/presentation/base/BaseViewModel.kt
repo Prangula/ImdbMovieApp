@@ -2,8 +2,8 @@ package com.imdbmovieapp.presentation.base
 
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavDirections
-import com.imdbmovieapp.utils.NavigationCommand
-import com.imdbmovieapp.utils.lifeCycleScopeExtensions.viewModelScope
+import com.imdbmovieapp.utils.nav_command.NavigationCommand
+import com.imdbmovieapp.utils.lifecycle_scope_extensions.viewModelScope
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 

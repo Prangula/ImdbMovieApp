@@ -18,14 +18,16 @@ interface MoviesApi {
     ): Response<PopularMoviesDto>
 
     @GET("/3/movie/top_rated")
-    suspend fun getTopRatedMovies(): Response<List<TopRatedMoviesDto>>
+    suspend fun getTopRatedMovies(
+        @Query("language") language: String = "en-US"
+    ): Response<TopRatedMoviesDto>
 
     @GET("/3/movie/{movie_id}")
     suspend fun getMovieDetails(@Path("movie_id") movieId: String): Response<MovieDetailsDto>
 
     @GET("/3/search/movie")
-    suspend fun getSearchMovies(@Query("query") query: String): Response<List<SearchMoviesDto>>
+    suspend fun getSearchMovies(@Query("query") query: String): Response<SearchMoviesDto>
 
     @GET("/3/genre/movie/list")
-    suspend fun getMovieGenres(): Response<List<MovieGenreDto>>
+    suspend fun getMovieGenres(): Response<MovieGenreDto>
 }

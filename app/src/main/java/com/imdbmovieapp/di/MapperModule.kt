@@ -2,16 +2,16 @@ package com.imdbmovieapp.di
 
 import com.imdbmovieapp.data.local.mapper.MovieDomainToMovieEntityMapper
 import com.imdbmovieapp.data.local.mapper.MovieEntityToMovieDomainMapper
-import com.imdbmovieapp.data.remote.mapper.dtoToDomain.DetailDtoToDetailDomainMapper
-import com.imdbmovieapp.data.remote.mapper.dtoToDomain.GenreDtoToGenreDomainMapper
-import com.imdbmovieapp.data.remote.mapper.dtoToDomain.MovieResultsDtoToDomainMapper
-import com.imdbmovieapp.data.remote.mapper.dtoToDomain.SearchDtoToSearchDomainMapper
-import com.imdbmovieapp.data.remote.mapper.dtoToDomain.TopRatedDtoToTopRatedDomainMapper
+import com.imdbmovieapp.data.remote.mapper.DetailDtoToDetailDomainMapper
+import com.imdbmovieapp.data.remote.mapper.GenreDtoToDomainMapper
+import com.imdbmovieapp.data.remote.mapper.MovieResultsDtoToDomainMapper
+import com.imdbmovieapp.data.remote.mapper.PopularMoviesDtoToDomainMapper
+import com.imdbmovieapp.data.remote.mapper.SearchDtoToSearchDomainMapper
+import com.imdbmovieapp.data.remote.mapper.TopRatedDtoToTopRatedDomainMapper
+import com.imdbmovieapp.presentation.mapper.GenreDtoDomainTUIMapper
 import com.imdbmovieapp.presentation.mapper.MovieResultsDomainToUIMapper
 import com.imdbmovieapp.presentation.mapper.PopularMoviesDomainToUiMapper
-import com.imdbmovieapp.presentation.mapper.PopularMoviesUIToDomainMapper
-import com.imdbmovieapp.presentation.mapper.TopRatedMoviesDomainToUiMapper
-import com.imdbmovieapp.presentation.mapper.TopRatedMoviesUIToDomainMapper
+import com.imdbmovieapp.presentation.mapper.TopRatedMoviesDomainToUIMapper
 import org.koin.dsl.module
 
 val mapperModule = module {
@@ -20,11 +20,11 @@ val mapperModule = module {
     single { TopRatedDtoToTopRatedDomainMapper() }
     single { DetailDtoToDetailDomainMapper() }
     single { SearchDtoToSearchDomainMapper() }
-    single { GenreDtoToGenreDomainMapper() }
-    single { PopularMoviesUIToDomainMapper() }
+    single { GenreDtoToDomainMapper() }
     single { PopularMoviesDomainToUiMapper() }
-    single { TopRatedMoviesDomainToUiMapper() }
-    single { TopRatedMoviesUIToDomainMapper() }
+    single { PopularMoviesDtoToDomainMapper() }
+    single { TopRatedMoviesDomainToUIMapper() }
     single { MovieResultsDtoToDomainMapper() }
     single { MovieResultsDomainToUIMapper() }
+    single { GenreDtoDomainTUIMapper() }
 }

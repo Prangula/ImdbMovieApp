@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/popularMoviesFragment"
-        android:name="com.imdbmovieapp.presentation.screen.homeMoviesFragment.ui.HomeMoviesFragment"
+        android:name="com.imdbmovieapp.presentation.screen.home_movies_fragment.ui.HomeMoviesFragment"
         android:label="PopularMoviesFragment" >
         <action
             android:id="@+id/action_popularMoviesFragment_to_favoriteMoviesFragment"
@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/favoriteMoviesFragment"
-        android:name="com.imdbmovieapp.presentation.screen.favoriteMoviesFragment.FavoriteMoviesFragment"
+        android:name="com.imdbmovieapp.presentation.screen.favorite_movies_fragment.FavoriteMoviesFragment"
         android:label="FavoriteMoviesFragment" >
         <action
             android:id="@+id/action_favoriteMoviesFragment_to_popularMoviesFragment"
@@ -47,7 +47,7 @@
     </fragment>
     <fragment
         android:id="@+id/detailMovieFragment"
-        android:name="com.imdbmovieapp.presentation.screen.detailMovieFragment.DetailMovieFragment"
+        android:name="com.imdbmovieapp.presentation.screen.detail_movie_fragment.DetailMovieFragment"
         android:label="DetailMovieFragment" >
         <action
             android:id="@+id/action_detailMovieFragment_to_popularMoviesFragment"
