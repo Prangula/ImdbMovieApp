@@ -8,6 +8,7 @@ import com.imdbmovieapp.presentation.mapper.TopRatedMoviesDomainToUiMapper
 import com.imdbmovieapp.presentation.model.MoviesResultsUI
 import com.imdbmovieapp.presentation.model.TopRatedMoviesUI
 import com.imdbmovieapp.utils.Resource
+import com.imdbmovieapp.utils.lifeCycleScopeExtensions.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
@@ -26,9 +27,19 @@ class HomeViewModel(
         MutableStateFlow<Resource<List<TopRatedMoviesUI>>>(Resource.Loading())
     val topRatedMovies = _topRatedMovies.asStateFlow()
 
-    init {
-
-        //getTopRatedMovies()
+    private fun <T, R> getMovies(
+        useCaseCall: suspend () -> Resource<T>,
+        mapper: (T) -> R,
+        stateFlow: MutableStateFlow<Resource<R>>
+    ) {
+        viewModelScope {
+            val result = useCaseCall()
+            stateFlow.value = when (result) {
+                is Resource.Success -> Resource.Success(mapper(result.data!!))
+                is Resource.Error -> Resource.Error(result.message!!)
+                is Resource.Loading -> Resource.Loading()
+            }
+        }
     }
 
     fun getPopularMovies() {
