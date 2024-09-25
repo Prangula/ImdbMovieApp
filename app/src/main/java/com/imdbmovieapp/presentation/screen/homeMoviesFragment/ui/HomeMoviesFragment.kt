@@ -20,6 +20,7 @@ class HomeMoviesFragment : BaseFragment<FragmentHomeMoviesBinding, HomeViewModel
     override fun onBind() {
         adapter = PopularMoviesAdapter()
         popularMoviesObserver()
+        viewModel.getPopularMovies()
         popularMoviesRecyclerView()
         binding.customSearchBar.showGenreTags(binding.homeGenresChipGroup)
         check()
@@ -33,9 +34,6 @@ class HomeMoviesFragment : BaseFragment<FragmentHomeMoviesBinding, HomeViewModel
     }
 
     private fun check() {
-
-
-        viewModel.getPopularMovies()
         binding.homeGenresChipGroup.setOnCheckedChangeListener { group, checkedId ->
             when (checkedId) {
                 R.id.genrePopularChip -> {

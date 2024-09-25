@@ -13,7 +13,7 @@ import com.imdbmovieapp.domain.model.SearchMoviesDomain
 import com.imdbmovieapp.domain.model.TopRatedMoviesDomain
 import com.imdbmovieapp.domain.repository.ApiMovieRepository
 import com.imdbmovieapp.utils.Resource
-import com.imdbmovieapp.utils.RetrofitHandler
+import com.imdbmovieapp.data.remote.network_utils.RetrofitHandler
 
 class MovieRepositoryImpl(
     private val moviesApi: MoviesApi,

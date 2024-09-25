@@ -1,5 +1,6 @@
-package com.imdbmovieapp.utils
+package com.imdbmovieapp.data.remote.network_utils
 
+import com.imdbmovieapp.utils.Resource
 import retrofit2.HttpException
 import retrofit2.Response
 import java.io.IOException
