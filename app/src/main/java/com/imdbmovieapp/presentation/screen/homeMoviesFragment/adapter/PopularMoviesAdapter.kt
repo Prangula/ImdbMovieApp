@@ -1,14 +1,14 @@
 package com.imdbmovieapp.presentation.screen.homeMoviesFragment.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.imdbmovieapp.databinding.MovieItemBinding
 import com.imdbmovieapp.presentation.model.MoviesResultsUI
 import com.imdbmovieapp.utils.genreMapper
+import com.imdbmovieapp.utils.getPosterUrl
+import com.imdbmovieapp.utils.setImage
 
 class PopularMoviesAdapter
     (
@@ -22,7 +22,7 @@ class PopularMoviesAdapter
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
-        holder.bind(item, holder.itemView.context)
+        holder.bind(item)
 
         /*
         holder.itemView.setOnClickListener {
@@ -45,13 +45,10 @@ class PopularMoviesAdapter
     }
 
     class ViewHolder(val binding: MovieItemBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: MoviesResultsUI, context: Context) {
+        fun bind(item: MoviesResultsUI) {
             with(binding) {
-                Glide
-                    .with(context)
-                    .load("https://image.tmdb.org/t/p/w500" + item.posterPath)
-                    .into(movieItemImageView)
-                movieItemGenre.text = genreMapper[item.genreIds[0]]
+                movieItemImageView.setImage(item.getPosterUrl())
+                movieItemGenre.text = genreMapper[item.genreIds.first()]
                 movieItemTitle.text = item.title
                 movieItemYear.text = item.releaseDate.take(4)
             }
