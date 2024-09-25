@@ -1,9 +1,10 @@
 package com.imdbmovieapp.di
 
 import com.imdbmovieapp.data.remote.api.MoviesApi
+import com.imdbmovieapp.data.remote.network_utils.NetworkKeys.API_KEY
+import com.imdbmovieapp.data.remote.network_utils.NetworkKeys.BASE_URL
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
-import okhttp3.Request
 import okhttp3.Response
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -12,7 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 val retrofitModule = module {
     single {
         Retrofit.Builder()
-            .baseUrl("https://api.themoviedb.org/")
+            .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(get())
             .build()
@@ -26,12 +27,10 @@ val retrofitModule = module {
 }
 
 class Interceptor : Interceptor {
-    private val apiKey = "8ebb26e68ca175bcc8629b4077769f82"
-
     override fun intercept(chain: Interceptor.Chain): Response {
         val originalRequest = chain.request()
         val newUrl = originalRequest.url().newBuilder()
-            .addQueryParameter("api_key", apiKey)
+            .addQueryParameter("api_key", API_KEY)
             .build()
         val newRequest = originalRequest.newBuilder()
             .url(newUrl)
