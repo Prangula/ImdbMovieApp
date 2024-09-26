@@ -72,12 +72,14 @@ class CustomSearchBar @JvmOverloads constructor(
     fun getSearchMovies(
         viewModel: (query: String) -> Unit,
         lifecycleScope: CoroutineScope,
-        chipGroup: ChipGroup
+        chipGroup: ChipGroup,
+       //observer: () -> Unit
     ) {
         binding.customEditText.addTextChangedListener { search ->
             job?.cancel()
             job = lifecycleScope.launch {
-                delay(500)
+                delay(200)
+                //observer()
                 viewModel(search.toString())
             }
             chipGroup.visibility = View.GONE
@@ -89,6 +91,7 @@ class CustomSearchBar @JvmOverloads constructor(
     fun clickCancel(onClickAction: () -> Unit) {
         with(binding) {
             customTextview.setOnClickListener {
+                onClickAction.invoke()
                 imageBackgroundHelper(
                     customImageView,
                     R.drawable.ic_show_tags,
@@ -100,7 +103,6 @@ class CustomSearchBar @JvmOverloads constructor(
                 customEditText.clearFocus()
                 (context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)
                     .hideSoftInputFromWindow(binding.customEditText.windowToken, 0)
-                onClickAction.invoke()
             }
         }
     }
@@ -122,7 +124,7 @@ class CustomSearchBar @JvmOverloads constructor(
     }
 
     private fun showImageWithAnimation(chipGroup: ChipGroup) {
-        val animator = ObjectAnimator.ofFloat(chipGroup, "alpha", 0f, 1f)
+        val animator = ObjectAnimator.ofFloat(chipGroup, context.getString(R.string.alpha), 0f, 1f)
         animator.duration = 1000
         animator.start()
     }

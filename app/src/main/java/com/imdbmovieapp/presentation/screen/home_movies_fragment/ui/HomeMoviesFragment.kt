@@ -1,5 +1,6 @@
 package com.imdbmovieapp.presentation.screen.home_movies_fragment.ui
 
+import android.view.View
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.imdbmovieapp.R
@@ -22,11 +23,10 @@ class HomeMoviesFragment : BaseFragment<FragmentHomeMoviesBinding, HomeViewModel
     override fun onBind() {
         adapter = ResultsMoviesAdapter(genreMoviesUI)
         popularMoviesObserver()
-        topRatedMoviesObserver()
+        genreMoviesObserver()
         searchMoviesObserver()
         viewModel.getPopularMovies()
         viewModel.getGenreMovies()
-        genreMoviesObserver()
         popularMoviesRecyclerView()
         with(binding) {
             customSearchBar.showGenreTags(binding.homeGenresChipGroup)
@@ -34,17 +34,17 @@ class HomeMoviesFragment : BaseFragment<FragmentHomeMoviesBinding, HomeViewModel
                 viewModel::getSearchMovies,
                 viewLifecycleOwner.lifecycleScope,
                 homeGenresChipGroup
-            )
+            )// { searchMoviesObserver() }
             customSearchBar.hideKeyboard()
-            customSearchBar.clickCancel {
+            customSearchBar.clickCancel(onClickAction = {
                 if (homeGenresChipGroup.checkedChipId == R.id.genrePopularChip) {
                     viewModel.getPopularMovies()
                 } else {
                     viewModel.getTopRatedMovies()
                 }
-            }
-            check()
+            })
         }
+        check()
     }
 
     private fun popularMoviesRecyclerView() {
@@ -62,6 +62,7 @@ class HomeMoviesFragment : BaseFragment<FragmentHomeMoviesBinding, HomeViewModel
                 }
 
                 R.id.genreTopRatedChip -> {
+                    topRatedMoviesObserver()
                     viewModel.getTopRatedMovies()
                 }
             }
@@ -72,14 +73,17 @@ class HomeMoviesFragment : BaseFragment<FragmentHomeMoviesBinding, HomeViewModel
         observe(viewModel.popularMovies) { resource ->
             when (resource) {
                 is Resource.Success -> {
+                    hideDialog()
                     adapter.submitList(resource.data!!)
                 }
 
                 is Resource.Error -> {
+                    hideDialog()
                     resource.message
                 }
 
                 is Resource.Loading -> {
+                    showDialog()
                 }
             }
         }
@@ -89,14 +93,17 @@ class HomeMoviesFragment : BaseFragment<FragmentHomeMoviesBinding, HomeViewModel
         observe(viewModel.topRatedMovies) { resource ->
             when (resource) {
                 is Resource.Success -> {
+                    hideDialog()
                     adapter.submitList(resource.data!!)
                 }
 
                 is Resource.Error -> {
                     resource.message
+                    hideDialog()
                 }
 
                 is Resource.Loading -> {
+                    showDialog()
                 }
             }
         }
@@ -130,7 +137,8 @@ class HomeMoviesFragment : BaseFragment<FragmentHomeMoviesBinding, HomeViewModel
                     resource.message
                 }
 
-                is Resource.Loading -> {}
+                is Resource.Loading -> {
+                }
             }
         }
     }
