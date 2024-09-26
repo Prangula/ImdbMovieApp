@@ -10,7 +10,7 @@ class MovieResultsDomainToUIMapper : BaseMapper<MoviesResultsDomain, MoviesResul
             MoviesResultsUI(
                 id = id,
                 genreIds = genreIds,
-                posterPath = posterPath,
+                posterPath = posterPath.orEmpty(),
                 releaseDate = releaseDate,
                 title = title
             )

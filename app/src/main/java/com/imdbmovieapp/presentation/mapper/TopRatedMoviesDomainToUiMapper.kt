@@ -13,7 +13,7 @@ class TopRatedMoviesDomainToUIMapper : BaseMapper<TopRatedMoviesDomain, TopRated
                     MoviesResultsUI(
                         it.id,
                         it.genreIds,
-                        it.posterPath,
+                        it.posterPath.orEmpty(),
                         it.releaseDate,
                         it.title
                     )

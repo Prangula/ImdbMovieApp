@@ -14,7 +14,8 @@ interface MoviesApi {
 
     @GET("/3/movie/popular")
     suspend fun getPopularMovies(
-        @Query("language") language: String = "en-US"
+        @Query("language") language: String = "en-US",
+        @Query("page_size") pageSize: Int = 100
     ): Response<PopularMoviesDto>
 
     @GET("/3/movie/top_rated")

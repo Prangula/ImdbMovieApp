@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.imdbmovieapp.R
 import com.imdbmovieapp.databinding.MovieItemBinding
 import com.imdbmovieapp.presentation.model.GenreMoviesUI
 import com.imdbmovieapp.presentation.model.MoviesResultsUI
@@ -49,12 +50,14 @@ class ResultsMoviesAdapter
         @SuppressLint("SetTextI18n")
         fun bind(item: MoviesResultsUI, genreMoviesUI: GenreMoviesUI) {
             with(binding) {
-                movieItemImageView.setImage(item.getPosterUrl())
+                if(item.getPosterUrl().isNotEmpty()){
+                    movieItemImageView.setImage(item.getPosterUrl())?: R.drawable.ic_empty
+                }
                 movieItemGenre.text =
                     genreMoviesUI.genres.find { it.id == item.genreIds.firstOrNull() }?.name
                         ?: "Unknown Genre"
-                movieItemTitle.text = item.title
-                movieItemYear.text = item.releaseDate.take(4)
+                movieItemTitle.text = item.title?: ""
+                movieItemYear.text = item.releaseDate.take(4)?:""
             }
         }
     }

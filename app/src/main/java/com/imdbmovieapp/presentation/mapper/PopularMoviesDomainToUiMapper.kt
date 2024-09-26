@@ -13,7 +13,7 @@ class PopularMoviesDomainToUiMapper : BaseMapper<PopularMoviesDomain, PopularMov
                     MoviesResultsUI(
                         it.id,
                         it.genreIds,
-                        it.posterPath,
+                        it.posterPath.orEmpty(),
                         it.releaseDate,
                         it.title
                     )

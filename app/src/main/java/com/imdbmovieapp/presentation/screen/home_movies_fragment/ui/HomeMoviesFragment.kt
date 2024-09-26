@@ -1,6 +1,5 @@
 package com.imdbmovieapp.presentation.screen.home_movies_fragment.ui
 
-import android.view.View
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.imdbmovieapp.R
