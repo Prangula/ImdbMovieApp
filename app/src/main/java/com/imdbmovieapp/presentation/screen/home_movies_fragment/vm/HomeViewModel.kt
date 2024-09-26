@@ -1,10 +1,13 @@
 package com.imdbmovieapp.presentation.screen.home_movies_fragment.vm
 
+import com.imdbmovieapp.domain.use_case.GenreMoviesUseCase
 import com.imdbmovieapp.domain.use_case.PopularMoviesUseCase
 import com.imdbmovieapp.domain.use_case.SearchMoviesUseCase
 import com.imdbmovieapp.domain.use_case.TopRatedMoviesUseCase
 import com.imdbmovieapp.presentation.base.BaseViewModel
+import com.imdbmovieapp.presentation.mapper.GenreResultsDomainToUIMapper
 import com.imdbmovieapp.presentation.mapper.MovieResultsDomainToUIMapper
+import com.imdbmovieapp.presentation.model.GenreResultsUI
 import com.imdbmovieapp.presentation.model.MoviesResultsUI
 import com.imdbmovieapp.utils.resource.Resource
 import com.imdbmovieapp.utils.lifecycle_scope_extensions.viewModelScope
@@ -15,7 +18,9 @@ class HomeViewModel(
     private val popularMoviesUseCase: PopularMoviesUseCase,
     private val topRatedMoviesUseCase: TopRatedMoviesUseCase,
     private val searchMoviesUseCase: SearchMoviesUseCase,
+    private val genreMoviesUseCase: GenreMoviesUseCase,
     private val movieResultsDomainToUIMapper: MovieResultsDomainToUIMapper,
+    private val genreResultsDomainToUIMapper: GenreResultsDomainToUIMapper,
 ) : BaseViewModel() {
 
     private val _popularMovies =
@@ -29,6 +34,10 @@ class HomeViewModel(
     private val _searchMovies =
         MutableStateFlow<Resource<List<MoviesResultsUI>>>(Resource.Loading())
     val searchMovies = _searchMovies.asStateFlow()
+
+    private val _getGenres =
+        MutableStateFlow<Resource<List<GenreResultsUI>>>(Resource.Loading())
+    val getGenres = _getGenres.asStateFlow()
 
     private fun <T, R> getMovies(
         useCaseCall: suspend () -> Resource<T>,
@@ -58,6 +67,14 @@ class HomeViewModel(
             useCaseCall = { topRatedMoviesUseCase(Unit) },
             mapper = { movieResultsDomainToUIMapper.mapToList(it.results) },
             stateFlow = _topRatedMovies
+        )
+    }
+
+    fun getGenreMovies() {
+        getMovies(
+            useCaseCall = { genreMoviesUseCase(Unit) },
+            mapper = { genreResultsDomainToUIMapper.mapToList(it.genres) },
+            stateFlow = _getGenres
         )
     }
 

@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.imdbmovieapp.R
 import com.imdbmovieapp.databinding.FragmentHomeMoviesBinding
 import com.imdbmovieapp.presentation.base.BaseFragment
+import com.imdbmovieapp.presentation.model.GenreMoviesUI
 import com.imdbmovieapp.presentation.screen.home_movies_fragment.adapter.ResultsMoviesAdapter
 import com.imdbmovieapp.presentation.screen.home_movies_fragment.vm.HomeViewModel
 import com.imdbmovieapp.utils.resource.Resource
@@ -16,13 +17,16 @@ class HomeMoviesFragment : BaseFragment<FragmentHomeMoviesBinding, HomeViewModel
 ) {
     override val viewModelClass: KClass<HomeViewModel> get() = HomeViewModel::class
     private lateinit var adapter: ResultsMoviesAdapter
+    private var genreMoviesUI = GenreMoviesUI()
 
     override fun onBind() {
-        adapter = ResultsMoviesAdapter()
+        adapter = ResultsMoviesAdapter(genreMoviesUI)
         popularMoviesObserver()
         topRatedMoviesObserver()
         searchMoviesObserver()
         viewModel.getPopularMovies()
+        viewModel.getGenreMovies()
+        genreMoviesObserver()
         popularMoviesRecyclerView()
         with(binding) {
             customSearchBar.showGenreTags(binding.homeGenresChipGroup)
@@ -111,6 +115,22 @@ class HomeMoviesFragment : BaseFragment<FragmentHomeMoviesBinding, HomeViewModel
 
                 is Resource.Loading -> {
                 }
+            }
+        }
+    }
+
+    private fun genreMoviesObserver() {
+        observe(viewModel.getGenres) { resource ->
+            when (resource) {
+                is Resource.Success -> {
+                    genreMoviesUI.genres = resource.data!!
+                }
+
+                is Resource.Error -> {
+                    resource.message
+                }
+
+                is Resource.Loading -> {}
             }
         }
     }

@@ -2,7 +2,7 @@ package com.imdbmovieapp.data.repository
 
 import com.imdbmovieapp.data.remote.api.MoviesApi
 import com.imdbmovieapp.data.remote.mapper.DetailDtoToDetailDomainMapper
-import com.imdbmovieapp.data.remote.mapper.GenreDtoToDomainMapper
+import com.imdbmovieapp.data.remote.mapper.MovieGenreDtoToDomainMapper
 import com.imdbmovieapp.data.remote.mapper.PopularMoviesDtoToDomainMapper
 import com.imdbmovieapp.data.remote.mapper.SearchDtoToSearchDomainMapper
 import com.imdbmovieapp.data.remote.mapper.TopRatedDtoToTopRatedDomainMapper
@@ -18,7 +18,7 @@ import com.imdbmovieapp.domain.model.TopRatedMoviesDomain
 class MovieRepositoryImpl(
     private val moviesApi: MoviesApi,
     private val detailDtoToDetailDomainMapper: DetailDtoToDetailDomainMapper,
-    private val genreDtoToDomainMapper: GenreDtoToDomainMapper,
+    private val movieGenreDtoToDomainMapper: MovieGenreDtoToDomainMapper,
     private val popularMoviesDtoToDomainMapper: PopularMoviesDtoToDomainMapper,
     private val topRatedMoviesDtoToTopRatedDomainMapper: TopRatedDtoToTopRatedDomainMapper,
     private val searchMoviesDtoToDomainMapper: SearchDtoToSearchDomainMapper
@@ -44,8 +44,8 @@ class MovieRepositoryImpl(
         return Resource.Success(searchMoviesDtoToDomainMapper.mapModel(response.data!!))
     }
 
-    override suspend fun getGenres(): Resource<List<GenreMoviesDomain>> {
+    override suspend fun getGenres(): Resource<GenreMoviesDomain> {
         val response = RetrofitHandler().apiDataFetcher { moviesApi.getMovieGenres() }
-        return Resource.Success(genreDtoToDomainMapper.mapToList(response.data!!.genres))
+        return Resource.Success(movieGenreDtoToDomainMapper.mapModel(response.data!!))
     }
 }

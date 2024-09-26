@@ -12,5 +12,5 @@ interface ApiMovieRepository {
     suspend fun getTopRatedMovies(): Resource<TopRatedMoviesDomain>
     suspend fun getDetailMovie(movieId: String): Resource<DetailMovieDomain>
     suspend fun getSearchMovies(query: String): Resource<SearchMoviesDomain>
-    suspend fun getGenres(): Resource<List<GenreMoviesDomain>>
+    suspend fun getGenres(): Resource<GenreMoviesDomain>
 }

@@ -7,8 +7,8 @@ import com.imdbmovieapp.utils.resource.Resource
 
 class GenreMoviesUseCase(
     private val apiMovieRepository: ApiMovieRepository
-) : BaseUseCase<Unit, List<GenreMoviesDomain>> {
-    override suspend fun invoke(data: Unit): Resource<List<GenreMoviesDomain>> {
+) : BaseUseCase<Unit, GenreMoviesDomain> {
+    override suspend fun invoke(data: Unit): Resource<GenreMoviesDomain> {
         return apiMovieRepository.getGenres()
     }
 }

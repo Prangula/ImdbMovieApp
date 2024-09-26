@@ -81,7 +81,7 @@ class CustomSearchBar @JvmOverloads constructor(
                 viewModel(search.toString())
             }
             chipGroup.visibility = View.GONE
-            binding.customImageView.visibility = View.GONE
+            binding.customImageView.visibility = View.INVISIBLE
             binding.customTextview.visibility = View.VISIBLE
         }
     }
