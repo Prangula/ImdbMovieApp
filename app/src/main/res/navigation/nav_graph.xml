@@ -2,39 +2,72 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/popularMoviesFragment">
+    app:startDestination="@id/homeMoviesFragment">
 
     <fragment
-        android:id="@+id/popularMoviesFragment"
-        android:name="com.imdbmovieapp.presentation.screen.homeMoviesFragment.HomeMoviesFragment"
-        android:label="PopularMoviesFragment" >
+        android:id="@+id/homeMoviesFragment"
+        android:name="com.imdbmovieapp.presentation.screen.home_movies_fragment.ui.HomeMoviesFragment"
+        android:label="homeMoviesFragment">
         <action
-            android:id="@+id/action_popularMoviesFragment_to_favoriteMoviesFragment"
-            app:destination="@id/favoriteMoviesFragment" />
+            android:id="@+id/action_homeMoviesFragment_to_favoriteMoviesFragment"
+            app:destination="@id/favoriteMoviesFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
-            android:id="@+id/action_popularMoviesFragment_to_detailMovieFragment"
-            app:destination="@id/detailMovieFragment" />
+            android:id="@+id/action_homeMoviesFragment_to_detailMovieFragment"
+            app:destination="@id/detailMovieFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/favoriteMoviesFragment"
-        android:name="com.imdbmovieapp.presentation.screen.favoriteMoviesFragment.FavoriteMoviesFragment"
+        android:name="com.imdbmovieapp.presentation.screen.favorite_movies_fragment.FavoriteMoviesFragment"
         android:label="FavoriteMoviesFragment" >
         <action
-            android:id="@+id/action_favoriteMoviesFragment_to_popularMoviesFragment"
-            app:destination="@id/popularMoviesFragment" />
+            android:id="@+id/action_favoriteMoviesFragment_to_homeMoviesFragment"
+            app:destination="@id/homeMoviesFragment" />
         <action
             android:id="@+id/action_favoriteMoviesFragment_to_detailMovieFragment"
-            app:destination="@id/detailMovieFragment" />
+            app:destination="@id/detailMovieFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_favoriteMoviesFragment_to_homeMoviesFragment2"
+            app:destination="@id/homeMoviesFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/detailMovieFragment"
-        android:name="com.imdbmovieapp.presentation.screen.detailMovieFragment.DetailMovieFragment"
+        android:name="com.imdbmovieapp.presentation.screen.detail_movie_fragment.ui.DetailMovieFragment"
         android:label="DetailMovieFragment" >
         <action
-            android:id="@+id/action_detailMovieFragment_to_popularMoviesFragment"
-            app:destination="@id/popularMoviesFragment" />
+            android:id="@+id/action_detailMovieFragment_to_homeMoviesFragment"
+            app:destination="@id/homeMoviesFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_detailMovieFragment_to_favoriteMoviesFragment"
-            app:destination="@id/favoriteMoviesFragment" />
+            app:destination="@id/favoriteMoviesFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <argument
+            android:name="detailResults"
+            app:argType="com.imdbmovieapp.presentation.model.MoviesResultsUI" />
+        <argument
+            android:name="genreResults"
+            app:argType="com.imdbmovieapp.presentation.model.GenreMoviesUI" />
     </fragment>
 </navigation>
