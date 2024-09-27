@@ -10,5 +10,10 @@ data class MoviesResultDto(
     val posterPath: String,
     @SerializedName("release_date")
     val releaseDate: String,
-    val title: String
+    val title: String,
+    val overview: String,
+    @SerializedName("backdrop_path")
+    val backdropPath: String,
+    @SerializedName("vote_average")
+    val voteAverage: Double
 )

@@ -6,6 +6,7 @@ import com.imdbmovieapp.R
 import com.imdbmovieapp.databinding.FragmentHomeMoviesBinding
 import com.imdbmovieapp.presentation.base.BaseFragment
 import com.imdbmovieapp.presentation.model.GenreMoviesUI
+import com.imdbmovieapp.presentation.model.MoviesResultsUI
 import com.imdbmovieapp.presentation.screen.home_movies_fragment.adapter.ResultsMoviesAdapter
 import com.imdbmovieapp.presentation.screen.home_movies_fragment.vm.HomeViewModel
 import com.imdbmovieapp.utils.resource.Resource
@@ -20,7 +21,6 @@ class HomeMoviesFragment : BaseFragment<FragmentHomeMoviesBinding, HomeViewModel
     private var genreMoviesUI = GenreMoviesUI()
 
     override fun onBind() {
-        adapter = ResultsMoviesAdapter(genreMoviesUI)
         popularMoviesObserver()
         genreMoviesObserver()
         searchMoviesObserver()
@@ -28,12 +28,12 @@ class HomeMoviesFragment : BaseFragment<FragmentHomeMoviesBinding, HomeViewModel
         viewModel.getGenreMovies()
         popularMoviesRecyclerView()
         with(binding) {
-            customSearchBar.showGenreTags(binding.homeGenresChipGroup)
             customSearchBar.getSearchMovies(
                 viewModel::getSearchMovies,
                 viewLifecycleOwner.lifecycleScope,
                 homeGenresChipGroup
-            )// { searchMoviesObserver() }
+            )
+            customSearchBar.showGenreTags(binding.homeGenresChipGroup)
             customSearchBar.hideKeyboard()
             customSearchBar.clickCancel(onClickAction = {
                 if (homeGenresChipGroup.checkedChipId == R.id.genrePopularChip) {
@@ -48,6 +48,11 @@ class HomeMoviesFragment : BaseFragment<FragmentHomeMoviesBinding, HomeViewModel
 
     private fun popularMoviesRecyclerView() {
         with(binding) {
+            adapter = ResultsMoviesAdapter(
+                genreMoviesUI
+            ) { item ->
+                navigateToMovieDetailsFragment(item, genreMoviesUI)
+            }
             homeMoviesRecyclerView.adapter = adapter
             homeMoviesRecyclerView.layoutManager = GridLayoutManager(requireActivity(), 2)
         }
@@ -140,5 +145,12 @@ class HomeMoviesFragment : BaseFragment<FragmentHomeMoviesBinding, HomeViewModel
                 }
             }
         }
+    }
+
+    private fun navigateToMovieDetailsFragment(
+        moviesResultsUI: MoviesResultsUI,
+        genreMoviesUI: GenreMoviesUI
+    ) {
+        viewModel.navigateToDetailsFragment(moviesResultsUI, genreMoviesUI)
     }
 }

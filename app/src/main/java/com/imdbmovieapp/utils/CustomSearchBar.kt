@@ -73,18 +73,18 @@ class CustomSearchBar @JvmOverloads constructor(
         viewModel: (query: String) -> Unit,
         lifecycleScope: CoroutineScope,
         chipGroup: ChipGroup,
-       //observer: () -> Unit
     ) {
-        binding.customEditText.addTextChangedListener { search ->
-            job?.cancel()
-            job = lifecycleScope.launch {
-                delay(200)
-                //observer()
-                viewModel(search.toString())
+        with(binding) {
+            customEditText.addTextChangedListener { search ->
+                job?.cancel()
+                job = lifecycleScope.launch {
+                    delay(200)
+                    viewModel(search.toString())
+                }
+                chipGroup.visibility = View.GONE
+                customImageView.visibility = View.INVISIBLE
+                customTextview.visibility = View.VISIBLE
             }
-            chipGroup.visibility = View.GONE
-            binding.customImageView.visibility = View.INVISIBLE
-            binding.customTextview.visibility = View.VISIBLE
         }
     }
 
@@ -98,6 +98,7 @@ class CustomSearchBar @JvmOverloads constructor(
                     R.drawable.bkg_circle_yellow_stroke
                 )
                 customEditText.editableText.clear()
+                customEditText.clearFocus()
                 customImageView.visibility = View.VISIBLE
                 customTextview.visibility = View.GONE
                 customEditText.clearFocus()

@@ -14,21 +14,24 @@ interface MoviesApi {
 
     @GET("/3/movie/popular")
     suspend fun getPopularMovies(
-        @Query("language") language: String = "en-US",
-        @Query("page_size") pageSize: Int = 100
+        @Query("language") language: String = "de-DE",
+        @Query("page") page: Int = 1,
     ): Response<PopularMoviesDto>
 
     @GET("/3/movie/top_rated")
     suspend fun getTopRatedMovies(
-        @Query("language") language: String = "en-US"
+        @Query("language") language: String = "de-DE"
     ): Response<TopRatedMoviesDto>
 
     @GET("/3/movie/{movie_id}")
     suspend fun getMovieDetails(@Path("movie_id") movieId: String): Response<MovieDetailsDto>
 
     @GET("/3/search/movie")
-    suspend fun getSearchMovies(@Query("query") query: String): Response<SearchMoviesDto>
+    suspend fun getSearchMovies(
+        @Query("query") query: String,
+        @Query("language") language: String = "de-DE"
+    ): Response<SearchMoviesDto>
 
     @GET("/3/genre/movie/list")
-    suspend fun getMovieGenres(): Response<MovieGenreDto>
+    suspend fun getMovieGenres(@Query("language") language: String = "de-DE"): Response<MovieGenreDto>
 }

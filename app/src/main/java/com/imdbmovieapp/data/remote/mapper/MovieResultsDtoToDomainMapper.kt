@@ -12,7 +12,10 @@ class MovieResultsDtoToDomainMapper : BaseMapper<MoviesResultDto, MoviesResultsD
                 genreIds = genreIds,
                 posterPath = posterPath,
                 releaseDate = releaseDate,
-                title = title
+                title = title,
+                overview = overview,
+                backdropPath = backdropPath,
+                voteAverage = voteAverage
             )
         }
     }

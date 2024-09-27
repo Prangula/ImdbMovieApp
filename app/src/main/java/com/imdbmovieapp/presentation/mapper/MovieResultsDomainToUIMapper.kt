@@ -12,7 +12,10 @@ class MovieResultsDomainToUIMapper : BaseMapper<MoviesResultsDomain, MoviesResul
                 genreIds = genreIds,
                 posterPath = posterPath.orEmpty(),
                 releaseDate = releaseDate,
-                title = title
+                title = title,
+                overview = overview,
+                backdropPath = backdropPath.orEmpty(),
+                voteAverage = voteAverage
             )
         }
     }

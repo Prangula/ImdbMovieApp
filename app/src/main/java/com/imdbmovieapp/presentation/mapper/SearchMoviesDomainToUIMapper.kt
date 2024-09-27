@@ -15,7 +15,10 @@ class SearchMoviesDomainToUIMapper : BaseMapper<SearchMoviesDomain, SearchMovies
                         it.genreIds,
                         it.posterPath.orEmpty(),
                         it.releaseDate,
-                        it.title
+                        it.title,
+                        it.overview,
+                        it.backdropPath.orEmpty(),
+                        it.voteAverage
                     )
                 },
                 page = page,

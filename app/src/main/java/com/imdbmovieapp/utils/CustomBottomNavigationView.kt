@@ -3,10 +3,13 @@ package com.imdbmovieapp.utils
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.View
+import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.imdbmovieapp.R
 import com.imdbmovieapp.databinding.CustomBottomNavigationBinding
+import com.imdbmovieapp.presentation.screen.detail_movie_fragment.ui.DetailMovieFragment
 
 class CustomBottomNavigationView @JvmOverloads constructor(
     context: Context,
@@ -20,7 +23,7 @@ class CustomBottomNavigationView @JvmOverloads constructor(
         binding.bottomChipGroup.setOnCheckedChangeListener { group, checkedId ->
             when (checkedId) {
                 R.id.homeFragment -> {
-                    navController.navigate(R.id.popularMoviesFragment)
+                    navController.navigate(R.id.homeMoviesFragment)
                 }
 
                 R.id.favoritesFragment -> {

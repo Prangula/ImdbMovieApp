@@ -15,7 +15,10 @@ class PopularMoviesDomainToUiMapper : BaseMapper<PopularMoviesDomain, PopularMov
                         it.genreIds,
                         it.posterPath.orEmpty(),
                         it.releaseDate,
-                        it.title
+                        it.title,
+                        it.overview,
+                        it.backdropPath!!,
+                        it.voteAverage
                     )
                 },
                 page = page,

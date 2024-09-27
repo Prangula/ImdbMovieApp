@@ -5,5 +5,8 @@ data class MoviesResultsDomain(
     val genreIds: List<Int>,
     val posterPath: String?,
     val releaseDate: String,
-    val title: String
+    val title: String,
+    val overview: String,
+    val backdropPath: String?,
+    val voteAverage:Double
 )

@@ -16,7 +16,10 @@ class SearchDtoToSearchDomainMapper : BaseMapper<SearchMoviesDto, SearchMoviesDo
                         it.genreIds ?: emptyList(),
                         it.posterPath ?: "R.drawable.ic_empty",
                         it.releaseDate ?: "xxxx",
-                        it.title ?: "unknown"
+                        it.title ?: "unknown",
+                        it.overview ?: "unknown",
+                        it.backdropPath ?: "unknown",
+                        it.voteAverage ?: 0.0
                     )
                 },
                 totalPages = totalPages,
