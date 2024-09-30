@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
@@ -16,12 +17,12 @@ fun ViewModel.viewModelScope(
 }
 
 fun <T> LifecycleOwner.observe(
-    stateFlow: StateFlow<T>,
+    flow: Flow<T>,
     action: (T) -> Unit
 ) {
-    lifecycleScope.launchWhenStarted {
-        stateFlow.collect { item ->
-            action(item)
+    lifecycleScope.launch {
+        flow.collect { data ->
+            action(data)
         }
     }
 }

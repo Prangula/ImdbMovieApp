@@ -4,17 +4,17 @@ import com.imdbmovieapp.data.remote.dto.MoviesResultDto
 import com.imdbmovieapp.domain.model.MoviesResultsDomain
 import com.imdbmovieapp.utils.base.BaseMapper
 
-class MovieResultsDtoToDomainMapper : BaseMapper<MoviesResultDto, MoviesResultsDomain> {
-    override fun mapModel(model: MoviesResultDto): MoviesResultsDomain {
+class MovieResultsDomainToDtoMapper : BaseMapper<MoviesResultsDomain, MoviesResultDto> {
+    override fun mapModel(model: MoviesResultsDomain): MoviesResultDto {
         return with(model) {
-            MoviesResultsDomain(
+            MoviesResultDto(
                 id = id,
                 genreIds = genreIds,
-                posterPath = posterPath,
+                posterPath = posterPath!!,
                 releaseDate = releaseDate,
                 title = title,
                 overview = overview,
-                backdropPath = backdropPath,
+                backdropPath = backdropPath!!,
                 voteAverage = voteAverage,
                 isFavorite = isFavorite,
                 heartColor = heartColor

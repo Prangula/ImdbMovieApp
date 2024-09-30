@@ -19,7 +19,9 @@ class SearchDtoToSearchDomainMapper : BaseMapper<SearchMoviesDto, SearchMoviesDo
                         it.title ?: "unknown",
                         it.overview ?: "unknown",
                         it.backdropPath ?: "unknown",
-                        it.voteAverage ?: 0.0
+                        it.voteAverage ?: 0.0,
+                        it.isFavorite,
+                        it.heartColor
                     )
                 },
                 totalPages = totalPages,

@@ -8,7 +8,7 @@ import com.imdbmovieapp.data.remote.mapper.SearchDtoToSearchDomainMapper
 import com.imdbmovieapp.data.remote.mapper.TopRatedDtoToTopRatedDomainMapper
 import com.imdbmovieapp.domain.model.DetailMovieDomain
 import com.imdbmovieapp.domain.model.GenreMoviesDomain
-import com.imdbmovieapp.domain.repository.ApiMovieRepository
+import com.imdbmovieapp.domain.repository.MovieRepository
 import com.imdbmovieapp.utils.resource.Resource
 import com.imdbmovieapp.data.remote.network_utils.RetrofitHandler
 import com.imdbmovieapp.domain.model.PopularMoviesDomain
@@ -22,8 +22,8 @@ class MovieRepositoryImpl(
     private val popularMoviesDtoToDomainMapper: PopularMoviesDtoToDomainMapper,
     private val topRatedMoviesDtoToTopRatedDomainMapper: TopRatedDtoToTopRatedDomainMapper,
     private val searchMoviesDtoToDomainMapper: SearchDtoToSearchDomainMapper
-
-) : ApiMovieRepository {
+//TODO
+) : MovieRepository {
     override suspend fun getPopularMovies(): Resource<PopularMoviesDomain> {
         val response = RetrofitHandler().apiDataFetcher { moviesApi.getPopularMovies() }
         return Resource.Success(popularMoviesDtoToDomainMapper.mapModel(response.data!!))

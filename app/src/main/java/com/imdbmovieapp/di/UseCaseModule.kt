@@ -14,7 +14,7 @@ import org.koin.dsl.module
 val useCaseModule = module {
     single<InsertFavoriteMovieUseCase> { InsertFavoriteMovieUseCase(get()) }
     single<DeleteFavoriteMovieUseCase> { DeleteFavoriteMovieUseCase(get()) }
-    single<GetFavoriteMoviesUseCase> { GetFavoriteMoviesUseCaseImpl(get()) }
+    single<GetFavoriteMoviesUseCaseImpl> { GetFavoriteMoviesUseCaseImpl(get()) }
     single<DetailMovieUseCase> { DetailMovieUseCase(get()) }
     single<GenreMoviesUseCase> { GenreMoviesUseCase(get()) }
     single<PopularMoviesUseCase> { PopularMoviesUseCase(get()) }

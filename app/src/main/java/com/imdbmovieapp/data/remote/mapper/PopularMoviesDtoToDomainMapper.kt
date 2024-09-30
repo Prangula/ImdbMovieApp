@@ -18,7 +18,9 @@ class PopularMoviesDtoToDomainMapper : BaseMapper<PopularMoviesDto, PopularMovie
                         it.title,
                         it.overview,
                         it.backdropPath,
-                        it.voteAverage
+                        it.voteAverage,
+                        it.isFavorite,
+                        it.heartColor
                     )
                 },
                 page,

@@ -8,5 +8,7 @@ data class MoviesResultsDomain(
     val title: String,
     val overview: String,
     val backdropPath: String?,
-    val voteAverage:Double
+    val voteAverage:Double,
+    val isFavorite:Boolean,
+    val heartColor:Int,
 )

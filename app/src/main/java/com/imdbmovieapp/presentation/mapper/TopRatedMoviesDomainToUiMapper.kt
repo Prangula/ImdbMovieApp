@@ -18,7 +18,9 @@ class TopRatedMoviesDomainToUIMapper : BaseMapper<TopRatedMoviesDomain, TopRated
                         it.title,
                         it.overview,
                         it.backdropPath.orEmpty(),
-                        it.voteAverage
+                        it.voteAverage,
+                        it.isFavorite,
+                        it.heartColor
                     )
                 },
                 page = page,

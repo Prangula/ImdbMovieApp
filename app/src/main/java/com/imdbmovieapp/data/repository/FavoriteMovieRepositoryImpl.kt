@@ -1,33 +1,36 @@
 package com.imdbmovieapp.data.repository
 
 import com.imdbmovieapp.data.local.dao.FavoriteMovieDao
-import com.imdbmovieapp.data.local.mapper.MovieDomainToMovieEntityMapper
-import com.imdbmovieapp.data.local.mapper.MovieEntityToMovieDomainMapper
+import com.imdbmovieapp.data.remote.dto.MoviesResultDto
+import com.imdbmovieapp.data.remote.mapper.MovieResultsDomainToDtoMapper
+import com.imdbmovieapp.data.remote.mapper.MovieResultsDtoToDomainMapper
 import com.imdbmovieapp.domain.model.FavoriteMovieDomain
+import com.imdbmovieapp.domain.model.MoviesResultsDomain
 import com.imdbmovieapp.domain.repository.FavoriteMovieRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 class FavoriteMovieRepositoryImpl(
     private val favoriteMovieDao: FavoriteMovieDao,
-    private val movieEntityToMovieDomainMapper: MovieEntityToMovieDomainMapper,
-    private val movieDomainToMovieEntityMapper: MovieDomainToMovieEntityMapper
+    private val movieResultsDtoToDomainMapper: MovieResultsDtoToDomainMapper,
+    private val movieResultsDomainToDtoMapper: MovieResultsDomainToDtoMapper
 ) : FavoriteMovieRepository {
-    override suspend fun insert(favoriteMovieDomain: FavoriteMovieDomain) {
+
+    override suspend fun insert(moviesResultsDomain: MoviesResultsDomain) {
         favoriteMovieDao.insertMovie(
-            movieDomainToMovieEntityMapper.mapModel(favoriteMovieDomain)
+            movieResultsDomainToDtoMapper.mapModel(moviesResultsDomain)
         )
     }
 
-    override suspend fun delete(favoriteMovieDomain: FavoriteMovieDomain) {
+    override suspend fun delete(moviesResultsDomain: MoviesResultsDomain) {
         favoriteMovieDao.deleteMovie(
-            movieDomainToMovieEntityMapper.mapModel(favoriteMovieDomain)
+            movieResultsDomainToDtoMapper.mapModel(moviesResultsDomain)
         )
     }
 
-    override fun getAllMovies(): Flow<List<FavoriteMovieDomain>> {
+    override fun getAllMovies(): Flow<List<MoviesResultsDomain>> {
         return favoriteMovieDao.getAllMovies().map {
-            movieEntityToMovieDomainMapper.mapToList(it)
+            movieResultsDtoToDomainMapper.mapToList(it)
         }
     }
 }

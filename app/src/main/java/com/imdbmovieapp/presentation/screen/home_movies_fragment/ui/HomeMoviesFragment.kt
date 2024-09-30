@@ -1,5 +1,6 @@
 package com.imdbmovieapp.presentation.screen.home_movies_fragment.ui
 
+import android.view.View
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.imdbmovieapp.R
@@ -21,17 +22,14 @@ class HomeMoviesFragment : BaseFragment<FragmentHomeMoviesBinding, HomeViewModel
     private var genreMoviesUI = GenreMoviesUI()
 
     override fun onBind() {
-        popularMoviesObserver()
-        genreMoviesObserver()
-        searchMoviesObserver()
+        popularMoviesRecyclerView()
         viewModel.getPopularMovies()
         viewModel.getGenreMovies()
-        popularMoviesRecyclerView()
         with(binding) {
             customSearchBar.getSearchMovies(
                 viewModel::getSearchMovies,
                 viewLifecycleOwner.lifecycleScope,
-                homeGenresChipGroup
+                homeGenresChipGroup,
             )
             customSearchBar.showGenreTags(binding.homeGenresChipGroup)
             customSearchBar.hideKeyboard()
@@ -41,18 +39,30 @@ class HomeMoviesFragment : BaseFragment<FragmentHomeMoviesBinding, HomeViewModel
                 } else {
                     viewModel.getTopRatedMovies()
                 }
-            })
+            }, homeNoMoviesTextview, homeNoImageView)
         }
         check()
+        popularMoviesObserver()
+        genreMoviesObserver()
+        searchMoviesObserver()
     }
 
     private fun popularMoviesRecyclerView() {
         with(binding) {
             adapter = ResultsMoviesAdapter(
-                genreMoviesUI
-            ) { item ->
-                navigateToMovieDetailsFragment(item, genreMoviesUI)
-            }
+                genreMoviesUI,
+                onViewClick = { item ->
+                    navigateToMovieDetailsFragment(item, genreMoviesUI)
+                },
+                insertOnClick = { item ->
+                    viewModel.insert(item)
+                    item.isFavorite = true
+                },
+                deleteOnClick = { item ->
+                    viewModel.deleteMovie(item)
+                    item.isFavorite = false
+                }
+            )
             homeMoviesRecyclerView.adapter = adapter
             homeMoviesRecyclerView.layoutManager = GridLayoutManager(requireActivity(), 2)
         }
@@ -117,7 +127,18 @@ class HomeMoviesFragment : BaseFragment<FragmentHomeMoviesBinding, HomeViewModel
         observe(viewModel.searchMovies) { resource ->
             when (resource) {
                 is Resource.Success -> {
-                    adapter.submitList(resource.data!!)
+                    val result = resource.data
+                    with(binding) {
+                        if (result.isNullOrEmpty()) {
+                            homeNoMoviesTextview.visibility = View.VISIBLE
+                            homeNoImageView.visibility = View.VISIBLE
+                            adapter.submitList(emptyList())
+                        } else {
+                            homeNoMoviesTextview.visibility = View.GONE
+                            homeNoImageView.visibility = View.GONE
+                            adapter.submitList(result)
+                        }
+                    }
                 }
 
                 is Resource.Error -> {

@@ -18,7 +18,9 @@ class TopRatedDtoToTopRatedDomainMapper : BaseMapper<TopRatedMoviesDto, TopRated
                         it.title,
                         it.overview,
                         it.backdropPath,
-                        it.voteAverage
+                        it.voteAverage,
+                        it.isFavorite,
+                        it.heartColor
                     )
                 },
                 page = page,

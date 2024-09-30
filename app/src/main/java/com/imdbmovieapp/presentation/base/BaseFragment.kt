@@ -47,6 +47,9 @@ abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel>(
 
                     is NavigationCommand.Back ->
                         findNavController().navigateUp()
+                    //TODO add
+                    // TODO empty search
+                    // Recycler
                 }
             }
         }
@@ -62,7 +65,7 @@ abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel>(
     }
 
     protected fun hideDialog() {
-        if(dialog!=null){
+        if (dialog != null) {
             dialog!!.hide()
         }
     }

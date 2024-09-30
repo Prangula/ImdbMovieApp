@@ -15,7 +15,9 @@ class MovieResultsDomainToUIMapper : BaseMapper<MoviesResultsDomain, MoviesResul
                 title = title,
                 overview = overview,
                 backdropPath = backdropPath.orEmpty(),
-                voteAverage = voteAverage
+                voteAverage = voteAverage,
+                isFavorite = isFavorite,
+                heartColor = heartColor
             )
         }
     }

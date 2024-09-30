@@ -1,6 +1,6 @@
-package com.imdbmovieapp.data.local.entity
+package com.imdbmovieapp.presentation.model
 
-data class FavoriteMovieEntity(
+data class FavoriteMovieUI(
     val id: Int,
     val title: String,
     val year: String,

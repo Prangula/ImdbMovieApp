@@ -1,12 +1,18 @@
 package com.imdbmovieapp.presentation.screen.home_movies_fragment.vm
 
+import android.view.View
+import android.widget.ImageView
+import android.widget.TextView
+import com.imdbmovieapp.domain.use_case.DeleteFavoriteMovieUseCase
 import com.imdbmovieapp.domain.use_case.GenreMoviesUseCase
+import com.imdbmovieapp.domain.use_case.InsertFavoriteMovieUseCase
 import com.imdbmovieapp.domain.use_case.PopularMoviesUseCase
 import com.imdbmovieapp.domain.use_case.SearchMoviesUseCase
 import com.imdbmovieapp.domain.use_case.TopRatedMoviesUseCase
 import com.imdbmovieapp.presentation.base.BaseViewModel
 import com.imdbmovieapp.presentation.mapper.GenreResultsDomainToUIMapper
 import com.imdbmovieapp.presentation.mapper.MovieResultsDomainToUIMapper
+import com.imdbmovieapp.presentation.mapper.MovieResultsUIToDomainMapper
 import com.imdbmovieapp.presentation.model.GenreMoviesUI
 import com.imdbmovieapp.presentation.model.GenreResultsUI
 import com.imdbmovieapp.presentation.model.MoviesResultsUI
@@ -15,6 +21,7 @@ import com.imdbmovieapp.utils.lifecycle_scope_extensions.viewModelScope
 import com.imdbmovieapp.utils.resource.Resource
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import org.w3c.dom.Text
 
 class HomeViewModel(
     private val popularMoviesUseCase: PopularMoviesUseCase,
@@ -22,7 +29,10 @@ class HomeViewModel(
     private val searchMoviesUseCase: SearchMoviesUseCase,
     private val genreMoviesUseCase: GenreMoviesUseCase,
     private val movieResultsDomainToUIMapper: MovieResultsDomainToUIMapper,
+    private val movieResultsUIToDomainMapper: MovieResultsUIToDomainMapper,
     private val genreResultsDomainToUIMapper: GenreResultsDomainToUIMapper,
+    private val insertFavoriteMovieUseCase: InsertFavoriteMovieUseCase,
+    private val deleteFavoriteMovieUseCase: DeleteFavoriteMovieUseCase
 ) : BaseViewModel() {
 
     private val _popularMovies =
@@ -40,21 +50,6 @@ class HomeViewModel(
     private val _getGenres =
         MutableStateFlow<Resource<List<GenreResultsUI>>>(Resource.Loading())
     val getGenres = _getGenres.asStateFlow()
-
-    fun <T, R> getMovies(
-        useCaseCall: suspend () -> Resource<T>,
-        mapper: (T) -> R,
-        stateFlow: MutableStateFlow<Resource<R>>
-    ) {
-        viewModelScope {
-            val result = useCaseCall()
-            stateFlow.value = when (result) {
-                is Resource.Success -> Resource.Success(mapper(result.data!!))
-                is Resource.Error -> Resource.Error(result.message!!)
-                is Resource.Loading -> Resource.Loading()
-            }
-        }
-    }
 
     fun getPopularMovies() {
         getMovies(
@@ -99,5 +94,18 @@ class HomeViewModel(
                 moviesResultsUI, genreMoviesUI
             )
         )
+    }
+
+    fun insert(moviesResultsUI: MoviesResultsUI) {
+        viewModelScope {
+            moviesResultsUI.isFavorite = true
+            insertFavoriteMovieUseCase(movieResultsUIToDomainMapper.mapModel(moviesResultsUI))
+        }
+    }
+
+    fun deleteMovie(moviesResultsUI: MoviesResultsUI) {
+        viewModelScope {
+            deleteFavoriteMovieUseCase(movieResultsUIToDomainMapper.mapModel(moviesResultsUI))
+        }
     }
 }

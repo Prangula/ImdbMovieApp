@@ -18,7 +18,9 @@ class SearchMoviesDomainToUIMapper : BaseMapper<SearchMoviesDomain, SearchMovies
                         it.title,
                         it.overview,
                         it.backdropPath.orEmpty(),
-                        it.voteAverage
+                        it.voteAverage,
+                        it.isFavorite,
+                        it.heartColor
                     )
                 },
                 page = page,

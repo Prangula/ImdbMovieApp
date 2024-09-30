@@ -1,9 +1,11 @@
 package com.imdbmovieapp.presentation.screen.detail_movie_fragment.ui
 
 import androidx.navigation.fragment.navArgs
+import com.imdbmovieapp.R
 import com.imdbmovieapp.databinding.FragmentDetailMovieBinding
 import com.imdbmovieapp.presentation.base.BaseFragment
 import com.imdbmovieapp.presentation.screen.detail_movie_fragment.vm.DetailViewModel
+import com.imdbmovieapp.presentation.screen.home_movies_fragment.adapter.ResultsMoviesAdapter
 import com.imdbmovieapp.utils.view_extensions.getPosterUrl
 import com.imdbmovieapp.utils.view_extensions.setImage
 import kotlin.reflect.KClass
@@ -13,10 +15,11 @@ class DetailMovieFragment : BaseFragment<FragmentDetailMovieBinding, DetailViewM
 ) {
     override val viewModelClass: KClass<DetailViewModel> get() = DetailViewModel::class
     private val args: DetailMovieFragmentArgs by navArgs()
+
     override fun onBind() {
         setUpUI()
-    }
 
+    }
     private fun setUpUI() {
         val movieDetails = args.detailResults
         val genreDetails = args.genreResults
@@ -28,6 +31,20 @@ class DetailMovieFragment : BaseFragment<FragmentDetailMovieBinding, DetailViewM
             ratingChip.text = movieDetails.voteAverage.toString().take(3)
             releasedChip.text = movieDetails.releaseDate.take(4)
             detailDescriptionTextview.text = movieDetails.overview
+            detailHeart.setBackgroundResource(movieDetails.heartColor)
+
+            detailHeart.setOnClickListener {
+                if (movieDetails.heartColor == R.drawable.ic_colored_heart) {
+                    movieDetails.isFavorite = false
+                    movieDetails.heartColor = R.drawable.ic_uncolored_heart
+                    viewModel.deleteMovie(movieDetails)
+                } else {
+                    movieDetails.isFavorite = true
+                    movieDetails.heartColor = R.drawable.ic_colored_heart
+                    viewModel.insert(movieDetails)
+                }
+                detailHeart.setBackgroundResource(movieDetails.heartColor)
+            }
             detailArrowBackImageView.setOnClickListener {
                 viewModel.navigateBack()
             }

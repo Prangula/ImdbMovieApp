@@ -2,13 +2,13 @@ package com.imdbmovieapp.domain.use_case
 
 import com.imdbmovieapp.domain.base.BaseUseCase
 import com.imdbmovieapp.domain.model.DetailMovieDomain
-import com.imdbmovieapp.domain.repository.ApiMovieRepository
+import com.imdbmovieapp.domain.repository.MovieRepository
 import com.imdbmovieapp.utils.resource.Resource
 
 class DetailMovieUseCase(
-    private val apiMovieRepository: ApiMovieRepository
+    private val movieRepository: MovieRepository
 ) : BaseUseCase<String, DetailMovieDomain> {
     override suspend fun invoke(data: String): Resource<DetailMovieDomain> {
-        return apiMovieRepository.getDetailMovie(data)
+        return movieRepository.getDetailMovie(data)
     }
 }

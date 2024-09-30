@@ -9,6 +9,7 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
@@ -29,7 +30,6 @@ class CustomSearchBar @JvmOverloads constructor(
         LayoutInflater.from(context), this, true
     )
     private var isDefault = true
-    private var job: Job? = null
 
     fun showGenreTags(chipGroup: ChipGroup) {
         with(binding) {
@@ -40,6 +40,7 @@ class CustomSearchBar @JvmOverloads constructor(
                         R.drawable.ic_show_tags,
                         R.drawable.bkg_circle_yellow_stroke
                     )
+                    //TODO
                     chipGroup.visibility = View.GONE
                 } else {
                     imageBackgroundHelper(
@@ -76,9 +77,9 @@ class CustomSearchBar @JvmOverloads constructor(
     ) {
         with(binding) {
             customEditText.addTextChangedListener { search ->
-                job?.cancel()
-                job = lifecycleScope.launch {
-                    delay(200)
+                //TODO Debounce
+                lifecycleScope.launch {
+                    delay(500)
                     viewModel(search.toString())
                 }
                 chipGroup.visibility = View.GONE
@@ -88,7 +89,7 @@ class CustomSearchBar @JvmOverloads constructor(
         }
     }
 
-    fun clickCancel(onClickAction: () -> Unit) {
+    fun clickCancel(onClickAction: () -> Unit,textView:TextView,imageView: ImageView) {
         with(binding) {
             customTextview.setOnClickListener {
                 onClickAction.invoke()
@@ -104,10 +105,13 @@ class CustomSearchBar @JvmOverloads constructor(
                 customEditText.clearFocus()
                 (context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)
                     .hideSoftInputFromWindow(binding.customEditText.windowToken, 0)
+                textView.visibility = View.GONE
+                imageView.visibility = View.GONE
             }
         }
     }
 
+    //Todo
     private fun imageBackgroundHelper(
         imageView: ImageView,
         imageDrawable: Int,
@@ -119,14 +123,16 @@ class CustomSearchBar @JvmOverloads constructor(
                 imageDrawable
             )
         )
+        //ToDO
         imageView.setBackgroundDrawable(
             ContextCompat.getDrawable(context, backgroundDrawable)
         )
     }
 
     private fun showImageWithAnimation(chipGroup: ChipGroup) {
-        val animator = ObjectAnimator.ofFloat(chipGroup, context.getString(R.string.alpha), 0f, 1f)
-        animator.duration = 1000
-        animator.start()
+        ObjectAnimator.ofFloat(chipGroup, context.getString(R.string.alpha), 0f, 1f).apply {
+            duration = 1000
+            start()
+        }
     }
 }
