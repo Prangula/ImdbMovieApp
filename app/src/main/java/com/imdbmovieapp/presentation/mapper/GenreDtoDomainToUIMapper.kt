@@ -11,8 +11,8 @@ class GenreDtoDomainToUIMapper : BaseMapper<GenreMoviesDomain, GenreMoviesUI> {
             GenreMoviesUI(
                 genres = genres.map {
                     GenreResultsUI(
-                        it.id,
-                        it.name
+                        id = it.id,
+                        name = it.name
                     )
                 }
             )

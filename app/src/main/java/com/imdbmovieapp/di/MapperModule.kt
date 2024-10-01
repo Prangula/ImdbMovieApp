@@ -30,7 +30,7 @@ val mapperModule = module {
     single { PopularMoviesDtoToDomainMapper() }
     single { TopRatedMoviesDomainToUIMapper() }
     single { MovieResultsDtoToDomainMapper() }
-    single { MovieResultsDomainToUIMapper() }
+    single { MovieResultsDomainToUIMapper(get()) }
     single { GenreDtoDomainToUIMapper() }
     single { GenreResultsDomainToUIMapper() }
     single { MovieGenreDomainToUIMapper() }

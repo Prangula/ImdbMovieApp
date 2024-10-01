@@ -25,15 +25,8 @@ class MoviesActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.detailMovieFragment -> {
-
-                    binding.customBottomNav.visibility = View.GONE
-
-                }
-
-                else -> {
-                    binding.customBottomNav.visibility = View.VISIBLE
-                }
+                R.id.detailMovieFragment -> binding.customBottomNav.visibility = View.GONE
+                else -> binding.customBottomNav.visibility = View.VISIBLE
             }
         }
         binding.customBottomNav.invoke(navController)

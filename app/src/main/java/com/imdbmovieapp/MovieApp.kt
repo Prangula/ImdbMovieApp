@@ -17,7 +17,11 @@ class MovieApp : Application() {
             androidContext(this@MovieApp)
             modules(
                 listOf(
-                    databaseModule, mapperModule, repositoryModule, useCaseModule, retrofitModule,
+                    databaseModule,
+                    mapperModule,
+                    repositoryModule,
+                    useCaseModule,
+                    retrofitModule,
                     viewModelModule
                 )
             )

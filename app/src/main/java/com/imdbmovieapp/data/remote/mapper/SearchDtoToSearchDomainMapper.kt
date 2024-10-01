@@ -12,16 +12,16 @@ class SearchDtoToSearchDomainMapper : BaseMapper<SearchMoviesDto, SearchMoviesDo
                 page = page,
                 results = results.map {
                     MoviesResultsDomain(
-                        it.id ?: 1,
-                        it.genreIds ?: emptyList(),
-                        it.posterPath ?: "R.drawable.ic_empty",
-                        it.releaseDate ?: "xxxx",
-                        it.title ?: "unknown",
-                        it.overview ?: "unknown",
-                        it.backdropPath ?: "unknown",
-                        it.voteAverage ?: 0.0,
-                        it.isFavorite,
-                        it.heartColor
+                        id = it.id,
+                        genreIds = it.genreIds,
+                        posterPath = it.posterPath,
+                        releaseDate = it.releaseDate,
+                        title = it.title,
+                        overview = it.overview,
+                        backdropPath = it.backdropPath,
+                        voteAverage = it.voteAverage,
+                        isFavorite = it.isFavorite,
+                        heartColor = it.heartColor
                     )
                 },
                 totalPages = totalPages,

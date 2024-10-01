@@ -11,16 +11,16 @@ class SearchMoviesDomainToUIMapper : BaseMapper<SearchMoviesDomain, SearchMovies
             SearchMoviesUI(
                 results = results.map {
                     MoviesResultsUI(
-                        it.id,
-                        it.genreIds,
-                        it.posterPath.orEmpty(),
-                        it.releaseDate,
-                        it.title,
-                        it.overview,
-                        it.backdropPath.orEmpty(),
-                        it.voteAverage,
-                        it.isFavorite,
-                        it.heartColor
+                        id = it.id,
+                        genreIds = it.genreIds,
+                        posterPath = it.posterPath.orEmpty(),
+                        releaseDate = it.releaseDate,
+                        title = it.title,
+                        overview = it.overview,
+                        backdropPath = it.backdropPath.orEmpty(),
+                        voteAverage = it.voteAverage,
+                        isFavorite = it.isFavorite,
+                        heartColor = it.heartColor
                     )
                 },
                 page = page,

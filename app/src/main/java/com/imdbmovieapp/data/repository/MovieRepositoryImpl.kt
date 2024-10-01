@@ -22,7 +22,6 @@ class MovieRepositoryImpl(
     private val popularMoviesDtoToDomainMapper: PopularMoviesDtoToDomainMapper,
     private val topRatedMoviesDtoToTopRatedDomainMapper: TopRatedDtoToTopRatedDomainMapper,
     private val searchMoviesDtoToDomainMapper: SearchDtoToSearchDomainMapper
-//TODO
 ) : MovieRepository {
     override suspend fun getPopularMovies(): Resource<PopularMoviesDomain> {
         val response = RetrofitHandler().apiDataFetcher { moviesApi.getPopularMovies() }

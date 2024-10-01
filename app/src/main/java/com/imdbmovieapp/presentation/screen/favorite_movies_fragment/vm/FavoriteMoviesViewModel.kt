@@ -2,8 +2,7 @@ package com.imdbmovieapp.presentation.screen.favorite_movies_fragment.vm
 
 import com.imdbmovieapp.domain.use_case.DeleteFavoriteMovieUseCase
 import com.imdbmovieapp.domain.use_case.GenreMoviesUseCase
-import com.imdbmovieapp.domain.use_case.GetFavoriteMoviesUseCaseImpl
-import com.imdbmovieapp.domain.use_case.InsertFavoriteMovieUseCase
+import com.imdbmovieapp.domain.use_case.GetFavoriteMoviesUseCase
 import com.imdbmovieapp.presentation.base.BaseViewModel
 import com.imdbmovieapp.presentation.mapper.GenreResultsDomainToUIMapper
 import com.imdbmovieapp.presentation.mapper.MovieResultsDomainToUIMapper
@@ -20,7 +19,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.map
 
 class FavoriteMoviesViewModel(
-    private val getFavoriteMoviesUseCaseImpl: GetFavoriteMoviesUseCaseImpl,
+    private val getFavoriteMoviesUseCaseImpl: GetFavoriteMoviesUseCase,
     private val movieResultsDomainToUIMapper: MovieResultsDomainToUIMapper,
     private val deleteFavoriteMovieUseCase: DeleteFavoriteMovieUseCase,
     private val movieResultsUIToDomainMapper: MovieResultsUIToDomainMapper,

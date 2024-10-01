@@ -4,5 +4,5 @@ import com.imdbmovieapp.domain.model.MoviesResultsDomain
 import kotlinx.coroutines.flow.Flow
 
 interface GetFavoriteMoviesUseCase {
-    suspend operator fun invoke(): Flow<List<MoviesResultsDomain>>
+     operator fun invoke(): Flow<List<MoviesResultsDomain>>
 }

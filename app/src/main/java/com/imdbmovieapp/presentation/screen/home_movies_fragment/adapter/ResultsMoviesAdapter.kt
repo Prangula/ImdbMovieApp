@@ -1,9 +1,7 @@
 package com.imdbmovieapp.presentation.screen.home_movies_fragment.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -31,7 +29,6 @@ class ResultsMoviesAdapter(
         holder.bind(
             item,
             genreMoviesUI,
-            holder.itemView.context,
             insertOnClick,
             deleteOnClick
         )
@@ -58,14 +55,11 @@ class ResultsMoviesAdapter(
         fun bind(
             item: MoviesResultsUI,
             genreMoviesUI: GenreMoviesUI,
-            context: Context,
             insertOnClick: (item: MoviesResultsUI) -> Unit,
             deleteOnClick: (item: MoviesResultsUI) -> Unit
         ) {
             with(binding) {
-                if (item.getPosterUrl().isNotEmpty()) {
-                    movieItemImageView.setImage(item.getPosterUrl())
-                }
+                movieItemImageView.setImage(item.getPosterUrl())
                 movieItemGenre.text =
                     genreMoviesUI.genres.find { it.id == item.genreIds.firstOrNull() }?.name
                         ?: "Unknown Genre"
@@ -77,14 +71,13 @@ class ResultsMoviesAdapter(
                 movieItemHeart.setBackgroundResource(item.heartColor)
                 movieItemHeart.setOnClickListener {
                     if (!item.isFavorite) {
-                        item.isFavorite = true
                         item.heartColor = R.drawable.ic_colored_heart
                         insertOnClick(item)
                     } else {
-                        item.isFavorite = false
                         item.heartColor = R.drawable.ic_uncolored_heart
                         deleteOnClick(item)
                     }
+                    item.isFavorite = !item.isFavorite
                     movieItemHeart.setBackgroundResource(item.heartColor)
                 }
             }

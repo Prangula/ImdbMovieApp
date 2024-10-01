@@ -73,6 +73,7 @@ class CustomSearchBar @JvmOverloads constructor(
         viewModel: (query: String) -> Unit,
         lifecycleScope: CoroutineScope,
         chipGroup: ChipGroup,
+        observerUnit: () -> Unit,
     ) {
         with(binding) {
             customEditText.addTextChangedListener { search ->
@@ -82,8 +83,14 @@ class CustomSearchBar @JvmOverloads constructor(
                     viewModel(search.toString())
                 }
                 chipGroup.visibility = View.GONE
-                customImageView.visibility = View.INVISIBLE
-                customTextview.visibility = View.VISIBLE
+                if (search.isNullOrEmpty()) {
+                    customImageView.visibility = View.VISIBLE
+                    customTextview.visibility = View.GONE
+                } else {
+                    customImageView.visibility = View.INVISIBLE
+                    customTextview.visibility = View.VISIBLE
+                    observerUnit()
+                }
             }
         }
     }
@@ -121,10 +128,7 @@ class CustomSearchBar @JvmOverloads constructor(
                 imageDrawable
             )
         )
-        //ToDO
-        imageView.setBackgroundDrawable(
-            ContextCompat.getDrawable(context, backgroundDrawable)
-        )
+        imageView.background = ContextCompat.getDrawable(context, backgroundDrawable)
     }
 
     private fun showImageWithAnimation(chipGroup: ChipGroup) {

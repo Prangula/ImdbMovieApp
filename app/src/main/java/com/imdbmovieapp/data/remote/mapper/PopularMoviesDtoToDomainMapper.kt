@@ -11,21 +11,21 @@ class PopularMoviesDtoToDomainMapper : BaseMapper<PopularMoviesDto, PopularMovie
             PopularMoviesDomain(
                 results = results.map {
                     MoviesResultsDomain(
-                        it.id,
-                        it.genreIds,
-                        it.posterPath,
-                        it.releaseDate,
-                        it.title,
-                        it.overview,
-                        it.backdropPath,
-                        it.voteAverage,
-                        it.isFavorite,
-                        it.heartColor
+                        id = it.id,
+                        genreIds = it.genreIds,
+                        posterPath = it.posterPath,
+                        releaseDate = it.releaseDate,
+                        title = it.title,
+                        overview = it.overview,
+                        backdropPath = it.backdropPath,
+                        voteAverage = it.voteAverage,
+                        isFavorite = it.isFavorite,
+                        heartColor = it.heartColor
                     )
                 },
-                page,
-                totalPages,
-                totalResults
+                page = page,
+                totalPages = totalPages,
+                totalResults = totalResults
             )
         }
     }

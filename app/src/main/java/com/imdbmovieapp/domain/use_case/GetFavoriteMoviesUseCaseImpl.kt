@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 class GetFavoriteMoviesUseCaseImpl(
     private val favoriteMovieRepository: FavoriteMovieRepository
 ) : GetFavoriteMoviesUseCase {
-    override suspend fun invoke(): Flow<List<MoviesResultsDomain>> {
+    override  fun invoke(): Flow<List<MoviesResultsDomain>> {
         return favoriteMovieRepository.getAllMovies()
     }
 }

@@ -64,9 +64,7 @@ abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel>(
     }
 
     protected fun hideDialog() {
-        if (dialog != null) {
-            dialog!!.hide()
-        }
+        if (dialog != null) dialog!!.hide()
     }
 
     protected abstract fun onBind()

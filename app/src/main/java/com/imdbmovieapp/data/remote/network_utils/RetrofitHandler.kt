@@ -19,7 +19,7 @@ class RetrofitHandler {
         } catch (e: HttpException) {
             Resource.Error(e.message ?: "Http Error")
         } catch (e: IOException) {
-            Resource.Error(e.message ?: "No Internet Connection")
+            Resource.Error(e.message ?: "Network Error")
         }
     }
 }

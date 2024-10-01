@@ -22,16 +22,16 @@ class HomeMoviesFragment : BaseFragment<FragmentHomeMoviesBinding, HomeViewModel
     private var genreMoviesUI = GenreMoviesUI()
 
     override fun onBind() {
-        popularMoviesRecyclerView()
-        viewModel.getPopularMovies()
+        setupPopularMoviesRecyclerView()
         viewModel.getGenreMovies()
+        viewModel.getPopularMovies()
         with(binding) {
             customSearchBar.getSearchMovies(
                 viewModel::getSearchMovies,
                 viewLifecycleOwner.lifecycleScope,
                 homeGenresChipGroup,
-            )
-            customSearchBar.showGenreTags(binding.homeGenresChipGroup)
+            ) { searchMoviesObserver() }
+            customSearchBar.showGenreTags(homeGenresChipGroup)
             customSearchBar.hideKeyboard()
             customSearchBar.clickCancel(onClickAction = {
                 if (homeGenresChipGroup.checkedChipId == R.id.genrePopularChip) {
@@ -44,10 +44,9 @@ class HomeMoviesFragment : BaseFragment<FragmentHomeMoviesBinding, HomeViewModel
         check()
         popularMoviesObserver()
         genreMoviesObserver()
-        searchMoviesObserver()
     }
 
-    private fun popularMoviesRecyclerView() {
+    private fun setupPopularMoviesRecyclerView() {
         with(binding) {
             adapter = ResultsMoviesAdapter(
                 genreMoviesUI,
@@ -73,6 +72,7 @@ class HomeMoviesFragment : BaseFragment<FragmentHomeMoviesBinding, HomeViewModel
             when (checkedId) {
                 R.id.genrePopularChip -> {
                     viewModel.getPopularMovies()
+                    popularMoviesObserver()
                 }
 
                 R.id.genreTopRatedChip -> {

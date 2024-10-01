@@ -11,8 +11,8 @@ class MovieGenreDtoToDomainMapper : BaseMapper<MovieGenreDto, GenreMoviesDomain>
             GenreMoviesDomain(
                 genres = genres.map {
                     GenreResultsDomain(
-                        it.id,
-                        it.name
+                        id = it.id,
+                        name = it.name
                     )
                 }
             )

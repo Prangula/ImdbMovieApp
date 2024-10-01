@@ -12,8 +12,8 @@ class DetailDomainToUIMapper : BaseMapper<DetailMovieDomain, DetailMovieUI> {
                 id = id,
                 genreDtos = genreDtos.map {
                     GenreResultsUI(
-                        it.id,
-                        it.name
+                        id = it.id,
+                        name = it.name
                     )
                 },
                 overview = overview,
