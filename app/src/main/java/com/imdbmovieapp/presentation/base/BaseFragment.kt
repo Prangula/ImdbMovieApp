@@ -48,7 +48,6 @@ abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel>(
                     is NavigationCommand.Back ->
                         findNavController().navigateUp()
                     //TODO add
-                    // TODO empty search
                     // Recycler
                 }
             }

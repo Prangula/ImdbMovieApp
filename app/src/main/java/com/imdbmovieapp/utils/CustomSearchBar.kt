@@ -17,7 +17,6 @@ import com.google.android.material.chip.ChipGroup
 import com.imdbmovieapp.R
 import com.imdbmovieapp.databinding.CustomSearchBarBinding
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -89,7 +88,7 @@ class CustomSearchBar @JvmOverloads constructor(
         }
     }
 
-    fun clickCancel(onClickAction: () -> Unit,textView:TextView,imageView: ImageView) {
+    fun clickCancel(onClickAction: () -> Unit, textView: TextView, imageView: ImageView) {
         with(binding) {
             customTextview.setOnClickListener {
                 onClickAction.invoke()
@@ -102,7 +101,6 @@ class CustomSearchBar @JvmOverloads constructor(
                 customEditText.clearFocus()
                 customImageView.visibility = View.VISIBLE
                 customTextview.visibility = View.GONE
-                customEditText.clearFocus()
                 (context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)
                     .hideSoftInputFromWindow(binding.customEditText.windowToken, 0)
                 textView.visibility = View.GONE

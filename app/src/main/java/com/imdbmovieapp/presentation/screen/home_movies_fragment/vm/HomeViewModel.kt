@@ -1,8 +1,5 @@
 package com.imdbmovieapp.presentation.screen.home_movies_fragment.vm
 
-import android.view.View
-import android.widget.ImageView
-import android.widget.TextView
 import com.imdbmovieapp.domain.use_case.DeleteFavoriteMovieUseCase
 import com.imdbmovieapp.domain.use_case.GenreMoviesUseCase
 import com.imdbmovieapp.domain.use_case.InsertFavoriteMovieUseCase
@@ -21,7 +18,6 @@ import com.imdbmovieapp.utils.lifecycle_scope_extensions.viewModelScope
 import com.imdbmovieapp.utils.resource.Resource
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import org.w3c.dom.Text
 
 class HomeViewModel(
     private val popularMoviesUseCase: PopularMoviesUseCase,

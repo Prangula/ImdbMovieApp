@@ -5,7 +5,6 @@ import com.imdbmovieapp.R
 import com.imdbmovieapp.databinding.FragmentDetailMovieBinding
 import com.imdbmovieapp.presentation.base.BaseFragment
 import com.imdbmovieapp.presentation.screen.detail_movie_fragment.vm.DetailViewModel
-import com.imdbmovieapp.presentation.screen.home_movies_fragment.adapter.ResultsMoviesAdapter
 import com.imdbmovieapp.utils.view_extensions.getPosterUrl
 import com.imdbmovieapp.utils.view_extensions.setImage
 import kotlin.reflect.KClass
@@ -20,6 +19,7 @@ class DetailMovieFragment : BaseFragment<FragmentDetailMovieBinding, DetailViewM
         setUpUI()
 
     }
+
     private fun setUpUI() {
         val movieDetails = args.detailResults
         val genreDetails = args.genreResults
