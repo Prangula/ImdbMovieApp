@@ -3,34 +3,28 @@ package com.imdbmovieapp.data.repository
 import com.imdbmovieapp.data.remote.api.MoviesApi
 import com.imdbmovieapp.data.remote.mapper.DetailDtoToDomainMapper
 import com.imdbmovieapp.data.remote.mapper.MovieGenreDtoToDomainMapper
-import com.imdbmovieapp.data.remote.mapper.PopularMoviesDtoToDomainMapper
-import com.imdbmovieapp.data.remote.mapper.SearchDtoToSearchDomainMapper
-import com.imdbmovieapp.data.remote.mapper.TopRatedDtoToTopRatedDomainMapper
+import com.imdbmovieapp.data.remote.mapper.MoviesResultsToDomainMapper
 import com.imdbmovieapp.domain.model.DetailMovieDomain
 import com.imdbmovieapp.domain.model.GenreMoviesDomain
 import com.imdbmovieapp.domain.repository.MovieRepository
 import com.imdbmovieapp.utils.resource.Resource
 import com.imdbmovieapp.data.remote.network_utils.RetrofitHandler
-import com.imdbmovieapp.domain.model.PopularMoviesDomain
-import com.imdbmovieapp.domain.model.SearchMoviesDomain
-import com.imdbmovieapp.domain.model.TopRatedMoviesDomain
+import com.imdbmovieapp.domain.model.MoviesResponseDomain
 
 class MovieRepositoryImpl(
     private val moviesApi: MoviesApi,
     private val detailDtoToDomainMapper: DetailDtoToDomainMapper,
     private val movieGenreDtoToDomainMapper: MovieGenreDtoToDomainMapper,
-    private val popularMoviesDtoToDomainMapper: PopularMoviesDtoToDomainMapper,
-    private val topRatedMoviesDtoToTopRatedDomainMapper: TopRatedDtoToTopRatedDomainMapper,
-    private val searchMoviesDtoToDomainMapper: SearchDtoToSearchDomainMapper
+    private val moviesResultsToDomainMapper: MoviesResultsToDomainMapper,
 ) : MovieRepository {
-    override suspend fun getPopularMovies(): Resource<PopularMoviesDomain> {
+    override suspend fun getPopularMovies(): Resource<MoviesResponseDomain> {
         val response = RetrofitHandler().apiDataFetcher { moviesApi.getPopularMovies() }
-        return Resource.Success(popularMoviesDtoToDomainMapper.mapModel(response.data!!))
+        return Resource.Success(moviesResultsToDomainMapper.mapModel(response.data!!))
     }
 
-    override suspend fun getTopRatedMovies(): Resource<TopRatedMoviesDomain> {
+    override suspend fun getTopRatedMovies(): Resource<MoviesResponseDomain> {
         val response = RetrofitHandler().apiDataFetcher { moviesApi.getTopRatedMovies() }
-        return Resource.Success(topRatedMoviesDtoToTopRatedDomainMapper.mapModel(response.data!!))
+        return Resource.Success(moviesResultsToDomainMapper.mapModel(response.data!!))
     }
 
     override suspend fun getDetailMovie(movieId: String): Resource<DetailMovieDomain> {
@@ -38,9 +32,9 @@ class MovieRepositoryImpl(
         return Resource.Success(detailDtoToDomainMapper.mapModel(response.data!!))
     }
 
-    override suspend fun getSearchMovies(query: String): Resource<SearchMoviesDomain> {
+    override suspend fun getSearchMovies(query: String): Resource<MoviesResponseDomain> {
         val response = RetrofitHandler().apiDataFetcher { moviesApi.getSearchMovies(query) }
-        return Resource.Success(searchMoviesDtoToDomainMapper.mapModel(response.data!!))
+        return Resource.Success(moviesResultsToDomainMapper.mapModel(response.data!!))
     }
 
     override suspend fun getGenres(): Resource<GenreMoviesDomain> {

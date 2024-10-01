@@ -6,29 +6,23 @@ import com.imdbmovieapp.data.remote.mapper.DetailDtoToDomainMapper
 import com.imdbmovieapp.data.remote.mapper.MovieGenreDtoToDomainMapper
 import com.imdbmovieapp.data.remote.mapper.MovieResultsDomainToDtoMapper
 import com.imdbmovieapp.data.remote.mapper.MovieResultsDtoToDomainMapper
-import com.imdbmovieapp.data.remote.mapper.PopularMoviesDtoToDomainMapper
-import com.imdbmovieapp.data.remote.mapper.SearchDtoToSearchDomainMapper
-import com.imdbmovieapp.data.remote.mapper.TopRatedDtoToTopRatedDomainMapper
+import com.imdbmovieapp.data.remote.mapper.MoviesResultsToDomainMapper
 import com.imdbmovieapp.presentation.mapper.DetailDomainToUIMapper
 import com.imdbmovieapp.presentation.mapper.GenreDtoDomainToUIMapper
 import com.imdbmovieapp.presentation.mapper.GenreResultsDomainToUIMapper
 import com.imdbmovieapp.presentation.mapper.MovieGenreDomainToUIMapper
 import com.imdbmovieapp.presentation.mapper.MovieResultsDomainToUIMapper
 import com.imdbmovieapp.presentation.mapper.MovieResultsUIToDomainMapper
-import com.imdbmovieapp.presentation.mapper.PopularMoviesDomainToUiMapper
-import com.imdbmovieapp.presentation.mapper.TopRatedMoviesDomainToUIMapper
+import com.imdbmovieapp.presentation.mapper.MoviesResponseDomainToUi
 import org.koin.dsl.module
 
 val mapperModule = module {
     single { FavoriteEntityToDomainMapper() }
     single { FavoriteDomainToEntityMapper() }
-    single { TopRatedDtoToTopRatedDomainMapper() }
     single { DetailDtoToDomainMapper() }
-    single { SearchDtoToSearchDomainMapper() }
     single { MovieGenreDtoToDomainMapper() }
-    single { PopularMoviesDomainToUiMapper() }
-    single { PopularMoviesDtoToDomainMapper() }
-    single { TopRatedMoviesDomainToUIMapper() }
+    single { MoviesResponseDomainToUi() }
+    single { MoviesResultsToDomainMapper() }
     single { MovieResultsDtoToDomainMapper() }
     single { MovieResultsDomainToUIMapper(get()) }
     single { GenreDtoDomainToUIMapper() }

@@ -1,6 +1,6 @@
 package com.imdbmovieapp.presentation.model
 
-data class PopularMoviesUI(
+data class MoviesResponseUI(
     val results: List<MoviesResultsUI>,
     val page: Int,
     val totalPages: Int,

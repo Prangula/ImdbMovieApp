@@ -1,14 +1,14 @@
 package com.imdbmovieapp.data.remote.mapper
 
-import com.imdbmovieapp.data.remote.dto.TopRatedMoviesDto
+import com.imdbmovieapp.data.remote.dto.MoviesResponseDto
 import com.imdbmovieapp.domain.model.MoviesResultsDomain
-import com.imdbmovieapp.domain.model.TopRatedMoviesDomain
+import com.imdbmovieapp.domain.model.MoviesResponseDomain
 import com.imdbmovieapp.utils.base.BaseMapper
 
-class TopRatedDtoToTopRatedDomainMapper : BaseMapper<TopRatedMoviesDto, TopRatedMoviesDomain> {
-    override fun mapModel(model: TopRatedMoviesDto): TopRatedMoviesDomain {
+class MoviesResultsToDomainMapper : BaseMapper<MoviesResponseDto, MoviesResponseDomain> {
+    override fun mapModel(model: MoviesResponseDto): MoviesResponseDomain {
         return with(model) {
-            TopRatedMoviesDomain(
+            MoviesResponseDomain(
                 results = results.map {
                     MoviesResultsDomain(
                         id = it.id,

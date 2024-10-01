@@ -1,14 +1,14 @@
 package com.imdbmovieapp.presentation.mapper
 
-import com.imdbmovieapp.domain.model.TopRatedMoviesDomain
+import com.imdbmovieapp.domain.model.MoviesResponseDomain
 import com.imdbmovieapp.presentation.model.MoviesResultsUI
-import com.imdbmovieapp.presentation.model.TopRatedMoviesUI
+import com.imdbmovieapp.presentation.model.MoviesResponseUI
 import com.imdbmovieapp.utils.base.BaseMapper
 
-class TopRatedMoviesDomainToUIMapper : BaseMapper<TopRatedMoviesDomain, TopRatedMoviesUI> {
-    override fun mapModel(model: TopRatedMoviesDomain): TopRatedMoviesUI {
+class MoviesResponseDomainToUi : BaseMapper<MoviesResponseDomain, MoviesResponseUI> {
+    override fun mapModel(model: MoviesResponseDomain): MoviesResponseUI {
         return with(model) {
-            TopRatedMoviesUI(
+            MoviesResponseUI(
                 results = results.map {
                     MoviesResultsUI(
                         id = it.id,

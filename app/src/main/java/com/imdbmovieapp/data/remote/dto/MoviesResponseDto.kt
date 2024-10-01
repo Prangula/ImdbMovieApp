@@ -2,7 +2,7 @@ package com.imdbmovieapp.data.remote.dto
 
 import com.google.gson.annotations.SerializedName
 
-data class PopularMoviesDto(
+data class MoviesResponseDto(
     val results: List<MoviesResultDto>,
     val page: Int,
     @SerializedName("total_pages")

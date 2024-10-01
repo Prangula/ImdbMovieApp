@@ -1,6 +1,6 @@
 package com.imdbmovieapp.domain.model
 
-data class TopRatedMoviesDomain(
+data class MoviesResponseDomain(
     val results: List<MoviesResultsDomain>,
     val page: Int,
     val totalPages: Int,
