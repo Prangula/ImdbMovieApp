@@ -1,5 +1,8 @@
 package com.imdbmovieapp.presentation.screen.home_movies_fragment.vm
 
+import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.map
 import com.imdbmovieapp.domain.use_case.DeleteFavoriteMovieUseCase
 import com.imdbmovieapp.domain.use_case.GenreMoviesUseCase
 import com.imdbmovieapp.domain.use_case.InsertFavoriteMovieUseCase
@@ -16,8 +19,11 @@ import com.imdbmovieapp.presentation.model.MoviesResultsUI
 import com.imdbmovieapp.presentation.screen.home_movies_fragment.ui.HomeMoviesFragmentDirections
 import com.imdbmovieapp.utils.lifecycle_scope_extensions.viewModelScope
 import com.imdbmovieapp.utils.resource.Resource
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.map
 
 class HomeViewModel(
     private val popularMoviesUseCase: PopularMoviesUseCase,
@@ -32,15 +38,15 @@ class HomeViewModel(
 ) : BaseViewModel() {
 
     private val _popularMovies =
-        MutableStateFlow<Resource<List<MoviesResultsUI>>>(Resource.Loading())
+        MutableStateFlow<Resource<PagingData<MoviesResultsUI>>>(Resource.Loading())
     val popularMovies = _popularMovies.asStateFlow()
 
     private val _topRatedMovies =
-        MutableStateFlow<Resource<List<MoviesResultsUI>>>(Resource.Loading())
+        MutableStateFlow<Resource<PagingData<MoviesResultsUI>>>(Resource.Loading())
     val topRatedMovies = _topRatedMovies.asStateFlow()
 
     private val _searchMovies =
-        MutableStateFlow<Resource<List<MoviesResultsUI>>>(Resource.Loading())
+        MutableStateFlow<Resource<PagingData<MoviesResultsUI>>>(Resource.Loading())
     val searchMovies = _searchMovies.asStateFlow()
 
     private val _getGenres =
@@ -48,19 +54,30 @@ class HomeViewModel(
     val getGenres = _getGenres.asStateFlow()
 
     fun getPopularMovies() {
-        getMovies(
-            useCaseCall = { popularMoviesUseCase(Unit) },
-            mapper = { movieResultsDomainToUIMapper.mapToList(it.results) },
-            stateFlow = _popularMovies
-        )
+        viewModelScope {
+            popularMoviesUseCase.invoke(Unit).data!!.collectLatest { pagingData ->
+                _popularMovies.value =
+                    Resource.Success(pagingData.map { movieResultsDomainToUIMapper.mapModel(it) })
+            }
+        }
     }
 
     fun getTopRatedMovies() {
-        getMovies(
-            useCaseCall = { topRatedMoviesUseCase(Unit) },
-            mapper = { movieResultsDomainToUIMapper.mapToList(it.results) },
-            stateFlow = _topRatedMovies
-        )
+        viewModelScope {
+            topRatedMoviesUseCase.invoke(Unit).data!!.collectLatest { pagingData ->
+                _topRatedMovies.value =
+                    Resource.Success(pagingData.map { movieResultsDomainToUIMapper.mapModel(it) })
+            }
+        }
+    }
+
+    fun getSearchMovies(query: String) {
+        viewModelScope {
+            searchMoviesUseCase.invoke(query).data!!.collectLatest { pagingData ->
+                _searchMovies.value =
+                    Resource.Success(pagingData.map { movieResultsDomainToUIMapper.mapModel(it) })
+            }
+        }
     }
 
     fun getGenreMovies() {
@@ -69,16 +86,6 @@ class HomeViewModel(
             mapper = { genreResultsDomainToUIMapper.mapToList(it.genres) },
             stateFlow = _getGenres
         )
-    }
-
-    fun getSearchMovies(query: String) {
-        if (query.isNotEmpty()) {
-            getMovies(
-                useCaseCall = { searchMoviesUseCase(query) },
-                mapper = { movieResultsDomainToUIMapper.mapToList(it.results) },
-                stateFlow = _searchMovies
-            )
-        }
     }
 
     fun navigateToDetailsFragment(
@@ -104,4 +111,5 @@ class HomeViewModel(
             deleteFavoriteMovieUseCase(movieResultsUIToDomainMapper.mapModel(moviesResultsUI))
         }
     }
+
 }

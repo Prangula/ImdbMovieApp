@@ -6,7 +6,7 @@ import com.imdbmovieapp.data.remote.mapper.DetailDtoToDomainMapper
 import com.imdbmovieapp.data.remote.mapper.MovieGenreDtoToDomainMapper
 import com.imdbmovieapp.data.remote.mapper.MovieResultsDomainToDtoMapper
 import com.imdbmovieapp.data.remote.mapper.MovieResultsDtoToDomainMapper
-import com.imdbmovieapp.data.remote.mapper.MoviesResultsToDomainMapper
+import com.imdbmovieapp.data.remote.mapper.MoviesResponseDtoToDomainMapper
 import com.imdbmovieapp.presentation.mapper.DetailDomainToUIMapper
 import com.imdbmovieapp.presentation.mapper.GenreDtoDomainToUIMapper
 import com.imdbmovieapp.presentation.mapper.GenreResultsDomainToUIMapper
@@ -22,7 +22,7 @@ val mapperModule = module {
     single { DetailDtoToDomainMapper() }
     single { MovieGenreDtoToDomainMapper() }
     single { MoviesResponseDomainToUi() }
-    single { MoviesResultsToDomainMapper() }
+    single { MoviesResponseDtoToDomainMapper() }
     single { MovieResultsDtoToDomainMapper() }
     single { MovieResultsDomainToUIMapper(get()) }
     single { GenreDtoDomainToUIMapper() }

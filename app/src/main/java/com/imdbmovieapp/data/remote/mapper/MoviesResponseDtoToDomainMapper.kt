@@ -5,7 +5,7 @@ import com.imdbmovieapp.domain.model.MoviesResultsDomain
 import com.imdbmovieapp.domain.model.MoviesResponseDomain
 import com.imdbmovieapp.utils.base.BaseMapper
 
-class MoviesResultsToDomainMapper : BaseMapper<MoviesResponseDto, MoviesResponseDomain> {
+class MoviesResponseDtoToDomainMapper : BaseMapper<MoviesResponseDto, MoviesResponseDomain> {
     override fun mapModel(model: MoviesResponseDto): MoviesResponseDomain {
         return with(model) {
             MoviesResponseDomain(

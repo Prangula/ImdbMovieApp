@@ -2,6 +2,7 @@ package com.imdbmovieapp.presentation.screen.home_movies_fragment.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -17,7 +18,7 @@ class ResultsMoviesAdapter(
     private val onViewClick: (item: MoviesResultsUI) -> Unit,
     private val insertOnClick: (item: MoviesResultsUI) -> Unit,
     private val deleteOnClick: (item: MoviesResultsUI) -> Unit
-) : ListAdapter<MoviesResultsUI, ResultsMoviesAdapter.ViewHolder>(DiffUtilCallBack()) {
+) : PagingDataAdapter<MoviesResultsUI, ResultsMoviesAdapter.ViewHolder>(DiffUtilCallBack()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = MovieItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -27,7 +28,7 @@ class ResultsMoviesAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
         holder.bind(
-            item,
+            item!!,
             genreMoviesUI,
             insertOnClick,
             deleteOnClick

@@ -2,6 +2,7 @@ package com.imdbmovieapp.presentation.screen.home_movies_fragment.ui
 
 import android.view.View
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.PagingData
 import androidx.recyclerview.widget.GridLayoutManager
 import com.imdbmovieapp.R
 import com.imdbmovieapp.databinding.FragmentHomeMoviesBinding
@@ -25,6 +26,7 @@ class HomeMoviesFragment : BaseFragment<FragmentHomeMoviesBinding, HomeViewModel
         setupPopularMoviesRecyclerView()
         viewModel.getGenreMovies()
         viewModel.getPopularMovies()
+        popularMoviesObserver()
         with(binding) {
             customSearchBar.getSearchMovies(
                 viewModel::getSearchMovies,
@@ -42,7 +44,6 @@ class HomeMoviesFragment : BaseFragment<FragmentHomeMoviesBinding, HomeViewModel
             }, homeNoMoviesTextview, homeNoImageView)
         }
         check()
-        popularMoviesObserver()
         genreMoviesObserver()
     }
 
@@ -51,7 +52,7 @@ class HomeMoviesFragment : BaseFragment<FragmentHomeMoviesBinding, HomeViewModel
             adapter = ResultsMoviesAdapter(
                 genreMoviesUI,
                 onViewClick = { item ->
-                    navigateToMovieDetailsFragment(item, genreMoviesUI)
+//                    navigateToMovieDetailsFragment(item, genreMoviesUI)
                 },
                 insertOnClick = { item ->
                     viewModel.insert(item)
@@ -88,12 +89,12 @@ class HomeMoviesFragment : BaseFragment<FragmentHomeMoviesBinding, HomeViewModel
             when (resource) {
                 is Resource.Success -> {
                     hideDialog()
-                    adapter.submitList(resource.data!!)
+                    adapter.submitData(viewLifecycleOwner.lifecycle, resource.data!!)
                 }
 
                 is Resource.Error -> {
-                    hideDialog()
                     resource.message
+                    hideDialog()
                 }
 
                 is Resource.Loading -> {
@@ -108,7 +109,7 @@ class HomeMoviesFragment : BaseFragment<FragmentHomeMoviesBinding, HomeViewModel
             when (resource) {
                 is Resource.Success -> {
                     hideDialog()
-                    adapter.submitList(resource.data!!)
+                    adapter.submitData(viewLifecycleOwner.lifecycle, resource.data!!)
                 }
 
                 is Resource.Error -> {
@@ -127,22 +128,22 @@ class HomeMoviesFragment : BaseFragment<FragmentHomeMoviesBinding, HomeViewModel
         observe(viewModel.searchMovies) { resource ->
             when (resource) {
                 is Resource.Success -> {
-                    val result = resource.data
                     with(binding) {
-                        if (result.isNullOrEmpty()) {
-                            homeNoMoviesTextview.visibility = View.VISIBLE
-                            homeNoImageView.visibility = View.VISIBLE
-                            adapter.submitList(emptyList())
-                        } else {
-                            homeNoMoviesTextview.visibility = View.GONE
-                            homeNoImageView.visibility = View.GONE
-                            adapter.submitList(result)
-                        }
+                        adapter.submitData(
+                            viewLifecycleOwner.lifecycle,
+                            resource.data!!
+                        )
+
+                        homeNoMoviesTextview.visibility = View.VISIBLE
+                        homeNoImageView.visibility = View.VISIBLE
+                        adapter.submitData(viewLifecycleOwner.lifecycle, PagingData.empty())
                     }
                 }
 
                 is Resource.Error -> {
-                    resource.message
+                    resource.message?.let { errorMessage ->
+                        resource.message
+                    }
                 }
 
                 is Resource.Loading -> {
@@ -150,6 +151,7 @@ class HomeMoviesFragment : BaseFragment<FragmentHomeMoviesBinding, HomeViewModel
             }
         }
     }
+
 
     private fun genreMoviesObserver() {
         observe(viewModel.getGenres) { resource ->

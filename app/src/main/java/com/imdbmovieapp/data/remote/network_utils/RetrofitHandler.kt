@@ -6,13 +6,14 @@ import retrofit2.Response
 import java.io.IOException
 
 class RetrofitHandler {
-    inline fun <T> apiDataFetcher(
-        apiResponse: () -> Response<T>
-    ): Resource<T> {
+    inline fun <T, DOMAIN> apiDataFetcher(
+        apiResponse: () -> Response<T>,
+        success: (response: T) -> Resource.Success<DOMAIN>
+    ): Resource<DOMAIN> {
         return try {
             val response = apiResponse.invoke()
             if (response.isSuccessful) {
-                Resource.Success(response.body()!!)
+                response.body()?.let(success) ?: Resource.Error(response.message())
             } else {
                 Resource.Error(response.message())
             }
@@ -20,6 +21,8 @@ class RetrofitHandler {
             Resource.Error(e.message ?: "Http Error")
         } catch (e: IOException) {
             Resource.Error(e.message ?: "Network Error")
+        } catch (e: Exception) {
+            Resource.Error("error")
         }
     }
 }
