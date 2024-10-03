@@ -82,5 +82,5 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:4.16.0")
     implementation("androidx.core:core-splashscreen:1.0.0")
 
-    implementation("androidx.paging:paging-runtime:3.3.2")
+    implementation("androidx.paging:paging-runtime:3.0.0")
 }

@@ -17,6 +17,7 @@ import com.google.android.material.chip.ChipGroup
 import com.imdbmovieapp.R
 import com.imdbmovieapp.databinding.CustomSearchBarBinding
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -70,17 +71,18 @@ class CustomSearchBar @JvmOverloads constructor(
     }
 
     fun getSearchMovies(
-        viewModel: (query: String) -> Unit,
+        searchClickAction: (query: String, context: Context) -> Unit,
         lifecycleScope: CoroutineScope,
         chipGroup: ChipGroup,
-        observerUnit: () -> Unit,
+        onClickAction: () -> Unit,
+        textView: TextView,
+        imageView: ImageView,
     ) {
         with(binding) {
             customEditText.addTextChangedListener { search ->
-                //TODO Debounce
                 lifecycleScope.launch {
                     delay(500)
-                    viewModel(search.toString())
+                    searchClickAction(search.toString(),context)
                 }
                 chipGroup.visibility = View.GONE
                 if (search.isNullOrEmpty()) {
@@ -89,14 +91,9 @@ class CustomSearchBar @JvmOverloads constructor(
                 } else {
                     customImageView.visibility = View.INVISIBLE
                     customTextview.visibility = View.VISIBLE
-                    observerUnit()
                 }
             }
-        }
-    }
 
-    fun clickCancel(onClickAction: () -> Unit, textView: TextView, imageView: ImageView) {
-        with(binding) {
             customTextview.setOnClickListener {
                 onClickAction.invoke()
                 imageBackgroundHelper(
@@ -104,17 +101,36 @@ class CustomSearchBar @JvmOverloads constructor(
                     R.drawable.ic_show_tags,
                     R.drawable.bkg_circle_yellow_stroke
                 )
-                customEditText.editableText.clear()
-                customEditText.clearFocus()
                 customImageView.visibility = View.VISIBLE
                 customTextview.visibility = View.GONE
-                (context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)
-                    .hideSoftInputFromWindow(binding.customEditText.windowToken, 0)
                 textView.visibility = View.GONE
                 imageView.visibility = View.GONE
+                (context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)
+                    .hideSoftInputFromWindow(binding.customEditText.windowToken, 0)
             }
         }
     }
+
+//    fun clickCancel(onClickAction: () -> Unit, textView: TextView, imageView: ImageView) {
+//        with(binding) {
+//            customTextview.setOnClickListener {
+//                onClickAction.invoke()
+//                imageBackgroundHelper(
+//                    customImageView,
+//                    R.drawable.ic_show_tags,
+//                    R.drawable.bkg_circle_yellow_stroke
+//                )
+//                customEditText.editableText.clear()
+//                customEditText.clearFocus()
+//                customImageView.visibility = View.VISIBLE
+//                customTextview.visibility = View.GONE
+//                textView.visibility = View.GONE
+//                imageView.visibility = View.GONE
+//                (context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)
+//                    .hideSoftInputFromWindow(binding.customEditText.windowToken, 0)
+//            }
+//        }
+//    }
 
     //Todo
     private fun imageBackgroundHelper(

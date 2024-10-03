@@ -5,7 +5,7 @@ import retrofit2.HttpException
 import retrofit2.Response
 import java.io.IOException
 
-class RetrofitHandler {
+class RetrofitHandler() {
     inline fun <T, DOMAIN> apiDataFetcher(
         apiResponse: () -> Response<T>,
         success: (response: T) -> Resource.Success<DOMAIN>

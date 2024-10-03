@@ -1,8 +1,7 @@
-package com.imdbmovieapp.presentation.screen.home_movies_fragment.adapter
+package com.imdbmovieapp.presentation.screen.favorite_movies_fragment.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -13,12 +12,12 @@ import com.imdbmovieapp.presentation.model.MoviesResultsUI
 import com.imdbmovieapp.utils.view_extensions.getPosterUrl
 import com.imdbmovieapp.utils.view_extensions.setImage
 
-class ResultsMoviesAdapter(
+class FavAndSearchMoviesAdapter(
     private val genreMoviesUI: GenreMoviesUI,
     private val onViewClick: (item: MoviesResultsUI) -> Unit,
     private val insertOnClick: (item: MoviesResultsUI) -> Unit,
     private val deleteOnClick: (item: MoviesResultsUI) -> Unit
-) : PagingDataAdapter<MoviesResultsUI, ResultsMoviesAdapter.ViewHolder>(DiffUtilCallBack()) {
+) : ListAdapter<MoviesResultsUI, FavAndSearchMoviesAdapter.ViewHolder>(DiffUtilCallBack()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = MovieItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -29,7 +28,6 @@ class ResultsMoviesAdapter(
         val item = getItem(position)
         holder.bind(
             item!!,
-            //TODO
             genreMoviesUI,
             insertOnClick,
             deleteOnClick
@@ -63,7 +61,6 @@ class ResultsMoviesAdapter(
             with(binding) {
                 movieItemImageView.setImage(item.getPosterUrl())
                 movieItemGenre.text =
-                    //TODO
                     genreMoviesUI.genres.find { it.id == item.genreIds.firstOrNull() }?.name
                         ?: "Unknown Genre"
                 movieItemTitle.text = item.title

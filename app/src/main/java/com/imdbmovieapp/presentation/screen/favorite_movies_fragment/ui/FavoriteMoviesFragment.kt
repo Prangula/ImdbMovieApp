@@ -6,8 +6,8 @@ import com.imdbmovieapp.databinding.FragmentFavoriteMoviesBinding
 import com.imdbmovieapp.presentation.base.BaseFragment
 import com.imdbmovieapp.presentation.model.GenreMoviesUI
 import com.imdbmovieapp.presentation.model.MoviesResultsUI
+import com.imdbmovieapp.presentation.screen.favorite_movies_fragment.adapter.FavAndSearchMoviesAdapter
 import com.imdbmovieapp.presentation.screen.favorite_movies_fragment.vm.FavoriteMoviesViewModel
-import com.imdbmovieapp.presentation.screen.home_movies_fragment.adapter.ResultsMoviesAdapter
 import com.imdbmovieapp.utils.lifecycle_scope_extensions.observe
 import com.imdbmovieapp.utils.resource.Resource
 import kotlin.reflect.KClass
@@ -16,11 +16,11 @@ class FavoriteMoviesFragment : BaseFragment<FragmentFavoriteMoviesBinding, Favor
     FragmentFavoriteMoviesBinding::inflate
 ) {
     override val viewModelClass: KClass<FavoriteMoviesViewModel> get() = FavoriteMoviesViewModel::class
-    private lateinit var adapter: ResultsMoviesAdapter
+    private lateinit var adapter: FavAndSearchMoviesAdapter
     private var genreMoviesUI = GenreMoviesUI()
     override fun onBind() {
         viewModel.getFavoriteMovies()
-        genreMoviesObserver()
+//        genreMoviesObserver()
         favoriteMoviesRecyclerView()
         viewModel.getGenreMovies()
         observer()
@@ -28,7 +28,7 @@ class FavoriteMoviesFragment : BaseFragment<FragmentFavoriteMoviesBinding, Favor
 
     private fun favoriteMoviesRecyclerView() {
         with(binding) {
-            adapter = ResultsMoviesAdapter(
+            adapter = FavAndSearchMoviesAdapter(
                 genreMoviesUI,
                 onViewClick = { item ->
                     navigateToMovieDetailsFragment(item, genreMoviesUI)
@@ -71,23 +71,23 @@ class FavoriteMoviesFragment : BaseFragment<FragmentFavoriteMoviesBinding, Favor
         }
     }
 
-    private fun genreMoviesObserver() {
-        observe(viewModel.getGenres) { resource ->
-            when (resource) {
-                is Resource.Success -> {
-                    genreMoviesUI.genres = resource.data!!
-                    hideDialog()
-                }
-
-                is Resource.Error -> {
-                    resource.message
-                    hideDialog()
-                }
-
-                is Resource.Loading -> {
-                    showDialog()
-                }
-            }
-        }
-    }
+//    private fun genreMoviesObserver() {
+//        observe(viewModel.getGenres) { resource ->
+//            when (resource) {
+//                is Resource.Success -> {
+//                    genreMoviesUI.genres = resource.data!!
+//                    hideDialog()
+//                }
+//
+//                is Resource.Error -> {
+//                    resource.message
+//                    hideDialog()
+//                }
+//
+//                is Resource.Loading -> {
+//                    showDialog()
+//                }
+//            }
+//        }
+//    }
 }

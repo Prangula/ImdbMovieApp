@@ -1,7 +1,9 @@
 package com.imdbmovieapp.presentation.screen.home_movies_fragment.ui
 
 import android.view.View
+import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.GridLayoutManager
 import com.imdbmovieapp.R
@@ -25,26 +27,27 @@ class HomeMoviesFragment : BaseFragment<FragmentHomeMoviesBinding, HomeViewModel
     override fun onBind() {
         setupPopularMoviesRecyclerView()
         viewModel.getGenreMovies()
-        viewModel.getPopularMovies()
-        popularMoviesObserver()
+        viewModel.getPopularMovies(requireContext())
         with(binding) {
             customSearchBar.getSearchMovies(
                 viewModel::getSearchMovies,
                 viewLifecycleOwner.lifecycleScope,
                 homeGenresChipGroup,
-            ) { searchMoviesObserver() }
+                onClickAction = {
+                    if (homeGenresChipGroup.checkedChipId == R.id.genrePopularChip) {
+                        popularMoviesObserver()
+                    } else {
+                        topRatedMoviesObserver()
+                    }
+                }, homeNoMoviesTextview, homeNoImageView
+            )
             customSearchBar.showGenreTags(homeGenresChipGroup)
             customSearchBar.hideKeyboard()
-            customSearchBar.clickCancel(onClickAction = {
-                if (homeGenresChipGroup.checkedChipId == R.id.genrePopularChip) {
-                    viewModel.getPopularMovies()
-                } else {
-                    viewModel.getTopRatedMovies()
-                }
-            }, homeNoMoviesTextview, homeNoImageView)
         }
         check()
         genreMoviesObserver()
+        popularMoviesObserver()
+        searchMoviesObserver()
     }
 
     private fun setupPopularMoviesRecyclerView() {
@@ -52,15 +55,13 @@ class HomeMoviesFragment : BaseFragment<FragmentHomeMoviesBinding, HomeViewModel
             adapter = ResultsMoviesAdapter(
                 genreMoviesUI,
                 onViewClick = { item ->
-//                    navigateToMovieDetailsFragment(item, genreMoviesUI)
+                    navigateToMovieDetailsFragment(item, genreMoviesUI)
                 },
                 insertOnClick = { item ->
                     viewModel.insert(item)
-                    item.isFavorite = true
                 },
                 deleteOnClick = { item ->
                     viewModel.deleteMovie(item)
-                    item.isFavorite = false
                 }
             )
             homeMoviesRecyclerView.adapter = adapter
@@ -72,13 +73,12 @@ class HomeMoviesFragment : BaseFragment<FragmentHomeMoviesBinding, HomeViewModel
         binding.homeGenresChipGroup.setOnCheckedChangeListener { group, checkedId ->
             when (checkedId) {
                 R.id.genrePopularChip -> {
-                    viewModel.getPopularMovies()
-                    popularMoviesObserver()
+                    viewModel.getPopularMovies(requireContext())
                 }
 
                 R.id.genreTopRatedChip -> {
                     topRatedMoviesObserver()
-                    viewModel.getTopRatedMovies()
+                    viewModel.getTopRatedMovies(requireContext())
                 }
             }
         }
@@ -86,72 +86,29 @@ class HomeMoviesFragment : BaseFragment<FragmentHomeMoviesBinding, HomeViewModel
 
     private fun popularMoviesObserver() {
         observe(viewModel.popularMovies) { resource ->
-            when (resource) {
-                is Resource.Success -> {
-                    hideDialog()
-                    adapter.submitData(viewLifecycleOwner.lifecycle, resource.data!!)
-                }
-
-                is Resource.Error -> {
-                    resource.message
-                    hideDialog()
-                }
-
-                is Resource.Loading -> {
-                    showDialog()
-                }
+            resource.data?.let { pagingData ->
+                adapter.submitData(viewLifecycleOwner.lifecycle, pagingData)
             }
         }
     }
 
     private fun topRatedMoviesObserver() {
         observe(viewModel.topRatedMovies) { resource ->
-            when (resource) {
-                is Resource.Success -> {
-                    hideDialog()
-                    adapter.submitData(viewLifecycleOwner.lifecycle, resource.data!!)
-                }
-
-                is Resource.Error -> {
-                    resource.message
-                    hideDialog()
-                }
-
-                is Resource.Loading -> {
-                    showDialog()
-                }
-            }
+            adapter.submitData(
+                viewLifecycleOwner.lifecycle, resource.data
+                    ?: PagingData.empty()
+            )
         }
     }
 
     private fun searchMoviesObserver() {
         observe(viewModel.searchMovies) { resource ->
-            when (resource) {
-                is Resource.Success -> {
-                    with(binding) {
-                        adapter.submitData(
-                            viewLifecycleOwner.lifecycle,
-                            resource.data!!
-                        )
-
-                        homeNoMoviesTextview.visibility = View.VISIBLE
-                        homeNoImageView.visibility = View.VISIBLE
-                        adapter.submitData(viewLifecycleOwner.lifecycle, PagingData.empty())
-                    }
-                }
-
-                is Resource.Error -> {
-                    resource.message?.let { errorMessage ->
-                        resource.message
-                    }
-                }
-
-                is Resource.Loading -> {
-                }
-            }
+            adapter.submitData(
+                viewLifecycleOwner.lifecycle, resource.data
+                    ?: PagingData.empty()
+            )
         }
     }
-
 
     private fun genreMoviesObserver() {
         observe(viewModel.getGenres) { resource ->

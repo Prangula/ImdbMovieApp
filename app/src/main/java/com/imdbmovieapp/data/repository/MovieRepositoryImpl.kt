@@ -8,14 +8,14 @@ import com.imdbmovieapp.data.remote.api.MoviesApi
 import com.imdbmovieapp.data.remote.mapper.DetailDtoToDomainMapper
 import com.imdbmovieapp.data.remote.mapper.MovieGenreDtoToDomainMapper
 import com.imdbmovieapp.data.remote.mapper.MovieResultsDtoToDomainMapper
-import com.imdbmovieapp.data.remote.mapper.MoviesResponseDtoToDomainMapper
-import com.imdbmovieapp.data.remote.movie_paging_source.MoviesPagingSource
+import com.imdbmovieapp.data.remote.movie_paging_source.PopularMoviesPagingSource
+import com.imdbmovieapp.data.remote.movie_paging_source.SearchMoviesPagingSource
+import com.imdbmovieapp.data.remote.movie_paging_source.TopRatedMoviesPagingSource
 import com.imdbmovieapp.domain.model.DetailMovieDomain
 import com.imdbmovieapp.domain.model.GenreMoviesDomain
 import com.imdbmovieapp.domain.repository.MovieRepository
 import com.imdbmovieapp.utils.resource.Resource
 import com.imdbmovieapp.data.remote.network_utils.RetrofitHandler
-import com.imdbmovieapp.domain.model.MoviesResponseDomain
 import com.imdbmovieapp.domain.model.MoviesResultsDomain
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -25,7 +25,6 @@ class MovieRepositoryImpl(
     private val detailDtoToDomainMapper: DetailDtoToDomainMapper,
     private val movieGenreDtoToDomainMapper: MovieGenreDtoToDomainMapper,
     private val moviesResultsToDomainMapper: MovieResultsDtoToDomainMapper,
-    private val moviesResponseDtoToDomainMapper: MoviesResponseDtoToDomainMapper
 ) : MovieRepository {
     override suspend fun getPopularMovies(): Resource<Flow<PagingData<MoviesResultsDomain>>> {
         return RetrofitHandler().apiDataFetcher(
@@ -33,14 +32,15 @@ class MovieRepositoryImpl(
             success = {
                 Resource.Success(
                     Pager(
-                        config = PagingConfig(pageSize = 1, maxSize = 20),
-                        pagingSourceFactory = { MoviesPagingSource(it.results) }
+                        config = PagingConfig(1),
+                        pagingSourceFactory = { PopularMoviesPagingSource(moviesApi) }
                     ).flow.map { pagingData ->
                         pagingData.map { moviesResultsToDomainMapper.mapModel(it) }
                     }
                 )
             }
         )
+
     }
 
     override suspend fun getTopRatedMovies(): Resource<Flow<PagingData<MoviesResultsDomain>>> {
@@ -49,8 +49,8 @@ class MovieRepositoryImpl(
             success = {
                 Resource.Success(
                     Pager(
-                        config = PagingConfig(pageSize = 1, maxSize = 20),
-                        pagingSourceFactory = { MoviesPagingSource(it.results) }
+                        config = PagingConfig(1),
+                        pagingSourceFactory = { TopRatedMoviesPagingSource(moviesApi) }
                     ).flow.map { pagingData ->
                         pagingData.map { moviesResultsToDomainMapper.mapModel(it) }
                     }
@@ -74,8 +74,8 @@ class MovieRepositoryImpl(
             success = {
                 Resource.Success(
                     Pager(
-                        config = PagingConfig(pageSize = 1, maxSize = 20),
-                        pagingSourceFactory = { MoviesPagingSource(it.results) }
+                        config = PagingConfig(pageSize = 1, enablePlaceholders = false),
+                        pagingSourceFactory = { SearchMoviesPagingSource(moviesApi, query) }
                     ).flow.map { pagingData ->
                         pagingData.map { moviesResultsToDomainMapper.mapModel(it) }
                     }
