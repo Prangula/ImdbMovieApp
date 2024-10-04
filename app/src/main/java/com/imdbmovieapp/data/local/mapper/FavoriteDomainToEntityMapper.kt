@@ -6,7 +6,7 @@ import com.imdbmovieapp.utils.base.BaseMapper
 
 class FavoriteDomainToEntityMapper : BaseMapper<FavoriteMovieDomain, FavoriteMovieEntity> {
     override fun mapModel(model: FavoriteMovieDomain): FavoriteMovieEntity {
-       return with(model) {
+        return with(model) {
             FavoriteMovieEntity(
                 id = id,
                 title = title,

@@ -12,7 +12,6 @@ val databaseModule = module {
             get<Context>(),
             FavoriteMovieDatabase::class.java,
             "movieTable"
-
         )
             .fallbackToDestructiveMigration()
             .build()

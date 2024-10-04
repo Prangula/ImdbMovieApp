@@ -1,8 +1,0 @@
-package com.imdbmovieapp.domain.use_case
-
-import com.imdbmovieapp.domain.model.MoviesResultsDomain
-import kotlinx.coroutines.flow.Flow
-
-interface GetFavoriteMoviesUseCase {
-     operator fun invoke(): Flow<List<MoviesResultsDomain>>
-}

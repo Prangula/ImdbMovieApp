@@ -1,7 +1,7 @@
 package com.imdbmovieapp.presentation.mapper
 
 import com.imdbmovieapp.domain.model.MoviesResultsDomain
-import com.imdbmovieapp.domain.use_case.GetFavoriteMoviesUseCase
+import com.imdbmovieapp.domain.useCase.GetFavoriteMoviesUseCase
 import com.imdbmovieapp.presentation.model.MoviesResultsUI
 import com.imdbmovieapp.utils.base.BaseMapper
 import kotlinx.coroutines.GlobalScope

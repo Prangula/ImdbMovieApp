@@ -1,6 +1,5 @@
 package com.imdbmovieapp.data.local.database
 
-
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
@@ -10,7 +9,7 @@ import com.imdbmovieapp.data.remote.dto.MoviesResultDto
 
 @Database(
     entities = [MoviesResultDto::class],
-    version = 667
+    version = 1
 )
 @TypeConverters(GenreTypeConverters::class)
 abstract class FavoriteMovieDatabase : RoomDatabase() {

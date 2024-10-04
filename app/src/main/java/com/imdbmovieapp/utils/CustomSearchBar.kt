@@ -16,6 +16,9 @@ import androidx.core.widget.addTextChangedListener
 import com.google.android.material.chip.ChipGroup
 import com.imdbmovieapp.R
 import com.imdbmovieapp.databinding.CustomSearchBarBinding
+import com.imdbmovieapp.utils.viewExtensions.hide
+import com.imdbmovieapp.utils.viewExtensions.invisible
+import com.imdbmovieapp.utils.viewExtensions.show
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -30,6 +33,7 @@ class CustomSearchBar @JvmOverloads constructor(
         LayoutInflater.from(context), this, true
     )
     private var isDefault = true
+    private var job: Job? = null
 
     fun showGenreTags(chipGroup: ChipGroup) {
         with(binding) {
@@ -74,26 +78,31 @@ class CustomSearchBar @JvmOverloads constructor(
         searchClickAction: (query: String, context: Context) -> Unit,
         lifecycleScope: CoroutineScope,
         chipGroup: ChipGroup,
-        onClickAction: () -> Unit,
-        textView: TextView,
-        imageView: ImageView,
+        observer: () -> Unit,
+        textView: TextView, imageView: ImageView
     ) {
         with(binding) {
             customEditText.addTextChangedListener { search ->
-                lifecycleScope.launch {
+                job = lifecycleScope.launch {
+                    observer.invoke()
                     delay(500)
-                    searchClickAction(search.toString(),context)
+                    searchClickAction(search.toString(), context)
                 }
                 chipGroup.visibility = View.GONE
                 if (search.isNullOrEmpty()) {
-                    customImageView.visibility = View.VISIBLE
-                    customTextview.visibility = View.GONE
+                    job?.cancel()
+                    textView.hide()
+                    imageView.hide()
                 } else {
-                    customImageView.visibility = View.INVISIBLE
-                    customTextview.visibility = View.VISIBLE
+                    customImageView.invisible()
+                    customTextview.show()
                 }
             }
+        }
+    }
 
+    fun clickCancel(onClickAction: () -> Unit, textView: TextView, imageView: ImageView) {
+        with(binding) {
             customTextview.setOnClickListener {
                 onClickAction.invoke()
                 imageBackgroundHelper(
@@ -101,36 +110,17 @@ class CustomSearchBar @JvmOverloads constructor(
                     R.drawable.ic_show_tags,
                     R.drawable.bkg_circle_yellow_stroke
                 )
-                customImageView.visibility = View.VISIBLE
-                customTextview.visibility = View.GONE
-                textView.visibility = View.GONE
-                imageView.visibility = View.GONE
+                customEditText.editableText.clear()
+                customEditText.clearFocus()
+                customImageView.show()
+                customTextview.hide()
+                textView.hide()
+                imageView.hide()
                 (context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)
                     .hideSoftInputFromWindow(binding.customEditText.windowToken, 0)
             }
         }
     }
-
-//    fun clickCancel(onClickAction: () -> Unit, textView: TextView, imageView: ImageView) {
-//        with(binding) {
-//            customTextview.setOnClickListener {
-//                onClickAction.invoke()
-//                imageBackgroundHelper(
-//                    customImageView,
-//                    R.drawable.ic_show_tags,
-//                    R.drawable.bkg_circle_yellow_stroke
-//                )
-//                customEditText.editableText.clear()
-//                customEditText.clearFocus()
-//                customImageView.visibility = View.VISIBLE
-//                customTextview.visibility = View.GONE
-//                textView.visibility = View.GONE
-//                imageView.visibility = View.GONE
-//                (context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)
-//                    .hideSoftInputFromWindow(binding.customEditText.windowToken, 0)
-//            }
-//        }
-//    }
 
     //Todo
     private fun imageBackgroundHelper(

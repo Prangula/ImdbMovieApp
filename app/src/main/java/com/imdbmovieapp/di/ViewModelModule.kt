@@ -1,8 +1,8 @@
 package com.imdbmovieapp.di
 
-import com.imdbmovieapp.presentation.screen.detail_movie_fragment.vm.DetailViewModel
-import com.imdbmovieapp.presentation.screen.favorite_movies_fragment.vm.FavoriteMoviesViewModel
-import com.imdbmovieapp.presentation.screen.home_movies_fragment.vm.HomeViewModel
+import com.imdbmovieapp.presentation.screen.detailMovieFragment.vm.DetailViewModel
+import com.imdbmovieapp.presentation.screen.favoriteMoviesFragment.vm.FavoriteMoviesViewModel
+import com.imdbmovieapp.presentation.screen.homeMoviesFragment.vm.HomeViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 

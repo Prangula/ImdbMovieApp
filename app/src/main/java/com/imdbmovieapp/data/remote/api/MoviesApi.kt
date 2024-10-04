@@ -12,12 +12,10 @@ interface MoviesApi {
 
     @GET("/3/movie/popular")
     suspend fun getPopularMovies(
-        @Query("page") page: Int = 1,
     ): Response<MoviesResponseDto>
 
     @GET("/3/movie/top_rated")
     suspend fun getTopRatedMovies(
-        @Query("page") page: Int = 1,
     ): Response<MoviesResponseDto>
 
     @GET("/3/movie/{movie_id}")
@@ -26,9 +24,8 @@ interface MoviesApi {
     @GET("/3/search/movie")
     suspend fun getSearchMovies(
         @Query("query") query: String,
-        @Query("page") page: Int = 1,
     ): Response<MoviesResponseDto>
 
     @GET("/3/genre/movie/list")
-    suspend fun getMovieGenres(@Query("language") language: String =  "en-EN"): Response<MovieGenreDto>
+    suspend fun getMovieGenres(@Query("language") language: String = "en-EN"): Response<MovieGenreDto>
 }
