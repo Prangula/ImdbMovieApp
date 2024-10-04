@@ -36,7 +36,6 @@ class HomeViewModel(
     private val deleteFavoriteMovieUseCase: DeleteFavoriteMovieUseCase,
     private val isNetworkConnection: NetworkConnection,
 ) : BaseViewModel() {
-    //TODO
 
     private val _popularMovies = MutableStateFlow(MovieState())
     val popularMovie = _popularMovies.asStateFlow()

@@ -1,6 +1,5 @@
 package com.imdbmovieapp.presentation.screen.homeMoviesFragment.ui
 
-import android.view.View
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.imdbmovieapp.R
@@ -72,7 +71,7 @@ class HomeMoviesFragment : BaseFragment<FragmentHomeMoviesBinding, HomeViewModel
     }
 
     private fun check() {
-        binding.homeGenresChipGroup.setOnCheckedChangeListener { group, checkedId ->
+        binding.homeGenresChipGroup.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
                 R.id.genrePopularChip -> {
                     viewModel.getPopularMovies(requireContext())

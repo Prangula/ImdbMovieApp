@@ -9,6 +9,8 @@ import com.imdbmovieapp.R
 import com.imdbmovieapp.databinding.MovieItemBinding
 import com.imdbmovieapp.presentation.model.GenreMoviesUI
 import com.imdbmovieapp.presentation.model.MoviesResultsUI
+import com.imdbmovieapp.utils.movieConstants.MovieConstants
+import com.imdbmovieapp.utils.movieConstants.MovieConstants.UNKNOWN_GENRE
 import com.imdbmovieapp.utils.viewExtensions.getPosterUrl
 import com.imdbmovieapp.utils.viewExtensions.setImage
 
@@ -21,21 +23,22 @@ class ResultsMoviesAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = MovieItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ViewHolder(binding)
+        val holder = ViewHolder(binding)
+        holder.itemView.setOnClickListener {
+            val position = holder.adapterPosition
+            onViewClick.invoke(getItem(position))
+        }
+        return holder
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
         holder.bind(
             item!!,
-            //TODO
             genreMoviesUI,
             insertOnClick,
             deleteOnClick
         )
-        holder.itemView.setOnClickListener {
-            onViewClick.invoke(item)
-        }
     }
 
     class DiffUtilCallBack : DiffUtil.ItemCallback<MoviesResultsUI>() {
@@ -62,9 +65,8 @@ class ResultsMoviesAdapter(
             with(binding) {
                 movieItemImageView.setImage(item.getPosterUrl())
                 movieItemGenre.text =
-                    //TODO
                     genreMoviesUI.genres.find { it.id == item.genreIds.firstOrNull() }?.name
-                        ?: "Unknown Genre"
+                        ?: UNKNOWN_GENRE
                 movieItemTitle.text = item.title
                 movieItemYear.text = item.releaseDate.take(4)
 

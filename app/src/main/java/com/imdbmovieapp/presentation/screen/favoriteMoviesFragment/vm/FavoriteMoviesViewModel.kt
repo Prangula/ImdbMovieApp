@@ -13,6 +13,7 @@ import com.imdbmovieapp.presentation.model.MoviesResultsUI
 import com.imdbmovieapp.presentation.screen.homeMoviesFragment.movieStates.GenreState
 import com.imdbmovieapp.presentation.screen.favoriteMoviesFragment.ui.FavoriteMoviesFragmentDirections
 import com.imdbmovieapp.utils.lifecycleScopeExtensions.viewModelScope
+import com.imdbmovieapp.utils.movieConstants.MovieConstants.FAILED_TO_LOAD
 import com.imdbmovieapp.utils.resource.Resource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -56,7 +57,7 @@ class FavoriteMoviesViewModel(
                     is Resource.Error -> {
                         _getGenres.value =
                             GenreState(error = state.message!!)
-                        errorToast("Failed to load popular movies", context)
+                        errorToast(FAILED_TO_LOAD, context)
                     }
 
                     is Resource.Loading -> {

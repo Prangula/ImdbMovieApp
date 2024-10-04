@@ -44,8 +44,7 @@ class CustomSearchBar @JvmOverloads constructor(
                         R.drawable.ic_show_tags,
                         R.drawable.bkg_circle_yellow_stroke
                     )
-                    //TODO
-                    chipGroup.visibility = View.GONE
+                    chipGroup.hide()
                 } else {
                     imageBackgroundHelper(
                         customImageView,
@@ -88,7 +87,7 @@ class CustomSearchBar @JvmOverloads constructor(
                     delay(500)
                     searchClickAction(search.toString(), context)
                 }
-                chipGroup.visibility = View.GONE
+                chipGroup.hide()
                 if (search.isNullOrEmpty()) {
                     job?.cancel()
                     textView.hide()
@@ -122,7 +121,6 @@ class CustomSearchBar @JvmOverloads constructor(
         }
     }
 
-    //Todo
     private fun imageBackgroundHelper(
         imageView: ImageView,
         imageDrawable: Int,

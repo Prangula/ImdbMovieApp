@@ -6,4 +6,5 @@ object MovieConstants {
     const val ERROR = "Unknown Error"
     const val NO_INTERNET_CONNECTION = "No Internet Connection"
     const val FAILED_TO_LOAD = "Failed to load"
+    const val UNKNOWN_GENRE = "Unknown Genre"
 }

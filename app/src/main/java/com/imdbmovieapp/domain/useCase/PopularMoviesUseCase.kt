@@ -6,7 +6,6 @@ import androidx.annotation.RequiresExtension
 import com.imdbmovieapp.domain.base.BaseUseCase
 import com.imdbmovieapp.domain.model.MoviesResponseDomain
 import com.imdbmovieapp.domain.repository.MovieRepository
-import com.imdbmovieapp.utils.movieConstants.MovieConstants
 import com.imdbmovieapp.utils.movieConstants.MovieConstants.ERROR
 import com.imdbmovieapp.utils.movieConstants.MovieConstants.NETWORK_ERROR
 import com.imdbmovieapp.utils.movieConstants.MovieConstants.UNEXPECTED_ERROR
