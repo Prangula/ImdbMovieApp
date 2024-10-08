@@ -30,5 +30,5 @@ interface MoviesApi {
     ): Response<MoviesResponseDto>
 
     @GET("/3/genre/movie/list")
-    suspend fun getMovieGenres(@Query("language") language: String =  "en-EN"): Response<MovieGenreDto>
+    suspend fun getMovieGenres(@Query("language") language: String = "en-EN"): Response<MovieGenreDto>
 }
