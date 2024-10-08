@@ -1,6 +1,10 @@
 package com.imdbmovieapp.presentation.screen.homeMoviesFragment.vm
 
+import android.app.Activity
 import android.content.Context
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
 import com.imdbmovieapp.data.remote.network.NetworkConnection
 import com.imdbmovieapp.domain.useCase.DeleteFavoriteMovieUseCase
 import com.imdbmovieapp.domain.useCase.GenreMoviesUseCase
@@ -21,6 +25,8 @@ import com.imdbmovieapp.utils.lifecycleScopeExtensions.viewModelScope
 import com.imdbmovieapp.utils.movieConstants.MovieConstants.FAILED_TO_LOAD
 import com.imdbmovieapp.utils.movieConstants.MovieConstants.NO_INTERNET_CONNECTION
 import com.imdbmovieapp.utils.resource.Resource
+import com.imdbmovieapp.utils.viewExtensions.hide
+import com.imdbmovieapp.utils.viewExtensions.show
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
@@ -52,8 +58,18 @@ class HomeViewModel(
         MutableStateFlow(GenreState())
     val getGenres = _getGenres.asStateFlow()
 
-    fun getPopularMovies(context: Context) {
+    fun getPopularMovies(
+        context: Context,
+        noInternetConnection: ImageView,
+        noConnection: TextView,
+        error: TextView,
+        errorButton: Button
+    ) {
         if (isNetworkConnection.isConnected()) {
+            noInternetConnection.hide()
+            noConnection.hide()
+            errorButton.hide()
+            error.hide()
             fetchMovies(
                 useCase = { popularMoviesUseCase.invoke(Unit) },
                 stateFlow = _popularMovies,
@@ -71,6 +87,15 @@ class HomeViewModel(
         } else {
             errorToast(NO_INTERNET_CONNECTION, context)
             hideDialog()
+            noInternetConnection.show()
+            noConnection.show()
+            errorButton.show()
+            error.show()
+            errorButton.setOnClickListener {
+                val intent = (context as Activity).intent
+                context.finish()
+                context.startActivity(intent)
+            }
         }
     }
 

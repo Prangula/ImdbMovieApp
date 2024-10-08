@@ -25,7 +25,10 @@ class HomeMoviesFragment : BaseFragment<FragmentHomeMoviesBinding, HomeViewModel
         setupPopularMoviesRecyclerView()
         popularMoviesObserver()
         genreMoviesObserver()
-        viewModel.getPopularMovies(requireContext())
+        viewModel.getPopularMovies(
+            requireContext(), binding.homeNoConnectionImageView,
+            binding.homeNoConnectionTextView, binding.homeErrorTextView, binding.homeErrorButton
+        )
         viewModel.getGenreMovies(requireContext())
         with(binding) {
             customSearchBar.getSearchMovies(
@@ -42,7 +45,10 @@ class HomeMoviesFragment : BaseFragment<FragmentHomeMoviesBinding, HomeViewModel
             customSearchBar.hideKeyboard()
             customSearchBar.clickCancel(onClickAction = {
                 if (homeGenresChipGroup.checkedChipId == R.id.genrePopularChip) {
-                    viewModel.getPopularMovies(requireContext())
+                    viewModel.getPopularMovies(
+                        requireContext(), homeNoConnectionImageView,
+                        homeNoConnectionTextView, homeErrorTextView, homeErrorButton
+                    )
                 } else {
                     viewModel.getTopRatedMovies(requireContext())
                 }
@@ -74,7 +80,13 @@ class HomeMoviesFragment : BaseFragment<FragmentHomeMoviesBinding, HomeViewModel
         binding.homeGenresChipGroup.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
                 R.id.genrePopularChip -> {
-                    viewModel.getPopularMovies(requireContext())
+                    viewModel.getPopularMovies(
+                        requireContext(),
+                        binding.homeNoConnectionImageView,
+                        binding.homeNoConnectionTextView,
+                        binding.homeErrorTextView,
+                        binding.homeErrorButton
+                    )
                 }
 
                 R.id.genreTopRatedChip -> {
