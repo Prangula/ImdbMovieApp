@@ -1,34 +1,20 @@
 package com.imdbmovieapp.domain.useCase
 
-import android.net.http.HttpException
 import android.os.Build
 import androidx.annotation.RequiresExtension
+import com.imdbmovieapp.data.remote.network.RetrofitHandler
 import com.imdbmovieapp.domain.base.BaseUseCase
 import com.imdbmovieapp.domain.model.GenreMoviesDomain
 import com.imdbmovieapp.domain.repository.MovieRepository
-import com.imdbmovieapp.utils.movieConstants.MovieConstants.ERROR
-import com.imdbmovieapp.utils.movieConstants.MovieConstants.NETWORK_ERROR
-import com.imdbmovieapp.utils.movieConstants.MovieConstants.UNEXPECTED_ERROR
 import com.imdbmovieapp.utils.resource.Resource
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
-import java.io.IOException
 
 class GenreMoviesUseCase(
     private val movieRepository: MovieRepository
 ) : BaseUseCase<Unit, GenreMoviesDomain> {
     @RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
-    override suspend fun invoke(data: Unit): Flow<Resource<GenreMoviesDomain>> = flow {
-        try {
-            emit(Resource.Loading())
-            val movies = movieRepository.getGenres()
-            emit(Resource.Success(movies.data!!))
-        } catch (e: HttpException) {
-            emit(Resource.Error(e.localizedMessage ?: UNEXPECTED_ERROR))
-        } catch (e: IOException) {
-            emit(Resource.Error(NETWORK_ERROR))
-        } catch (e: Exception) {
-            emit(Resource.Error(ERROR))
+    override suspend fun invoke(data: Unit): Flow<Resource<GenreMoviesDomain>> =
+        RetrofitHandler().safeApiCall {
+            movieRepository.getGenres().data!!
         }
-    }
 }
