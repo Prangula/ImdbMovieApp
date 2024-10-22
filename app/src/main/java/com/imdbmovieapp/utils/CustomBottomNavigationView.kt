@@ -3,10 +3,11 @@ package com.imdbmovieapp.utils
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
-import androidx.navigation.NavController
+import androidx.viewpager.widget.ViewPager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.imdbmovieapp.R
 import com.imdbmovieapp.databinding.CustomBottomNavigationBinding
+import com.imdbmovieapp.utils.viewExtensions.hide
 
 class CustomBottomNavigationView @JvmOverloads constructor(
     context: Context,
@@ -16,17 +17,32 @@ class CustomBottomNavigationView @JvmOverloads constructor(
     private val binding =
         CustomBottomNavigationBinding.inflate(LayoutInflater.from(context), this, true)
 
-    operator fun invoke(navController: NavController) {
-        binding.bottomChipGroup.setOnCheckedChangeListener { group, checkedId ->
+    operator fun invoke(viewPager: ViewPager) {
+        binding.bottomChipGroup.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
                 R.id.homeFragment -> {
-                    navController.navigate(R.id.homeMoviesFragment)
+                    viewPager.currentItem = 0
                 }
 
                 R.id.favoritesFragment -> {
-                    navController.navigate(R.id.favoriteMoviesFragment)
+                    viewPager.currentItem = 1
                 }
             }
         }
+        viewPager.addOnPageChangeListener(object : ViewPager.SimpleOnPageChangeListener() {
+            override fun onPageSelected(position: Int) {
+                when (position) {
+                    0 -> {
+                        binding.homeFragment.isChecked = true
+                        binding.favoritesFragment.isChecked = false
+                    }
+
+                    1 -> {
+                        binding.homeFragment.isChecked = false
+                        binding.favoritesFragment.isChecked = true
+                    }
+                }
+            }
+        })
     }
 }

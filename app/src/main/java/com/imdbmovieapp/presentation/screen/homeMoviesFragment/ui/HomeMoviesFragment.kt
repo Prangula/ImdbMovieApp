@@ -1,5 +1,6 @@
 package com.imdbmovieapp.presentation.screen.homeMoviesFragment.ui
 
+import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.imdbmovieapp.R
@@ -7,6 +8,8 @@ import com.imdbmovieapp.databinding.FragmentHomeMoviesBinding
 import com.imdbmovieapp.presentation.base.BaseFragment
 import com.imdbmovieapp.presentation.model.GenreMoviesUI
 import com.imdbmovieapp.presentation.model.MoviesResultsUI
+import com.imdbmovieapp.presentation.screen.activity_screen.MoviesActivity
+import com.imdbmovieapp.presentation.screen.detailMovieFragment.ui.DetailMovieFragment
 import com.imdbmovieapp.presentation.screen.homeMoviesFragment.adapter.ResultsMoviesAdapter
 import com.imdbmovieapp.presentation.screen.homeMoviesFragment.vm.HomeViewModel
 import com.imdbmovieapp.utils.lifecycleScopeExtensions.observe
@@ -142,6 +145,14 @@ class HomeMoviesFragment : BaseFragment<FragmentHomeMoviesBinding, HomeViewModel
         moviesResultsUI: MoviesResultsUI,
         genreMoviesUI: GenreMoviesUI
     ) {
-        viewModel.navigateToDetailsFragment(moviesResultsUI, genreMoviesUI)
+        val bundle = Bundle().apply {
+            putParcelable("moviesResults", moviesResultsUI)
+            putParcelable("genreMovies", genreMoviesUI)
+        }
+        val detailMovieFragment = DetailMovieFragment().apply {
+            arguments = bundle
+        }
+        (requireActivity() as MoviesActivity).binding.customBottomNav.hide()
+        viewModel.navigateTo(detailMovieFragment)
     }
 }

@@ -16,11 +16,9 @@ import com.imdbmovieapp.presentation.base.BaseViewModel
 import com.imdbmovieapp.presentation.mapper.GenreResultsDomainToUIMapper
 import com.imdbmovieapp.presentation.mapper.MovieResultsDomainToUIMapper
 import com.imdbmovieapp.presentation.mapper.MovieResultsUIToDomainMapper
-import com.imdbmovieapp.presentation.model.GenreMoviesUI
 import com.imdbmovieapp.presentation.model.MoviesResultsUI
 import com.imdbmovieapp.presentation.screen.homeMoviesFragment.movieStates.GenreState
 import com.imdbmovieapp.presentation.screen.homeMoviesFragment.movieStates.MovieState
-import com.imdbmovieapp.presentation.screen.homeMoviesFragment.ui.HomeMoviesFragmentDirections
 import com.imdbmovieapp.utils.lifecycleScopeExtensions.viewModelScope
 import com.imdbmovieapp.utils.movieConstants.MovieConstants.FAILED_TO_LOAD
 import com.imdbmovieapp.utils.movieConstants.MovieConstants.NO_INTERNET_CONNECTION
@@ -172,17 +170,6 @@ class HomeViewModel(
             errorToast(NO_INTERNET_CONNECTION, context)
             hideDialog()
         }
-    }
-
-    fun navigateToDetailsFragment(
-        moviesResultsUI: MoviesResultsUI,
-        genreMoviesUI: GenreMoviesUI,
-    ) {
-        navigateTo(
-            HomeMoviesFragmentDirections.actionHomeMoviesFragmentToDetailMovieFragment(
-                moviesResultsUI, genreMoviesUI
-            )
-        )
     }
 
     fun insert(moviesResultsUI: MoviesResultsUI) {

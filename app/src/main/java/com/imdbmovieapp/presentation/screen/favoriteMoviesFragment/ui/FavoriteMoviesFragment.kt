@@ -1,14 +1,19 @@
 package com.imdbmovieapp.presentation.screen.favoriteMoviesFragment.ui
 
+import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import com.imdbmovieapp.databinding.FragmentFavoriteMoviesBinding
 import com.imdbmovieapp.presentation.base.BaseFragment
 import com.imdbmovieapp.presentation.model.GenreMoviesUI
 import com.imdbmovieapp.presentation.model.MoviesResultsUI
+import com.imdbmovieapp.presentation.screen.activity_screen.MoviesActivity
+import com.imdbmovieapp.presentation.screen.detailMovieFragment.ui.DetailMovieFragment
 import com.imdbmovieapp.presentation.screen.favoriteMoviesFragment.vm.FavoriteMoviesViewModel
 import com.imdbmovieapp.presentation.screen.homeMoviesFragment.adapter.ResultsMoviesAdapter
 import com.imdbmovieapp.utils.lifecycleScopeExtensions.observe
+import com.imdbmovieapp.utils.viewExtensions.hide
+import com.imdbmovieapp.utils.viewExtensions.show
 import kotlin.reflect.KClass
 
 class FavoriteMoviesFragment : BaseFragment<FragmentFavoriteMoviesBinding, FavoriteMoviesViewModel>(
@@ -48,7 +53,15 @@ class FavoriteMoviesFragment : BaseFragment<FragmentFavoriteMoviesBinding, Favor
         moviesResultsUI: MoviesResultsUI,
         genreMoviesUI: GenreMoviesUI
     ) {
-        viewModel.navigateToDetailsFragment(moviesResultsUI, genreMoviesUI)
+        val bundle = Bundle().apply {
+            putParcelable("moviesResults", moviesResultsUI)
+            putParcelable("genreMovies", genreMoviesUI)
+        }
+        val detailMovieFragment = DetailMovieFragment().apply {
+            arguments = bundle
+        }
+        (requireActivity() as MoviesActivity).binding.customBottomNav.hide()
+        viewModel.navigateTo(detailMovieFragment)
     }
 
     private fun observer() {

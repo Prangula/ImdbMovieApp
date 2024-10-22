@@ -3,8 +3,8 @@ package com.imdbmovieapp.presentation.base
 import android.app.Dialog
 import android.content.Context
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
-import androidx.navigation.NavDirections
 import com.imdbmovieapp.presentation.model.MoviesResultsUI
 import com.imdbmovieapp.presentation.screen.homeMoviesFragment.movieStates.MovieState
 import com.imdbmovieapp.utils.navCommand.NavigationCommand
@@ -23,9 +23,9 @@ abstract class BaseViewModel : ViewModel() {
     val navigation: SharedFlow<NavigationCommand> get() = _navigation
     private var dialog: Dialog? = null
 
-    fun navigateTo(action: NavDirections) {
+    fun navigateTo(fragment: Fragment) {
         viewModelScope {
-            _navigation.emit(NavigationCommand.ToDirection(action))
+            _navigation.emit(NavigationCommand.ToDirection(fragment))
         }
     }
 
@@ -57,8 +57,8 @@ abstract class BaseViewModel : ViewModel() {
         stateFlow: MutableStateFlow<MovieState>,
         context: Context,
         resultsMapper: (T) -> List<MoviesResultsUI>,
-        showDialogOnClick:()->Unit,
-        hideDialogOnClick:()->Unit
+        showDialogOnClick: () -> Unit,
+        hideDialogOnClick: () -> Unit
     ) {
 
         viewModelScope {

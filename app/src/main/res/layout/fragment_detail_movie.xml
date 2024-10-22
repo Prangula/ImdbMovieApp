@@ -44,10 +44,10 @@
                 android:id="@+id/detailImageView"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                app:layout_constraintHeight_percent="0.62"
                 android:layout_marginVertical="@dimen/dimen_20dp"
                 android:scaleType="fitXY"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent="0.62"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:ignore="ContentDescription,ImageContrastCheck,MissingConstraints"
                 tools:src="@drawable/ic_detail_preview" />

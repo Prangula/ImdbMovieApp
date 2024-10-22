@@ -9,7 +9,6 @@ import com.imdbmovieapp.R
 import com.imdbmovieapp.databinding.MovieItemBinding
 import com.imdbmovieapp.presentation.model.GenreMoviesUI
 import com.imdbmovieapp.presentation.model.MoviesResultsUI
-import com.imdbmovieapp.utils.movieConstants.MovieConstants
 import com.imdbmovieapp.utils.movieConstants.MovieConstants.UNKNOWN_GENRE
 import com.imdbmovieapp.utils.viewExtensions.getPosterUrl
 import com.imdbmovieapp.utils.viewExtensions.setImage
@@ -60,7 +59,7 @@ class ResultsMoviesAdapter(
             item: MoviesResultsUI,
             genreMoviesUI: GenreMoviesUI,
             insertOnClick: (item: MoviesResultsUI) -> Unit,
-            deleteOnClick: (item: MoviesResultsUI) -> Unit
+            deleteOnClick: (item: MoviesResultsUI) -> Unit,
         ) {
             with(binding) {
                 movieItemImageView.setImage(item.getPosterUrl())
@@ -69,7 +68,6 @@ class ResultsMoviesAdapter(
                         ?: UNKNOWN_GENRE
                 movieItemTitle.text = item.title
                 movieItemYear.text = item.releaseDate.take(4)
-
                 item.heartColor =
                     if (item.isFavorite) R.drawable.ic_colored_heart else R.drawable.ic_uncolored_heart
                 movieItemHeart.setBackgroundResource(item.heartColor)

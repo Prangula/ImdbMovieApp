@@ -51,10 +51,10 @@
         android:name="com.imdbmovieapp.presentation.screen.detailMovieFragment.ui.DetailMovieFragment"
         android:label="DetailMovieFragment">
         <argument
-            android:name="detailResults"
+            android:name="moviesResults"
             app:argType="com.imdbmovieapp.presentation.model.MoviesResultsUI" />
         <argument
-            android:name="genreResults"
+            android:name="genreMovies"
             app:argType="com.imdbmovieapp.presentation.model.GenreMoviesUI" />
     </fragment>
 </navigation>

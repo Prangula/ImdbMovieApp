@@ -8,10 +8,8 @@ import com.imdbmovieapp.presentation.base.BaseViewModel
 import com.imdbmovieapp.presentation.mapper.GenreResultsDomainToUIMapper
 import com.imdbmovieapp.presentation.mapper.MovieResultsDomainToUIMapper
 import com.imdbmovieapp.presentation.mapper.MovieResultsUIToDomainMapper
-import com.imdbmovieapp.presentation.model.GenreMoviesUI
 import com.imdbmovieapp.presentation.model.MoviesResultsUI
 import com.imdbmovieapp.presentation.screen.homeMoviesFragment.movieStates.GenreState
-import com.imdbmovieapp.presentation.screen.favoriteMoviesFragment.ui.FavoriteMoviesFragmentDirections
 import com.imdbmovieapp.utils.lifecycleScopeExtensions.viewModelScope
 import com.imdbmovieapp.utils.movieConstants.MovieConstants.FAILED_TO_LOAD
 import com.imdbmovieapp.utils.resource.Resource
@@ -74,16 +72,5 @@ class FavoriteMoviesViewModel(
                 }
             }
         }
-    }
-
-    fun navigateToDetailsFragment(
-        moviesResultsUI: MoviesResultsUI,
-        genreMoviesUI: GenreMoviesUI,
-    ) {
-        navigateTo(
-            FavoriteMoviesFragmentDirections.actionFavoriteMoviesFragmentToDetailMovieFragment(
-                moviesResultsUI, genreMoviesUI
-            )
-        )
     }
 }
