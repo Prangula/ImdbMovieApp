@@ -16,6 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:selectionRequired="true"
         app:singleSelection="true"
         tools:ignore="MissingConstraints">
 
@@ -31,6 +32,10 @@
             android:textStyle="bold"
             app:chipBackgroundColor="@color/bkg_chip_selector"
             app:chipEndPadding="@dimen/dimen_50dp"
+            app:chipIcon="@drawable/ic_home"
+            app:chipIconEnabled="true"
+            app:chipIconSize="@dimen/dimen_20dp"
+            app:chipIconTint="@color/bkg_chip_color_selector"
             app:chipStartPadding="@dimen/dimen_50dp" />
 
         <com.google.android.material.chip.Chip
@@ -45,6 +50,10 @@
             android:textStyle="bold"
             app:chipBackgroundColor="@color/bkg_chip_selector"
             app:chipEndPadding="@dimen/dimen_50dp"
+            app:chipIcon="@drawable/ic_uncolored_heart"
+            app:chipIconEnabled="true"
+            app:chipIconSize="@dimen/dimen_20dp"
+            app:chipIconTint="@color/bkg_chip_color_selector"
             app:chipStartPadding="@dimen/dimen_50dp" />
     </com.google.android.material.chip.ChipGroup>
 </androidx.constraintlayout.widget.ConstraintLayout>

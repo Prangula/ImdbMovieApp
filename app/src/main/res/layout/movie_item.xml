@@ -2,8 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/dimen_10dp"
+    android:layout_marginBottom="@dimen/dimen_20dp"
     android:background="@color/neutral_01_black">
 
     <androidx.cardview.widget.CardView
@@ -13,7 +15,7 @@
         android:layout_marginHorizontal="@dimen/dimen_30dp"
         android:layout_marginTop="@dimen/dimen_20dp"
         android:elevation="@dimen/dimen_0dp"
-        app:cardCornerRadius="@dimen/dimen_20dp"
+        app:cardCornerRadius="@dimen/dimen_10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -27,7 +29,7 @@
 
         <TextView
             android:id="@+id/movieItemGenre"
-            style="@style/Theme.ImdbMovieApp.BaseTextView"
+            style="@style/BaseTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
@@ -44,25 +46,31 @@
 
     <TextView
         android:id="@+id/movieItemTitle"
-        style="@style/Theme.ImdbMovieApp.BaseTextView"
-        android:layout_width="wrap_content"
+        style="@style/BaseTextView"
+        android:layout_width="@dimen/dimen_100dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dimen_30dp"
+        android:layout_marginTop="@dimen/dimen_5dp"
+        android:layout_marginEnd="@dimen/dimen_70dp"
+        android:ellipsize="end"
+        android:maxLines="1"
         android:textColor="@color/neutral_08_whisper"
         android:textSize="@dimen/dimen_12sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/movieItemCardView"
         tools:text="The Baby Boss" />
 
     <TextView
         android:id="@+id/movieItemYear"
-        style="@style/Theme.ImdbMovieApp.BaseTextView"
+        style="@style/BaseTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dimen_30dp"
+        android:layout_marginTop="@dimen/dimen_2dp"
+        android:layout_marginEnd="@dimen/dimen_140dp"
         android:layout_marginBottom="@dimen/dimen_20dp"
         android:textColor="@color/neutral_04_grey"
         android:textSize="@dimen/dimen_12sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/movieItemTitle"
         tools:text="2017" />
@@ -71,8 +79,8 @@
         android:id="@+id/movieItemHeart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dimen_50dp"
-        android:layout_marginTop="@dimen/dimen_2dp"
+        android:layout_marginStart="@dimen/dimen_40dp"
+        android:layout_marginTop="@dimen/dimen_5dp"
         android:src="@drawable/ic_uncolored_heart"
         app:layout_constraintStart_toEndOf="@id/movieItemTitle"
         app:layout_constraintTop_toBottomOf="@id/movieItemCardView" />

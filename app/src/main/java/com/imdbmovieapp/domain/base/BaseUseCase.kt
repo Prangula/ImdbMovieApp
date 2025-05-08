@@ -1,5 +1,7 @@
 package com.imdbmovieapp.domain.base
 
-interface BaseUseCase<in DATA, out T> {
-    suspend operator fun invoke(data: DATA? = null): T
+import com.imdbmovieapp.utils.resource.Resource
+
+interface BaseUseCase<in DATA, T> {
+    suspend operator fun invoke(data: DATA): Resource<T>
 }

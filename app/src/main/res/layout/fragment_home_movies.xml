@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/neutral_01_black">
@@ -16,8 +15,8 @@
 
     <TextView
         android:id="@+id/homeMoviesTextview"
-        style="@style/Theme.ImdbMovieApp.BaseTextView"
-        android:layout_width="wrap_content"
+        style="@style/BaseTextView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/dimen_20dp"
         android:layout_marginVertical="@dimen/dimen_20dp"
@@ -36,23 +35,24 @@
         android:orientation="horizontal"
         android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@id/customSearchBar"
+        app:selectionRequired="true"
         app:singleSelection="true">
 
         <com.google.android.material.chip.Chip
             android:id="@+id/genrePopularChip"
-            style="@style/Theme.ImdbMovieApp.GenreChip"
-            android:layout_width="wrap_content"
+            style="@style/HomeChip"
+            android:layout_width="@dimen/dimen_80dp"
             android:layout_height="wrap_content"
             android:checked="true"
-            tools:text="Popular" />
+            android:text="@string/popular"
+            app:chipStartPadding="@dimen/dimen_10dp" />
 
         <com.google.android.material.chip.Chip
-            android:id="@+id/genreFavoritesChip"
-            style="@style/Theme.ImdbMovieApp.GenreChip"
+            android:id="@+id/genreTopRatedChip"
+            style="@style/HomeChip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:checked="false"
-            tools:text="Favorites" />
+            android:text="@string/top_rated" />
 
     </com.google.android.material.chip.ChipGroup>
 
@@ -60,11 +60,9 @@
         android:id="@+id/homeMoviesRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_0dp"
-        android:layout_marginHorizontal="@dimen/dimen_20dp"
         android:layout_marginTop="@dimen/dimen_20dp"
         android:layout_marginBottom="?attr/actionBarSize"
         android:orientation="vertical"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/homeMoviesTextview" />
 
