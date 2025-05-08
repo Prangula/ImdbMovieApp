@@ -6,11 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
 import com.imdbmovieapp.R
-import com.imdbmovieapp.utils.nav_command.NavigationCommand
-import com.imdbmovieapp.utils.lifecycle_scope_extensions.lifeCycleScope
+import com.imdbmovieapp.utils.navCommand.NavigationCommand
+import com.imdbmovieapp.utils.lifecycleScopeExtensions.lifeCycleScope
 import org.koin.androidx.viewmodel.ext.android.viewModelForClass
 import kotlin.reflect.KClass
 
@@ -42,28 +41,16 @@ abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel>(
         lifeCycleScope {
             viewModel.navigation.collect { command ->
                 when (command) {
-                    is NavigationCommand.ToDirection ->
-                        findNavController().navigate(command.directions)
+                    is NavigationCommand.ToDirection -> {
+                        val fragmentTransaction = parentFragmentManager.beginTransaction()
+                        fragmentTransaction.add(R.id.main, command.fragment)
+                        fragmentTransaction.addToBackStack(null)
+                        fragmentTransaction.commit()
+                    }
 
-                    is NavigationCommand.Back ->
-                        findNavController().navigateUp()
+                    is NavigationCommand.Back -> parentFragmentManager.popBackStack()
                 }
             }
-        }
-    }
-
-    protected fun showDialog() {
-        dialog = Dialog(requireActivity())
-        with(dialog!!) {
-            setContentView(R.layout.spinner_loading)
-            setCancelable(false)
-            show()
-        }
-    }
-
-    protected fun hideDialog() {
-        if(dialog!=null){
-            dialog!!.hide()
         }
     }
 

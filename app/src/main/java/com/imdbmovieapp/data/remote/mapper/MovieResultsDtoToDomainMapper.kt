@@ -15,7 +15,9 @@ class MovieResultsDtoToDomainMapper : BaseMapper<MoviesResultDto, MoviesResultsD
                 title = title,
                 overview = overview,
                 backdropPath = backdropPath,
-                voteAverage = voteAverage
+                voteAverage = voteAverage,
+                isFavorite = isFavorite,
+                heartColor = heartColor
             )
         }
     }

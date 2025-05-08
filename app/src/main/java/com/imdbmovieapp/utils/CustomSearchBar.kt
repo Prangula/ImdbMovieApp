@@ -9,12 +9,16 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
 import com.google.android.material.chip.ChipGroup
 import com.imdbmovieapp.R
 import com.imdbmovieapp.databinding.CustomSearchBarBinding
+import com.imdbmovieapp.utils.viewExtensions.hide
+import com.imdbmovieapp.utils.viewExtensions.invisible
+import com.imdbmovieapp.utils.viewExtensions.show
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -40,7 +44,7 @@ class CustomSearchBar @JvmOverloads constructor(
                         R.drawable.ic_show_tags,
                         R.drawable.bkg_circle_yellow_stroke
                     )
-                    chipGroup.visibility = View.GONE
+                    chipGroup.hide()
                 } else {
                     imageBackgroundHelper(
                         customImageView,
@@ -70,25 +74,33 @@ class CustomSearchBar @JvmOverloads constructor(
     }
 
     fun getSearchMovies(
-        viewModel: (query: String) -> Unit,
+        searchClickAction: (query: String, context: Context) -> Unit,
         lifecycleScope: CoroutineScope,
         chipGroup: ChipGroup,
+        observer: () -> Unit,
+        textView: TextView, imageView: ImageView
     ) {
         with(binding) {
             customEditText.addTextChangedListener { search ->
-                job?.cancel()
                 job = lifecycleScope.launch {
-                    delay(200)
-                    viewModel(search.toString())
+                    observer.invoke()
+                    delay(500)
+                    searchClickAction(search.toString(), context)
                 }
-                chipGroup.visibility = View.GONE
-                customImageView.visibility = View.INVISIBLE
-                customTextview.visibility = View.VISIBLE
+                chipGroup.hide()
+                if (search.isNullOrEmpty()) {
+                    job?.cancel()
+                    textView.hide()
+                    imageView.hide()
+                } else {
+                    customImageView.invisible()
+                    customTextview.show()
+                }
             }
         }
     }
 
-    fun clickCancel(onClickAction: () -> Unit) {
+    fun clickCancel(onClickAction: () -> Unit, textView: TextView, imageView: ImageView) {
         with(binding) {
             customTextview.setOnClickListener {
                 onClickAction.invoke()
@@ -99,9 +111,10 @@ class CustomSearchBar @JvmOverloads constructor(
                 )
                 customEditText.editableText.clear()
                 customEditText.clearFocus()
-                customImageView.visibility = View.VISIBLE
-                customTextview.visibility = View.GONE
-                customEditText.clearFocus()
+                customImageView.show()
+                customTextview.hide()
+                textView.hide()
+                imageView.hide()
                 (context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)
                     .hideSoftInputFromWindow(binding.customEditText.windowToken, 0)
             }
@@ -119,14 +132,13 @@ class CustomSearchBar @JvmOverloads constructor(
                 imageDrawable
             )
         )
-        imageView.setBackgroundDrawable(
-            ContextCompat.getDrawable(context, backgroundDrawable)
-        )
+        imageView.background = ContextCompat.getDrawable(context, backgroundDrawable)
     }
 
     private fun showImageWithAnimation(chipGroup: ChipGroup) {
-        val animator = ObjectAnimator.ofFloat(chipGroup, context.getString(R.string.alpha), 0f, 1f)
-        animator.duration = 1000
-        animator.start()
+        ObjectAnimator.ofFloat(chipGroup, context.getString(R.string.alpha), 0f, 1f).apply {
+            duration = 1000
+            start()
+        }
     }
 }

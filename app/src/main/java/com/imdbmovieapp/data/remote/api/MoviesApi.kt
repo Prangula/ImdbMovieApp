@@ -2,9 +2,7 @@ package com.imdbmovieapp.data.remote.api
 
 import com.imdbmovieapp.data.remote.dto.MovieDetailsDto
 import com.imdbmovieapp.data.remote.dto.MovieGenreDto
-import com.imdbmovieapp.data.remote.dto.PopularMoviesDto
-import com.imdbmovieapp.data.remote.dto.SearchMoviesDto
-import com.imdbmovieapp.data.remote.dto.TopRatedMoviesDto
+import com.imdbmovieapp.data.remote.dto.MoviesResponseDto
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -14,14 +12,13 @@ interface MoviesApi {
 
     @GET("/3/movie/popular")
     suspend fun getPopularMovies(
-        @Query("language") language: String = "de-DE",
         @Query("page") page: Int = 1,
-    ): Response<PopularMoviesDto>
+    ): Response<MoviesResponseDto>
 
     @GET("/3/movie/top_rated")
     suspend fun getTopRatedMovies(
-        @Query("language") language: String = "de-DE"
-    ): Response<TopRatedMoviesDto>
+        @Query("page") page: Int = 1,
+    ): Response<MoviesResponseDto>
 
     @GET("/3/movie/{movie_id}")
     suspend fun getMovieDetails(@Path("movie_id") movieId: String): Response<MovieDetailsDto>
@@ -29,9 +26,9 @@ interface MoviesApi {
     @GET("/3/search/movie")
     suspend fun getSearchMovies(
         @Query("query") query: String,
-        @Query("language") language: String = "de-DE"
-    ): Response<SearchMoviesDto>
+        @Query("page") page: Int = 1,
+    ): Response<MoviesResponseDto>
 
     @GET("/3/genre/movie/list")
-    suspend fun getMovieGenres(@Query("language") language: String = "de-DE"): Response<MovieGenreDto>
+    suspend fun getMovieGenres(@Query("language") language: String = "en-EN"): Response<MovieGenreDto>
 }

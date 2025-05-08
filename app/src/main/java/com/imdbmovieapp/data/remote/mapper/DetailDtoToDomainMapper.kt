@@ -12,8 +12,8 @@ class DetailDtoToDomainMapper : BaseMapper<MovieDetailsDto, DetailMovieDomain> {
                 id = id,
                 genreDtos = genreDtos.map {
                     GenreResultsDomain(
-                        it.id,
-                        it.name
+                        id = it.id,
+                        name = it.name
                     )
                 },
                 overview = overview,

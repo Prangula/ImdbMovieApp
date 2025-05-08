@@ -13,4 +13,7 @@
     <string name="top_rated">Top-Rated</string>
     <string name="alpha">alpha</string>
     <string name="trailer">Trailer</string>
+    <string name="data_can_t_be_loaded">Data can\'t be loaded</string>
+    <string name="internet_connection_or_some_other_server_error">internet connection or some other server error</string>
+    <string name="refresh">Refresh</string>
 </resources>

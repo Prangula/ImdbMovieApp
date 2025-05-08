@@ -66,4 +66,86 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/homeMoviesTextview" />
 
+    <ImageView
+        android:id="@+id/homeNoImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_empty"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/homeNoMoviesTextview"
+        style="@style/smallTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no_movies_added_yet"
+        android:textColor="@color/neutral_03_dark_grey"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/homeNoImageView" />
+
+    <ImageView
+        android:id="@+id/homeNoConnectionImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_no_internet"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/homeNoConnectionTextView"
+        style="@style/BigTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_10dp"
+        android:text="@string/data_can_t_be_loaded"
+        android:textColor="@color/neutral_07_lightest_grey"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/homeNoConnectionImageView" />
+
+    <TextView
+        android:id="@+id/homeErrorTextView"
+        style="@style/MediumTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dimen_80dp"
+        android:layout_marginTop="@dimen/dimen_10dp"
+        android:gravity="center"
+        android:text="@string/internet_connection_or_some_other_server_error"
+        android:textColor="@color/neutral_07_lightest_grey"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/homeNoConnectionTextView" />
+
+    <android.widget.Button
+        android:id="@+id/homeErrorButton"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="@dimen/dimen_20dp"
+        android:background="@drawable/bkg_button_rectangle_yellow_solid"
+        android:drawableEnd="@drawable/ic_reload"
+        android:drawablePadding="@dimen/dimen_8dp"
+        android:fontFamily="@font/montserrat"
+        android:paddingHorizontal="@dimen/dimen_26dp"
+        android:text="@string/refresh"
+        android:textColor="@color/neutral_01_black"
+        android:textSize="@dimen/dimen_12sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/homeErrorTextView" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

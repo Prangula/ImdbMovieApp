@@ -1,14 +1,14 @@
 package com.imdbmovieapp.di
 
-import com.imdbmovieapp.domain.use_case.DeleteFavoriteMovieUseCase
-import com.imdbmovieapp.domain.use_case.DetailMovieUseCase
-import com.imdbmovieapp.domain.use_case.GenreMoviesUseCase
-import com.imdbmovieapp.domain.use_case.GetFavoriteMoviesUseCase
-import com.imdbmovieapp.domain.use_case.GetFavoriteMoviesUseCaseImpl
-import com.imdbmovieapp.domain.use_case.InsertFavoriteMovieUseCase
-import com.imdbmovieapp.domain.use_case.PopularMoviesUseCase
-import com.imdbmovieapp.domain.use_case.SearchMoviesUseCase
-import com.imdbmovieapp.domain.use_case.TopRatedMoviesUseCase
+import com.imdbmovieapp.domain.useCase.DeleteFavoriteMovieUseCase
+import com.imdbmovieapp.domain.useCase.DetailMovieUseCase
+import com.imdbmovieapp.domain.useCase.GenreMoviesUseCase
+import com.imdbmovieapp.domain.useCase.GetFavoriteMoviesUseCase
+import com.imdbmovieapp.domain.useCase.GetFavoriteMoviesUseCaseImpl
+import com.imdbmovieapp.domain.useCase.InsertFavoriteMovieUseCase
+import com.imdbmovieapp.domain.useCase.PopularMoviesUseCase
+import com.imdbmovieapp.domain.useCase.SearchMoviesUseCase
+import com.imdbmovieapp.domain.useCase.TopRatedMoviesUseCase
 import org.koin.dsl.module
 
 val useCaseModule = module {

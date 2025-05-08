@@ -6,5 +6,5 @@ data class DetailMovieUI(
     val overview: String,
     val posterPath: String,
     val releaseDate: String,
-    val title: String,
+    val title: String
 )

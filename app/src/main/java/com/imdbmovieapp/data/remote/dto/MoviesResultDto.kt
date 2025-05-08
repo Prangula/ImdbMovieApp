@@ -1,8 +1,12 @@
 package com.imdbmovieapp.data.remote.dto
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
+@Entity(tableName = "movie_table")
 data class MoviesResultDto(
+    @PrimaryKey
     val id: Int,
     @SerializedName("genre_ids")
     val genreIds: List<Int>,
@@ -15,5 +19,7 @@ data class MoviesResultDto(
     @SerializedName("backdrop_path")
     val backdropPath: String,
     @SerializedName("vote_average")
-    val voteAverage: Double
+    val voteAverage: Double,
+    val isFavorite:Boolean,
+    val heartColor:Int
 )

@@ -1,8 +1,8 @@
 package com.imdbmovieapp.di
 
 import com.imdbmovieapp.data.remote.api.MoviesApi
-import com.imdbmovieapp.data.remote.network_utils.NetworkKeys.API_KEY
-import com.imdbmovieapp.data.remote.network_utils.NetworkKeys.BASE_URL
+import com.imdbmovieapp.data.remote.networkUtils.NetworkKeys.API_KEY
+import com.imdbmovieapp.data.remote.networkUtils.NetworkKeys.BASE_URL
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
